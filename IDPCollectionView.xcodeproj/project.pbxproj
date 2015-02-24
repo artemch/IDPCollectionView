@@ -26,6 +26,8 @@
 		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
 		69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */; };
 		69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */; };
+		69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */; };
+		69D59F201A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1F1A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib */; };
 		9D303952CA5740E8883991F3 /* libPods-IDPCollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +81,9 @@
 		69D59F171A9C900400174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
 		69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
 		69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewCell.xib; sourceTree = "<group>"; };
+		69D59F1C1A9CA9F700174BC7 /* IDPCollectionViewReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewReusableView.h; sourceTree = "<group>"; };
+		69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewReusableView.m; sourceTree = "<group>"; };
+		69D59F1F1A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewReusableView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,6 +263,9 @@
 			children = (
 				69D59EE81A9C737F00174BC7 /* IDPCollectionView.h */,
 				69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */,
+				69D59F1C1A9CA9F700174BC7 /* IDPCollectionViewReusableView.h */,
+				69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */,
+				69D59F1F1A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -383,6 +391,7 @@
 				69D59E861A9C6AFB00174BC7 /* Images.xcassets in Resources */,
 				69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */,
 				69D59E891A9C6AFB00174BC7 /* MainMenu.xib in Resources */,
+				69D59F201A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +456,7 @@
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
 				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,
+				69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

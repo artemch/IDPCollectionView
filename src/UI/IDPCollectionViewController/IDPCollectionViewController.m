@@ -11,11 +11,13 @@
 #import "IDPTestModel.h"
 #import "NSViewController+IDPExtension.h"
 #import "IDPCollectionViewCell.h"
+#import "IDPCollectionViewReusableView.h"
 
 static NSInteger const kIDPTestObjectsCount = 10;
 
 static CGFloat const kIDPDefaultCellWidth  = 150;
 static CGFloat const kIDPDefaultCellHeight = 100;
+static CGFloat const kIDPDefaultHeaderHeight = 50;
 
 @interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewGridLayoutDelegate>
 
@@ -47,11 +49,16 @@ static CGFloat const kIDPDefaultCellHeight = 100;
     gridLayout.verticalSpacing = 10.f;
     
     self.myView.collectionView.collectionViewLayout = gridLayout;
-    self.myView.collectionView.animatesSelection = NO; // (this is the default option)
+    self.myView.collectionView.animatesSelection = YES;
     
     NSString *identifier = NSStringFromClass([IDPCollectionViewCell class]);
     NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
     [self.myView.collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
+    
+    identifier = NSStringFromClass([IDPCollectionViewReusableView class]);
+    nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
+    
+    [self.myView.collectionView registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewListLayoutHeaderKind withReuseIdentifier:identifier];
 }
 
 #pragma mark -
@@ -64,6 +71,10 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 - (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath {
     return NSStringFromClass([IDPCollectionViewCell class]);
+}
+
+- (NSString *)collectionViewSupplementaryViewIdentifierForSection:(NSInteger)section kind:(NSString *)kind {
+    return NSStringFromClass([IDPCollectionViewReusableView class]);
 }
 
 #pragma mark -
@@ -85,6 +96,17 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
     IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:[self cellIdentifierForIndexPath:indexPath]];
     [cell fillFromObject:[self.objects objectAtIndex:indexPath.jnw_item]];
     return cell;
+}
+
+- (CGFloat)collectionView:(JNWCollectionView *)collectionView heightForHeaderInSection:(NSInteger)index {
+    return kIDPDefaultHeaderHeight;
+}
+
+- (JNWCollectionViewReusableView *)collectionView:(JNWCollectionView *)collectionView viewForSupplementaryViewOfKind:(NSString *)kind inSection:(NSInteger)section {
+    IDPCollectionViewReusableView *header = (IDPCollectionViewReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                                                                 withReuseIdentifer:[self collectionViewSupplementaryViewIdentifierForSection:section
+                                                                                                                                                                                         kind:kind]];
+    return header;
 }
 
 #pragma mark -
