@@ -58,7 +58,7 @@ static CGFloat const kIDPDefaultHeaderHeight = 50;
     identifier = NSStringFromClass([IDPCollectionViewReusableView class]);
     nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
     
-    [self.myView.collectionView registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewListLayoutHeaderKind withReuseIdentifier:identifier];
+    [self.myView.collectionView registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewGridLayoutHeaderKind withReuseIdentifier:identifier];
 }
 
 #pragma mark -

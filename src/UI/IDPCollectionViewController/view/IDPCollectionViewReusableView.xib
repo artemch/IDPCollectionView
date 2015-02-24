@@ -12,15 +12,21 @@
             <rect key="frame" x="0.0" y="0.0" width="459" height="48"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="44j-6W-rX6">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44j-6W-rX6">
                     <rect key="frame" x="18" y="20" width="423" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Label" id="mOC-ko-Fvc">
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="mOC-ko-Fvc">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="textColor" name="alternateSelectedControlColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="44j-6W-rX6" secondAttribute="trailing" constant="20" id="5TM-rQ-jfs"/>
+                <constraint firstItem="44j-6W-rX6" firstAttribute="leading" secondItem="zAJ-xM-fLF" secondAttribute="leading" constant="20" id="9Am-OP-KIa"/>
+                <constraint firstItem="44j-6W-rX6" firstAttribute="top" secondItem="zAJ-xM-fLF" secondAttribute="top" constant="11" id="UTu-ZF-1UR"/>
+                <constraint firstAttribute="bottom" secondItem="44j-6W-rX6" secondAttribute="bottom" constant="20" id="qpK-h8-37C"/>
+            </constraints>
             <connections>
                 <outlet property="title" destination="44j-6W-rX6" id="QIK-cs-T5j"/>
             </connections>
