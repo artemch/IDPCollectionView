@@ -12,6 +12,15 @@
 		69D59E861A9C6AFB00174BC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69D59E851A9C6AFB00174BC7 /* Images.xcassets */; };
 		69D59E891A9C6AFB00174BC7 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59E871A9C6AFB00174BC7 /* MainMenu.xib */; };
 		69D59E951A9C6AFB00174BC7 /* IDPCollectionViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59E941A9C6AFB00174BC7 /* IDPCollectionViewTests.m */; };
+		69D59ED91A9C6D9C00174BC7 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 69D59EC31A9C6D9C00174BC7 /* LICENSE */; };
+		69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EC41A9C6D9C00174BC7 /* README.md */; };
+		69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EC81A9C6D9C00174BC7 /* NSColor+IDPExtension.m */; };
+		69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ECA1A9C6D9C00174BC7 /* NSNib+IDPExtension.m */; };
+		69D59EDD1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ECC1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m */; };
+		69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ECE1A9C6D9C00174BC7 /* NSView+IDPExtension.m */; };
+		69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED01A9C6D9C00174BC7 /* NSViewController+IDPExtension.m */; };
+		69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */; };
+		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +44,24 @@
 		69D59E8E1A9C6AFB00174BC7 /* IDPCollectionViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IDPCollectionViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D59E931A9C6AFB00174BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69D59E941A9C6AFB00174BC7 /* IDPCollectionViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewTests.m; sourceTree = "<group>"; };
+		69D59EC31A9C6D9C00174BC7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		69D59EC41A9C6D9C00174BC7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		69D59EC61A9C6D9C00174BC7 /* AppKitKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppKitKit.h; sourceTree = "<group>"; };
+		69D59EC71A9C6D9C00174BC7 /* NSColor+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+IDPExtension.h"; sourceTree = "<group>"; };
+		69D59EC81A9C6D9C00174BC7 /* NSColor+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+IDPExtension.m"; sourceTree = "<group>"; };
+		69D59EC91A9C6D9C00174BC7 /* NSNib+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNib+IDPExtension.h"; sourceTree = "<group>"; };
+		69D59ECA1A9C6D9C00174BC7 /* NSNib+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNib+IDPExtension.m"; sourceTree = "<group>"; };
+		69D59ECB1A9C6D9C00174BC7 /* NSTableView+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTableView+IDPExtension.h"; sourceTree = "<group>"; };
+		69D59ECC1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTableView+IDPExtension.m"; sourceTree = "<group>"; };
+		69D59ECD1A9C6D9C00174BC7 /* NSView+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+IDPExtension.h"; sourceTree = "<group>"; };
+		69D59ECE1A9C6D9C00174BC7 /* NSView+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+IDPExtension.m"; sourceTree = "<group>"; };
+		69D59ECF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSViewController+IDPExtension.h"; sourceTree = "<group>"; };
+		69D59ED01A9C6D9C00174BC7 /* NSViewController+IDPExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSViewController+IDPExtension.m"; sourceTree = "<group>"; };
+		69D59ED31A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+IDPExtensions.h"; sourceTree = "<group>"; };
+		69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+IDPExtensions.m"; sourceTree = "<group>"; };
+		69D59ED61A9C6D9C00174BC7 /* IDPKeyPathObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKeyPathObserver.h; sourceTree = "<group>"; };
+		69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKeyPathObserver.m; sourceTree = "<group>"; };
+		69D59ED81A9C6D9C00174BC7 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +85,7 @@
 		69D59E721A9C6AFA00174BC7 = {
 			isa = PBXGroup;
 			children = (
+				69D59EC01A9C6D9C00174BC7 /* src */,
 				69D59E7D1A9C6AFB00174BC7 /* IDPCollectionView */,
 				69D59E911A9C6AFB00174BC7 /* IDPCollectionViewTests */,
 				69D59E7C1A9C6AFB00174BC7 /* Products */,
@@ -109,6 +137,79 @@
 				69D59E931A9C6AFB00174BC7 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		69D59EC01A9C6D9C00174BC7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EC11A9C6D9C00174BC7 /* IDPKit */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		69D59EC11A9C6D9C00174BC7 /* IDPKit */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EC21A9C6D9C00174BC7 /* AppKit */,
+				69D59ED11A9C6D9C00174BC7 /* FoundationKit */,
+			);
+			path = IDPKit;
+			sourceTree = "<group>";
+		};
+		69D59EC21A9C6D9C00174BC7 /* AppKit */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EC31A9C6D9C00174BC7 /* LICENSE */,
+				69D59EC41A9C6D9C00174BC7 /* README.md */,
+				69D59EC51A9C6D9C00174BC7 /* src */,
+			);
+			path = AppKit;
+			sourceTree = "<group>";
+		};
+		69D59EC51A9C6D9C00174BC7 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EC61A9C6D9C00174BC7 /* AppKitKit.h */,
+				69D59EC71A9C6D9C00174BC7 /* NSColor+IDPExtension.h */,
+				69D59EC81A9C6D9C00174BC7 /* NSColor+IDPExtension.m */,
+				69D59EC91A9C6D9C00174BC7 /* NSNib+IDPExtension.h */,
+				69D59ECA1A9C6D9C00174BC7 /* NSNib+IDPExtension.m */,
+				69D59ECB1A9C6D9C00174BC7 /* NSTableView+IDPExtension.h */,
+				69D59ECC1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m */,
+				69D59ECD1A9C6D9C00174BC7 /* NSView+IDPExtension.h */,
+				69D59ECE1A9C6D9C00174BC7 /* NSView+IDPExtension.m */,
+				69D59ECF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.h */,
+				69D59ED01A9C6D9C00174BC7 /* NSViewController+IDPExtension.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		69D59ED11A9C6D9C00174BC7 /* FoundationKit */ = {
+			isa = PBXGroup;
+			children = (
+				69D59ED21A9C6D9C00174BC7 /* Categories */,
+				69D59ED51A9C6D9C00174BC7 /* IDPKeyPathObserver */,
+				69D59ED81A9C6D9C00174BC7 /* IDPPropertyMacros.h */,
+			);
+			path = FoundationKit;
+			sourceTree = "<group>";
+		};
+		69D59ED21A9C6D9C00174BC7 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				69D59ED31A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.h */,
+				69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		69D59ED51A9C6D9C00174BC7 /* IDPKeyPathObserver */ = {
+			isa = PBXGroup;
+			children = (
+				69D59ED61A9C6D9C00174BC7 /* IDPKeyPathObserver.h */,
+				69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */,
+			);
+			path = IDPKeyPathObserver;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,6 +292,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D59ED91A9C6D9C00174BC7 /* LICENSE in Resources */,
 				69D59E861A9C6AFB00174BC7 /* Images.xcassets in Resources */,
 				69D59E891A9C6AFB00174BC7 /* MainMenu.xib in Resources */,
 			);
@@ -210,8 +312,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
+				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
 				69D59E841A9C6AFB00174BC7 /* main.m in Sources */,
+				69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */,
+				69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */,
+				69D59EDD1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m in Sources */,
+				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
+				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
+				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +508,7 @@
 				69D59E9A1A9C6AFB00174BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		69D59E9B1A9C6AFB00174BC7 /* Build configuration list for PBXNativeTarget "IDPCollectionViewTests" */ = {
 			isa = XCConfigurationList;
@@ -406,6 +517,7 @@
 				69D59E9D1A9C6AFB00174BC7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
