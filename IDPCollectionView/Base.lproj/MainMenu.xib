@@ -719,5 +719,6 @@
                 <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
             </connections>
         </viewController>
+        <arrayController id="BV1-Mj-gBo"/>
     </objects>
 </document>
