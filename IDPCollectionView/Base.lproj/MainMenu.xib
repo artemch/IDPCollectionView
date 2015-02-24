@@ -673,114 +673,52 @@
             <rect key="contentRect" x="335" y="390" width="580" height="570"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="580" height="570"/>
-            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPControllerView">
+            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPCollectionView">
                 <rect key="frame" x="0.0" y="0.0" width="580" height="570"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EY-fj-Arx">
-                        <rect key="frame" x="-1" y="-1" width="581" height="572"/>
-                        <clipView key="contentView" id="LDK-4U-g5F">
-                            <rect key="frame" x="1" y="1" width="248" height="158"/>
+                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-i9-ksC" customClass="JNWCollectionView">
+                        <rect key="frame" x="-1" y="-1" width="582" height="572"/>
+                        <clipView key="contentView" id="fX2-9f-Lmm">
+                            <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <collectionView selectable="YES" id="RPz-bT-MR4">
-                                    <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <connections>
-                                        <binding destination="OqS-aZ-RAx" name="content" keyPath="arrangedObjects" id="WiS-wT-hei"/>
-                                        <outlet property="delegate" destination="C3Q-MP-bV9" id="uel-As-5xk"/>
-                                        <outlet property="itemPrototype" destination="bnJ-SF-SFc" id="1sM-Ri-Yaj"/>
-                                    </connections>
-                                </collectionView>
+                                <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2v-Qo-dyT">
+                                    <rect key="frame" x="0.0" y="476" width="565" height="552"/>
+                                </view>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="L55-yr-4gm">
-                            <rect key="frame" x="1" y="144" width="233" height="15"/>
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="PKm-0B-XKT">
+                            <rect key="frame" x="1" y="80" width="166" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="sD0-8Y-ZF3">
-                            <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yUz-Db-Mh4">
+                            <rect key="frame" x="167" y="1" width="15" height="79"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
+                        <connections>
+                            <outlet property="dataSource" destination="C3Q-MP-bV9" id="yuT-hE-xYx"/>
+                            <outlet property="delegate" destination="C3Q-MP-bV9" id="xuQ-VZ-kcG"/>
+                        </connections>
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="4EY-fj-Arx" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Vuw-t2-fTq"/>
-                    <constraint firstAttribute="bottom" secondItem="4EY-fj-Arx" secondAttribute="bottom" constant="-1" id="e7x-17-RFH"/>
-                    <constraint firstItem="4EY-fj-Arx" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="tZq-G8-Oec"/>
-                    <constraint firstAttribute="trailing" secondItem="4EY-fj-Arx" secondAttribute="trailing" id="wQx-wT-2gK"/>
+                    <constraint firstAttribute="bottom" secondItem="Zdb-i9-ksC" secondAttribute="bottom" constant="-1" id="BTI-gP-hef"/>
+                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Kgt-ej-U7I"/>
+                    <constraint firstAttribute="trailing" secondItem="Zdb-i9-ksC" secondAttribute="trailing" constant="-1" id="Tbu-Z2-MVS"/>
+                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="x8s-Fb-tMv"/>
                 </constraints>
+                <connections>
+                    <outlet property="collectionView" destination="Zdb-i9-ksC" id="uCo-HK-IOy"/>
+                </connections>
             </view>
             <point key="canvasLocation" x="354" y="444"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
-                <outlet property="arrayController" destination="OqS-aZ-RAx" id="wv4-g2-SG0"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
             </connections>
         </viewController>
-        <arrayController objectClassName="IDPTestModel" id="OqS-aZ-RAx">
-            <declaredKeys>
-                <string>title</string>
-                <string>subtitle</string>
-            </declaredKeys>
-            <connections>
-                <binding destination="C3Q-MP-bV9" name="contentArray" keyPath="objects" id="FeU-LT-Hq5"/>
-            </connections>
-        </arrayController>
-        <collectionViewItem id="bnJ-SF-SFc">
-            <connections>
-                <outlet property="view" destination="4jp-V1-fWF" id="deR-lK-XAR"/>
-            </connections>
-        </collectionViewItem>
-        <view wantsLayer="YES" id="4jp-V1-fWF" customClass="IDPCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="248" height="83"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="O9V-g8-PwK">
-                    <rect key="frame" x="0.0" y="0.0" width="248" height="83"/>
-                </customView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="efr-al-On2">
-                    <rect key="frame" x="18" y="58" width="212" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="17" id="WuT-ol-gkN"/>
-                    </constraints>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Title" id="Nc5-HD-eEZ">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="bnJ-SF-SFc" name="value" keyPath="representedObject.title" id="X0o-db-6IM"/>
-                    </connections>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mAq-Bf-7uI">
-                    <rect key="frame" x="20" y="20" width="210" height="17"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Subtitle" id="k5o-MN-qcm">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="bnJ-SF-SFc" name="value" keyPath="representedObject.subtitle" id="HoR-Ud-JL5"/>
-                    </connections>
-                </textField>
-            </subviews>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="O9V-g8-PwK" secondAttribute="trailing" id="6pP-l8-NED"/>
-                <constraint firstItem="mAq-Bf-7uI" firstAttribute="top" secondItem="efr-al-On2" secondAttribute="bottom" constant="21" id="8Zd-Ky-0fa"/>
-                <constraint firstAttribute="bottom" secondItem="O9V-g8-PwK" secondAttribute="bottom" id="DX2-ag-ofl"/>
-                <constraint firstItem="O9V-g8-PwK" firstAttribute="leading" secondItem="4jp-V1-fWF" secondAttribute="leading" id="ScK-g3-w2c"/>
-                <constraint firstItem="efr-al-On2" firstAttribute="top" secondItem="4jp-V1-fWF" secondAttribute="top" constant="8" id="brQ-DR-298"/>
-                <constraint firstAttribute="trailing" secondItem="mAq-Bf-7uI" secondAttribute="trailing" constant="20" id="gUx-by-F8r"/>
-                <constraint firstAttribute="trailing" secondItem="efr-al-On2" secondAttribute="trailing" constant="20" id="glK-L3-gBK"/>
-                <constraint firstAttribute="bottom" secondItem="mAq-Bf-7uI" secondAttribute="bottom" constant="20" id="igm-wf-iRd"/>
-                <constraint firstItem="mAq-Bf-7uI" firstAttribute="leading" secondItem="4jp-V1-fWF" secondAttribute="leading" constant="22" id="ohc-z6-vzQ"/>
-                <constraint firstItem="efr-al-On2" firstAttribute="leading" secondItem="4jp-V1-fWF" secondAttribute="leading" constant="20" id="qTt-bM-wSi"/>
-                <constraint firstItem="O9V-g8-PwK" firstAttribute="top" secondItem="4jp-V1-fWF" secondAttribute="top" id="rwG-IU-LJe"/>
-            </constraints>
-            <point key="canvasLocation" x="178" y="837.5"/>
-        </view>
+        <arrayController id="BV1-Mj-gBo"/>
     </objects>
 </document>
