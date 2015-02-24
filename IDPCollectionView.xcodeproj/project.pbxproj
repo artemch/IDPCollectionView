@@ -22,9 +22,11 @@
 		69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */; };
 		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */; };
-		69D59EEA1A9C737F00174BC7 /* IDPControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPControllerView.m */; };
+		69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */; };
 		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
-		69D59EF41A9C7C1900174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */; };
+		69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */; };
+		69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */; };
+		9D303952CA5740E8883991F3 /* libPods-IDPCollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IDPCollectionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDPCollectionView.xcconfig"; path = "Pods/Pods-IDPCollectionView.xcconfig"; sourceTree = "<group>"; };
 		69D59E7B1A9C6AFB00174BC7 /* IDPCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDPCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D59E7F1A9C6AFB00174BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69D59E801A9C6AFB00174BC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -68,12 +72,13 @@
 		69D59ED81A9C6D9C00174BC7 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
 		69D59EE41A9C734800174BC7 /* IDPCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewController.h; sourceTree = "<group>"; };
 		69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewController.m; sourceTree = "<group>"; };
-		69D59EE81A9C737F00174BC7 /* IDPControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPControllerView.h; sourceTree = "<group>"; };
-		69D59EE91A9C737F00174BC7 /* IDPControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPControllerView.m; sourceTree = "<group>"; };
+		69D59EE81A9C737F00174BC7 /* IDPCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionView.h; sourceTree = "<group>"; };
+		69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionView.m; sourceTree = "<group>"; };
 		69D59EED1A9C757A00174BC7 /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
 		69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestModel.m; sourceTree = "<group>"; };
-		69D59EF21A9C7C1900174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
-		69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
+		69D59F171A9C900400174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
+		69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
+		69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D303952CA5740E8883991F3 /* libPods-IDPCollectionView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +107,8 @@
 				69D59E7D1A9C6AFB00174BC7 /* IDPCollectionView */,
 				69D59E911A9C6AFB00174BC7 /* IDPCollectionViewTests */,
 				69D59E7C1A9C6AFB00174BC7 /* Products */,
+				3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */,
+				9A1EBF4DC96F46E7B6FF585D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,7 +237,6 @@
 		69D59EE21A9C733900174BC7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				69D59EF01A9C7BC500174BC7 /* IDPCollectionView */,
 				69D59EE31A9C733900174BC7 /* IDPCollectionViewController */,
 			);
 			path = UI;
@@ -238,6 +245,7 @@
 		69D59EE31A9C733900174BC7 /* IDPCollectionViewController */ = {
 			isa = PBXGroup;
 			children = (
+				69D59F161A9C900400174BC7 /* Cell */,
 				69D59EE71A9C735300174BC7 /* view */,
 				69D59EE41A9C734800174BC7 /* IDPCollectionViewController.h */,
 				69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */,
@@ -248,8 +256,8 @@
 		69D59EE71A9C735300174BC7 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				69D59EE81A9C737F00174BC7 /* IDPControllerView.h */,
-				69D59EE91A9C737F00174BC7 /* IDPControllerView.m */,
+				69D59EE81A9C737F00174BC7 /* IDPCollectionView.h */,
+				69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -271,21 +279,22 @@
 			path = IDPTestModel;
 			sourceTree = "<group>";
 		};
-		69D59EF01A9C7BC500174BC7 /* IDPCollectionView */ = {
+		69D59F161A9C900400174BC7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				69D59EF11A9C7BC500174BC7 /* Cell */,
-			);
-			path = IDPCollectionView;
-			sourceTree = "<group>";
-		};
-		69D59EF11A9C7BC500174BC7 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				69D59EF21A9C7C1900174BC7 /* IDPCollectionViewCell.h */,
-				69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */,
+				69D59F171A9C900400174BC7 /* IDPCollectionViewCell.h */,
+				69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */,
+				69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9A1EBF4DC96F46E7B6FF585D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,9 +304,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 69D59E981A9C6AFB00174BC7 /* Build configuration list for PBXNativeTarget "IDPCollectionView" */;
 			buildPhases = (
+				6E3E6F58CFE7453D88648B9E /* Check Pods Manifest.lock */,
 				69D59E771A9C6AFA00174BC7 /* Sources */,
 				69D59E781A9C6AFA00174BC7 /* Frameworks */,
 				69D59E791A9C6AFA00174BC7 /* Resources */,
+				F2E2B7E6FB2A483A9B630C28 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -370,6 +381,7 @@
 			files = (
 				69D59ED91A9C6D9C00174BC7 /* LICENSE in Resources */,
 				69D59E861A9C6AFB00174BC7 /* Images.xcassets in Resources */,
+				69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */,
 				69D59E891A9C6AFB00174BC7 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,15 +395,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6E3E6F58CFE7453D88648B9E /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F2E2B7E6FB2A483A9B630C28 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-IDPCollectionView-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		69D59E771A9C6AFA00174BC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D59EF41A9C7C1900174BC7 /* IDPCollectionViewCell.m in Sources */,
+				69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */,
 				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
 				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
-				69D59EEA1A9C737F00174BC7 /* IDPControllerView.m in Sources */,
+				69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */,
 				69D59E841A9C6AFB00174BC7 /* main.m in Sources */,
 				69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */,
 				69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */,
@@ -513,6 +558,7 @@
 		};
 		69D59E991A9C6AFB00174BC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -524,6 +570,7 @@
 		};
 		69D59E9A1A9C6AFB00174BC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;

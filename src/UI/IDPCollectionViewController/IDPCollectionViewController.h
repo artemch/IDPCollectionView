@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface IDPCollectionViewController : NSViewController <NSCollectionViewDelegate>
+@interface IDPCollectionViewController : NSViewController
 
 @property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
 
