@@ -10,8 +10,6 @@
 
 @interface IDPCollectionViewController : NSViewController
 
-@property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
-
 @property (nonatomic, strong) NSMutableArray   *objects;
 
 @end

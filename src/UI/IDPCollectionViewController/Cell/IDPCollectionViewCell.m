@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [NSColor greenColor];
+//    self.backgroundColor = [NSColor greenColor];
 }
 
 #pragma mark -

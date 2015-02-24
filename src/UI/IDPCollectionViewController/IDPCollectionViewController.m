@@ -14,7 +14,7 @@
 
 static NSInteger const kIDPTestObjectsCount = 10;
 
-static CGFloat const kIDPDefaultCellWidth  = 100;
+static CGFloat const kIDPDefaultCellWidth  = 150;
 static CGFloat const kIDPDefaultCellHeight = 100;
 
 @interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewGridLayoutDelegate>
@@ -35,7 +35,6 @@ static CGFloat const kIDPDefaultCellHeight = 100;
     self.objects = [NSMutableArray array];
     for (NSInteger index = 0; index < kIDPTestObjectsCount; index++) {
         IDPTestModel *model = [IDPTestModel new];
-//        [self.arrayController addObject:model];
         [self.objects addObject:model];
     }
     
