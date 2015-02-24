@@ -19,7 +19,7 @@ static CGFloat const kIDPDefaultCellWidth  = 150;
 static CGFloat const kIDPDefaultCellHeight = 100;
 static CGFloat const kIDPDefaultHeaderHeight = 50;
 
-@interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewGridLayoutDelegate>
+@interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate>
 
 @property (nonatomic, strong, readonly) IDPCollectionView   *myView;
 
@@ -47,6 +47,7 @@ static CGFloat const kIDPDefaultHeaderHeight = 50;
     JNWCollectionViewGridLayout *gridLayout = [[JNWCollectionViewGridLayout alloc] init];
     gridLayout.delegate = self;
     gridLayout.verticalSpacing = 10.f;
+    gridLayout.itemSize = CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
     
     self.myView.collectionView.collectionViewLayout = gridLayout;
     self.myView.collectionView.animatesSelection = YES;
@@ -88,18 +89,10 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
     return self.objects.count;
 }
 
-- (CGSize)sizeForItemInCollectionView:(JNWCollectionView *)collectionView {
-    return CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
-}
-
 - (JNWCollectionViewCell *)collectionView:(JNWCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:[self cellIdentifierForIndexPath:indexPath]];
     [cell fillFromObject:[self.objects objectAtIndex:indexPath.jnw_item]];
     return cell;
-}
-
-- (CGFloat)collectionView:(JNWCollectionView *)collectionView heightForHeaderInSection:(NSInteger)index {
-    return kIDPDefaultHeaderHeight;
 }
 
 - (JNWCollectionViewReusableView *)collectionView:(JNWCollectionView *)collectionView viewForSupplementaryViewOfKind:(NSString *)kind inSection:(NSInteger)section {
@@ -111,5 +104,16 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 #pragma mark -
 #pragma mark JNWCollectionViewGridLayoutDelegate
+
+//- (CGSize)sizeForItemInCollectionView:(JNWCollectionView *)collectionView {
+//    return CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
+//}
+
+- (CGFloat)collectionView:(JNWCollectionView *)collectionView heightForHeaderInSection:(NSInteger)index {
+    return kIDPDefaultHeaderHeight;
+}
+
+#pragma mark -
+#pragma mark JNWCollectionViewDelegate
 
 @end
