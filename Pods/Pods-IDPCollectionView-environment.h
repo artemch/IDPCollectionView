@@ -9,7 +9,7 @@
 // JNWCollectionView
 #define COCOAPODS_POD_AVAILABLE_JNWCollectionView
 #define COCOAPODS_VERSION_MAJOR_JNWCollectionView 1
-#define COCOAPODS_VERSION_MINOR_JNWCollectionView 3
+#define COCOAPODS_VERSION_MINOR_JNWCollectionView 4
 #define COCOAPODS_VERSION_PATCH_JNWCollectionView 0
 
 // JNWScrollView

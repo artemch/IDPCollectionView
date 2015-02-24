@@ -33,8 +33,8 @@
 - (id)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
 	if (self == nil) return nil;
-	[self baseInit];
-	return self;
+    [self baseInit];
+    return self;
 }
 
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -91,7 +91,7 @@
 	self = [super initWithFrame:frameRect];
 	if (self == nil) return nil;
 	
-    [self baseInit];
+	[self baseInit];
 	
 	return self;
 }

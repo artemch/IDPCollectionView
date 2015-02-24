@@ -25,7 +25,7 @@
 - (instancetype)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
 	if (self == nil) return nil;
-    [self baseInit];
+	[self baseInit];
 	return self;
 }
 
