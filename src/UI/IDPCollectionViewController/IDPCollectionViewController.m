@@ -25,4 +25,21 @@ static NSInteger const kIDPTestObjectsCount = 10;
     }
 }
 
+#pragma mark -
+#pragma mark NSCollectionViewDelegate
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView
+ canDragItemsAtIndexes:(NSIndexSet *)indexes
+             withEvent:(NSEvent *)event
+{
+    return YES;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView
+   writeItemsAtIndexes:(NSIndexSet *)indexes
+          toPasteboard:(NSPasteboard *)pasteboard
+{
+    return YES;
+}
+
 @end

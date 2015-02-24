@@ -670,25 +670,26 @@
         <window title="IDPCollectionView" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="917" height="570"/>
+            <rect key="contentRect" x="335" y="390" width="580" height="570"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
-            <value key="minSize" type="size" width="917" height="570"/>
+            <value key="minSize" type="size" width="580" height="570"/>
             <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPControllerView">
-                <rect key="frame" x="0.0" y="0.0" width="917" height="570"/>
+                <rect key="frame" x="0.0" y="0.0" width="580" height="570"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4EY-fj-Arx">
-                        <rect key="frame" x="-1" y="-1" width="919" height="572"/>
+                        <rect key="frame" x="-1" y="-1" width="581" height="572"/>
                         <clipView key="contentView" id="LDK-4U-g5F">
                             <rect key="frame" x="1" y="1" width="248" height="158"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <collectionView id="RPz-bT-MR4">
+                                <collectionView selectable="YES" id="RPz-bT-MR4">
                                     <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <connections>
                                         <binding destination="OqS-aZ-RAx" name="content" keyPath="arrangedObjects" id="WiS-wT-hei"/>
+                                        <outlet property="delegate" destination="C3Q-MP-bV9" id="uel-As-5xk"/>
                                         <outlet property="itemPrototype" destination="bnJ-SF-SFc" id="1sM-Ri-Yaj"/>
                                     </connections>
                                 </collectionView>
@@ -708,10 +709,10 @@
                     <constraint firstItem="4EY-fj-Arx" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Vuw-t2-fTq"/>
                     <constraint firstAttribute="bottom" secondItem="4EY-fj-Arx" secondAttribute="bottom" constant="-1" id="e7x-17-RFH"/>
                     <constraint firstItem="4EY-fj-Arx" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="tZq-G8-Oec"/>
-                    <constraint firstAttribute="trailing" secondItem="4EY-fj-Arx" secondAttribute="trailing" constant="-1" id="wQx-wT-2gK"/>
+                    <constraint firstAttribute="trailing" secondItem="4EY-fj-Arx" secondAttribute="trailing" id="wQx-wT-2gK"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="522.5" y="444"/>
+            <point key="canvasLocation" x="354" y="444"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
