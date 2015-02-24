@@ -20,7 +20,11 @@
 		69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ECE1A9C6D9C00174BC7 /* NSView+IDPExtension.m */; };
 		69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED01A9C6D9C00174BC7 /* NSViewController+IDPExtension.m */; };
 		69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */; };
-		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; };
+		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */; };
+		69D59EEA1A9C737F00174BC7 /* IDPControllerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPControllerView.m */; };
+		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
+		69D59EF41A9C7C1900174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,14 @@
 		69D59ED61A9C6D9C00174BC7 /* IDPKeyPathObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKeyPathObserver.h; sourceTree = "<group>"; };
 		69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKeyPathObserver.m; sourceTree = "<group>"; };
 		69D59ED81A9C6D9C00174BC7 /* IDPPropertyMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPPropertyMacros.h; sourceTree = "<group>"; };
+		69D59EE41A9C734800174BC7 /* IDPCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewController.h; sourceTree = "<group>"; };
+		69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewController.m; sourceTree = "<group>"; };
+		69D59EE81A9C737F00174BC7 /* IDPControllerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPControllerView.h; sourceTree = "<group>"; };
+		69D59EE91A9C737F00174BC7 /* IDPControllerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPControllerView.m; sourceTree = "<group>"; };
+		69D59EED1A9C757A00174BC7 /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
+		69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestModel.m; sourceTree = "<group>"; };
+		69D59EF21A9C7C1900174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
+		69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +154,8 @@
 		69D59EC01A9C6D9C00174BC7 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				69D59EEB1A9C756C00174BC7 /* Models */,
+				69D59EE21A9C733900174BC7 /* UI */,
 				69D59EC11A9C6D9C00174BC7 /* IDPKit */,
 			);
 			path = src;
@@ -210,6 +224,68 @@
 				69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */,
 			);
 			path = IDPKeyPathObserver;
+			sourceTree = "<group>";
+		};
+		69D59EE21A9C733900174BC7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EF01A9C7BC500174BC7 /* IDPCollectionView */,
+				69D59EE31A9C733900174BC7 /* IDPCollectionViewController */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		69D59EE31A9C733900174BC7 /* IDPCollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EE71A9C735300174BC7 /* view */,
+				69D59EE41A9C734800174BC7 /* IDPCollectionViewController.h */,
+				69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */,
+			);
+			path = IDPCollectionViewController;
+			sourceTree = "<group>";
+		};
+		69D59EE71A9C735300174BC7 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EE81A9C737F00174BC7 /* IDPControllerView.h */,
+				69D59EE91A9C737F00174BC7 /* IDPControllerView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		69D59EEB1A9C756C00174BC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EEC1A9C756C00174BC7 /* IDPTestModel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		69D59EEC1A9C756C00174BC7 /* IDPTestModel */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EED1A9C757A00174BC7 /* IDPTestModel.h */,
+				69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */,
+			);
+			path = IDPTestModel;
+			sourceTree = "<group>";
+		};
+		69D59EF01A9C7BC500174BC7 /* IDPCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EF11A9C7BC500174BC7 /* Cell */,
+			);
+			path = IDPCollectionView;
+			sourceTree = "<group>";
+		};
+		69D59EF11A9C7BC500174BC7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				69D59EF21A9C7C1900174BC7 /* IDPCollectionViewCell.h */,
+				69D59EF31A9C7C1900174BC7 /* IDPCollectionViewCell.m */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,13 +388,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D59EF41A9C7C1900174BC7 /* IDPCollectionViewCell.m in Sources */,
 				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
 				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
+				69D59EEA1A9C737F00174BC7 /* IDPControllerView.m in Sources */,
 				69D59E841A9C6AFB00174BC7 /* main.m in Sources */,
 				69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */,
 				69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */,
 				69D59EDD1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m in Sources */,
+				69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */,
 				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
+				69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */,
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
 				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,
