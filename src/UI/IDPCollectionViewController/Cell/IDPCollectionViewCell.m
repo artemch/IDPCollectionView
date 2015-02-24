@@ -16,7 +16,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-//    self.backgroundColor = [NSColor greenColor];
+    self.backgroundColor = [NSColor clearColor];
 }
 
 #pragma mark -
@@ -28,6 +28,11 @@
         self.title.stringValue = model.title;
         self.subtitle.stringValue = model.subtitle;
     }
+}
+
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    self.backgroundColor = selected ? [NSColor greenColor] : [NSColor clearColor];
 }
 
 @end
