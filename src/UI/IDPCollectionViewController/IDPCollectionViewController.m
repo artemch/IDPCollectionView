@@ -15,8 +15,8 @@
 
 static NSInteger const kIDPTestObjectsCount = 10;
 
-static CGFloat const kIDPDefaultCellWidth  = 150;
-static CGFloat const kIDPDefaultCellHeight = 100;
+static CGFloat const kIDPDefaultCellWidth  = 180;
+static CGFloat const kIDPDefaultCellHeight = 70;
 static CGFloat const kIDPDefaultHeaderHeight = 50;
 
 @interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate>

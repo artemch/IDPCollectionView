@@ -8,6 +8,8 @@
 
 #import "IDPCollectionViewCell.h"
 #import "IDPTestModel.h"
+#import "NSColor+IDPExtension.h"
+#import "NSView+IDPExtension.h"
 
 @implementation IDPCollectionViewCell
 
@@ -16,7 +18,14 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [NSColor clearColor];
+    self.backgroundColor = [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255];
+    
+    NSShadow *dropShadow = [[NSShadow alloc] init];
+    [dropShadow setShadowColor:[NSColor colorWithIntRed:216 green:219 blue:219 alpha:255]];
+    [dropShadow setShadowOffset:NSMakeSize(2.0, -2.0)];
+    [dropShadow setShadowBlurRadius:0.0];
+    
+    [self setShadow:dropShadow];
 }
 
 #pragma mark -
@@ -30,9 +39,9 @@
     }
 }
 
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    self.backgroundColor = selected ? [NSColor greenColor] : [NSColor clearColor];
-}
+//- (void)setSelected:(BOOL)selected {
+//    [super setSelected:selected];
+//    self.backgroundColor = selected ? [NSColor greenColor] : [NSColor clearColor];
+//}
 
 @end
