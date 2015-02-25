@@ -80,12 +80,23 @@
 
 @end
 
+static NSTimeInterval const kIDPMouseHoldTimerDuration = 0.1;
+static NSString *const kIDPEventKey = @"event";
+
 @interface JNWCollectionViewCell()
+
 @property (nonatomic, strong) JNWCollectionViewCellBackgroundView *backgroundView;
+@property (nonatomic, strong) NSTimer *mouseHoldTimer;
+
 @end
 
 @implementation JNWCollectionViewCell
 @synthesize contentView = _contentView;
+
+- (void)dealloc
+{
+    self.mouseHoldTimer = nil;
+}
 
 - (instancetype)initWithFrame:(NSRect)frameRect {
 	self = [super initWithFrame:frameRect];
@@ -185,13 +196,13 @@
 
 - (void)mouseDown:(NSEvent *)theEvent {
 	[super mouseDown:theEvent];
-	
-	[self.collectionView mouseDownInCollectionViewCell:self withEvent:theEvent];
+    [self starMouseDownTimer:theEvent];
+//    [self.collectionView mouseDownInCollectionViewCell:self withEvent:theEvent];
 }
 
 - (void)mouseUp:(NSEvent *)theEvent {
+    [self checkMouseDownTimer];
 	[super mouseUp:theEvent];
-	
 	[self.collectionView mouseUpInCollectionViewCell:self withEvent:theEvent];
 	
 	if (theEvent.clickCount == 2) {
@@ -209,6 +220,41 @@
 
 - (NSString *)description {
 	return [NSString stringWithFormat:@"<%@: %p; frame = %@; layer = <%@: %p>>", self.class, self, NSStringFromRect(self.frame), self.layer.class, self.layer];
+}
+
+#pragma mark -
+#pragma mark Accessor methods
+
+- (void)setMouseHoldTimer:(NSTimer *)mousDownTimer {
+    [_mouseHoldTimer invalidate];
+    _mouseHoldTimer = mousDownTimer;
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)starMouseDownTimer:(NSEvent *)event {
+    self.mouseHoldTimer = [NSTimer scheduledTimerWithTimeInterval:kIDPMouseHoldTimerDuration target:self selector:@selector(mouseHoldTimerFire:) userInfo:@{kIDPEventKey: event} repeats:NO];
+}
+
+- (void)checkMouseDownTimer {
+    if (self.mouseHoldTimer) {
+        NSDictionary *userInfo = (NSDictionary *)self.mouseHoldTimer.userInfo;
+        NSEvent *theEvent = [userInfo objectForKey:kIDPEventKey];
+        [self.collectionView mouseDownInCollectionViewCell:self withEvent:theEvent];
+        [self stopMouseDownTimer];
+    }
+}
+
+- (void)stopMouseDownTimer {
+    self.mouseHoldTimer = nil;
+}
+
+- (void)mouseHoldTimerFire:(NSTimer *)timer {
+    if (timer == self.mouseHoldTimer) {
+        NSLog(@"mouse hold");
+        [self stopMouseDownTimer];
+    }
 }
 
 @end
