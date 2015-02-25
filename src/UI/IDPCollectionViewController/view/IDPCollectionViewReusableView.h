@@ -11,5 +11,8 @@
 @interface IDPCollectionViewReusableView : JNWCollectionViewReusableView
 
 @property (nonatomic, strong) IBOutlet NSTextField  *title;
+@property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
+
+- (void)fillFromObject:(id)object;
 
 @end

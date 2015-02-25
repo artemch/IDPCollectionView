@@ -15,9 +15,9 @@
 
 static NSInteger const kIDPTestObjectsCount = 10;
 
-static CGFloat const kIDPDefaultCellWidth  = 180;
-static CGFloat const kIDPDefaultCellHeight = 70;
-static CGFloat const kIDPDefaultHeaderHeight = 50;
+static CGFloat const kIDPDefaultCellWidth  = 185;
+static CGFloat const kIDPDefaultCellHeight = 80;
+static CGFloat const kIDPDefaultHeaderHeight = 60;
 
 static CGFloat const kIDPItemVerticalSpacing = 10;
 static CGFloat const kIDPItemHorizontalMargin = 10;

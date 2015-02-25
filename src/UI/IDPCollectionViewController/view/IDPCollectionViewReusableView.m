@@ -10,4 +10,11 @@
 
 @implementation IDPCollectionViewReusableView
 
+#pragma mark -
+#pragma mark Public methods
+
+- (void)fillFromObject:(id)object {
+    
+}
+
 @end
