@@ -36,6 +36,18 @@
 	// For subclasses
 }
 
+- (void)startDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)updateDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)endDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (instancetype)initWithCollectionView:(JNWCollectionView *)collectionView {
 	return [super init];
 }

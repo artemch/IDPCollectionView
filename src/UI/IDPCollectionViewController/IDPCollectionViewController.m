@@ -14,6 +14,7 @@
 #import "IDPCollectionViewReusableView.h"
 
 static NSInteger const kIDPTestObjectsCount = 10;
+static NSInteger const kIDPSectionsCount = 5;
 
 static CGFloat const kIDPDefaultCellWidth  = 185;
 static CGFloat const kIDPDefaultCellHeight = 80;
@@ -85,7 +86,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 #pragma mark JNWCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(JNWCollectionView *)collectionView {
-    return 5;
+    return kIDPSectionsCount;
 }
 
 - (NSUInteger)collectionView:(JNWCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
@@ -118,5 +119,9 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 #pragma mark -
 #pragma mark JNWCollectionViewDelegate
+
+- (BOOL)collectionView:(JNWCollectionView *)collectionView canDragItemAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
 
 @end

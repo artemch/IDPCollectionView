@@ -118,12 +118,17 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 /// back into the reuse queue.
 - (void)collectionView:(JNWCollectionView *)collectionView didEndDisplayingCell:(JNWCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 
+///
+///
+- (BOOL)collectionView:(JNWCollectionView *)collectionView canDragItemAtIndexPath:(NSIndexPath *)indexPath;
+
+
 @end
 
 #pragma mark Reloading and customizing
 
 @class JNWCollectionViewLayout;
-@interface JNWCollectionView : JNWScrollView
+@interface JNWCollectionView : JNWScrollView <NSDraggingSource>
 
 /// The delegate for the collection view.
 @property (nonatomic, unsafe_unretained) IBOutlet id<JNWCollectionViewDelegate> delegate;

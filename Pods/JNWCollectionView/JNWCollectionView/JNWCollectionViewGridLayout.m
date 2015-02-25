@@ -159,6 +159,18 @@ static const CGSize JNWCollectionViewGridLayoutDefaultSize = (CGSize){ 44.f, 44.
 	}
 }
 
+- (void)startDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)updateDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)endDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (JNWCollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
 	JNWCollectionViewGridLayoutSection *section = self.sections[indexPath.jnw_section];
 	JNWCollectionViewGridLayoutItemInfo itemInfo = section.itemInfo[indexPath.jnw_item];

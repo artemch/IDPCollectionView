@@ -50,7 +50,8 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 		unsigned int delegateDidDoubleClick:1;
 		unsigned int delegateDidRightClick:1;
 		unsigned int delegateDidEndDisplayingCell:1;
-		
+        unsigned int delegateCanDragItem:1;
+        
 		unsigned int wantsLayout;
 	} _collectionViewFlags;
 	
@@ -144,6 +145,7 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     _collectionViewFlags.delegateDidEndDisplayingCell = [delegate respondsToSelector:@selector(collectionView:didEndDisplayingCell:forItemAtIndexPath:)];
     _collectionViewFlags.delegateShouldScroll = [delegate respondsToSelector:@selector(collectionView:shouldScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateDidScroll = [delegate respondsToSelector:@selector(collectionView:didScrollToItemAtIndexPath:)];
+    _collectionViewFlags.delegateCanDragItem = [delegate respondsToSelector:@selector(collectionView:canDragItemAtIndexPath:)];
 }
 
 - (void)setDataSource:(id<JNWCollectionViewDataSource>)dataSource {
@@ -1109,6 +1111,75 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	NSSize documentSize = ((JNWCollectionViewDocumentView *)self.clipView.documentView).frame.size;
 	NSRect scrollToRect = NSMakeRect(documentSize.width, documentSize.height, 0, 0);
 	[self.clipView scrollRectToVisible:scrollToRect animated:self.animatesSelection];
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)mouseWillHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
+    if (_collectionViewFlags.delegateCanDragItem) {
+        NSIndexPath *indexPath = [self indexPathForCell:cell];
+        [self.collectionViewLayout startDraggedTrackingForIndexPath:indexPath];
+    }
+}
+
+- (void)mouseDidHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
+    if (_collectionViewFlags.delegateCanDragItem) {
+        
+    }
+}
+
+- (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
+
+}
+
+#pragma mark -
+#pragma mark Drag & Drop
+
+- (void)updateDropMarker {
+    
+}
+
+#pragma mark -
+#pragma mark NSDraggingSource
+
+- (void)draggingSession:(NSDraggingSession *)session
+           endedAtPoint:(NSPoint)screenPoint
+              operation:(NSDragOperation)operation
+{
+    
+}
+
+#pragma mark -
+#pragma mark NSDraggingDestination
+
+- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
+    if (([sender draggingSourceOperationMask] & NSDragOperationGeneric) != 0) {
+        return NSDragOperationGeneric;
+    } else {
+        return NSDragOperationNone;
+    }
+}
+
+- (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender {
+    NSPoint windowPoint = [sender draggingLocation];
+    NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
+    
+//    return _dragContext.dropPath ? NSDragOperationGeneric : NSDragOperationNone;
+    return NSDragOperationNone;
+}
+
+- (void)draggingExited:(id<NSDraggingInfo>)sender {
+    
+}
+
+- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    BOOL result = NO;
+    return result;
 }
 
 @end
