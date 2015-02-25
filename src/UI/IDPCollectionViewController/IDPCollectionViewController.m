@@ -19,6 +19,9 @@ static CGFloat const kIDPDefaultCellWidth  = 180;
 static CGFloat const kIDPDefaultCellHeight = 70;
 static CGFloat const kIDPDefaultHeaderHeight = 50;
 
+static CGFloat const kIDPItemVerticalSpacing = 10;
+static CGFloat const kIDPItemHorizontalMargin = 10;
+
 @interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate>
 
 @property (nonatomic, strong, readonly) IDPCollectionView   *myView;
@@ -46,11 +49,11 @@ static CGFloat const kIDPDefaultHeaderHeight = 50;
 - (void)setupCollectionView {
     JNWCollectionViewGridLayout *gridLayout = [[JNWCollectionViewGridLayout alloc] init];
     gridLayout.delegate = self;
-    gridLayout.verticalSpacing = 10.f;
+    gridLayout.verticalSpacing = kIDPItemVerticalSpacing;
+    gridLayout.itemHorizontalMargin = kIDPItemHorizontalMargin;
     gridLayout.itemSize = CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
     
     self.myView.collectionView.collectionViewLayout = gridLayout;
-    self.myView.collectionView.animatesSelection = YES;
     
     NSString *identifier = NSStringFromClass([IDPCollectionViewCell class]);
     NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
