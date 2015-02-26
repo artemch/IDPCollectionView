@@ -1202,6 +1202,7 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
            endedAtPoint:(NSPoint)screenPoint
               operation:(NSDragOperation)operation
 {
+    [self.delegate collectionView:self performDragOperation:nil fromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
     self.currentDraggingIndexPath = nil;
     self.originDraggingIndexPath = nil;
     [self reloadData];

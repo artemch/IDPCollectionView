@@ -131,8 +131,12 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
     return pboardItem;
 }
 
-- (void)collectionView:(JNWCollectionView *)collectionView performDragOperation:(id<NSDraggingInfo>)sender fromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexpath {
-    
+- (void)collectionView:(JNWCollectionView *)collectionView
+performDragOperation:(id<NSDraggingInfo>)sender
+         fromIndexPath:(NSIndexPath *)fromIndexPath
+toIndexPath:(NSIndexPath *)toIndexpath
+{
+    [self.objects exchangeObjectAtIndex:fromIndexPath.jnw_item withObjectAtIndex:toIndexpath.jnw_item];
 }
 
 @end
