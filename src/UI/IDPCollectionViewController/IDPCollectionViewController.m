@@ -129,7 +129,6 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 - (id<NSPasteboardWriting>)collectionView:(JNWCollectionView *)collectionView pasteboardWriterForItemAtIndexPath:(NSIndexPath *)indexPath {
     NSPasteboardItem *pboardItem = [[NSPasteboardItem alloc] init];
-    [pboardItem setString:@"Test string" forType:NSPasteboardTypeString];
     return pboardItem;
 }
 

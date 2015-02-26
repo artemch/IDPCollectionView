@@ -151,6 +151,9 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     _collectionViewFlags.delegateShouldScroll = [delegate respondsToSelector:@selector(collectionView:shouldScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateDidScroll = [delegate respondsToSelector:@selector(collectionView:didScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateCanDragItem = [delegate respondsToSelector:@selector(collectionView:canDragItemAtIndexPath:)];
+    
+    [self unregisterDraggedTypes];
+    [self registerForDraggedTypes:@[NSPasteboardTypeTIFF]];
 }
 
 - (void)setDataSource:(id<JNWCollectionViewDataSource>)dataSource {
@@ -1186,6 +1189,7 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
     dragItem.imageComponentsProvider = ^ {
         NSImage *image = cell.draggingImageRepresentation;
+        [(NSPasteboardItem *)pasteboardWriter setData:[image TIFFRepresentation] forType:NSPasteboardTypeTIFF];
         NSSize size = image.size;
         NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:NSDraggingImageComponentIconKey];
         component.contents = image;
@@ -1209,31 +1213,66 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
            endedAtPoint:(NSPoint)screenPoint
               operation:(NSDragOperation)operation
 {
-    [self.delegate collectionView:self performDragOperation:nil fromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
+    NSLog(@"%@",NSStringFromSelector(_cmd));
     self.currentDraggingIndexPath = nil;
     self.originDraggingIndexPath = nil;
     [self reloadData];
-}
-
-- (void)draggingSession:(NSDraggingSession *)session
-           movedToPoint:(NSPoint)screenPoint
-{
-    NSRect rect = NSMakeRect(screenPoint.x, screenPoint.y, 185, 80);
-    rect = [self.documentView.window convertRectFromScreen:rect];
-    
-    rect = [self.documentView convertRect:rect fromView:nil];
-    CGPoint viewPoint = rect.origin;
-    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForPoint:viewPoint];
-    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath]) {
-        self.currentDraggingIndexPath = indexPath;
-        [self reloadData];
-    }
 }
 
 - (NSDragOperation)draggingSession:(NSDraggingSession *)session
     sourceOperationMaskForDraggingContext:(NSDraggingContext)context
 {
     return NSDragOperationGeneric;
+}
+
+#pragma mark -
+#pragma mark
+
+- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    if (([sender draggingSourceOperationMask] & NSDragOperationGeneric) != 0) {
+        return NSDragOperationGeneric;
+    } else {
+        return NSDragOperationNone;
+    }
+}
+
+- (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
+{
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    NSPoint windowPoint = [sender draggingLocation];
+    NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
+    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForPoint:viewPoint];
+    
+    NSDragOperation operation = NSDragOperationNone;
+    
+    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath]) {
+        operation = NSDragOperationGeneric;
+        self.currentDraggingIndexPath = indexPath;
+        [self reloadData];
+    }
+    
+    return NSDragOperationGeneric;
+}
+
+- (void)draggingExited:(id<NSDraggingInfo>)sender {
+    
+}
+
+- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender
+{
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    NSLog(@"%@",NSStringFromSelector(_cmd));
+    BOOL result = NO;
+    if (![self.currentDraggingIndexPath isEqual:self.originDraggingIndexPath]) {
+        result = YES;
+        [self.delegate collectionView:self performDragOperation:nil fromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
+    }
+    
+    return result;
 }
 
 @end
