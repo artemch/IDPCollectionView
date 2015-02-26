@@ -1193,9 +1193,8 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
         return @[ component ];
     };
     
-    if (![self beginDraggingSessionWithItems:@[dragItem] event:event source:self]) {
-        
-    }
+    NSDraggingSession  *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
+    draggingSession.animatesToStartingPositionsOnCancelOrFail = NO;
 }
 
 #pragma mark -
