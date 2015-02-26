@@ -293,4 +293,10 @@ static const CGSize JNWCollectionViewGridLayoutDefaultSize = (CGSize){ 44.f, 44.
 	return NSMakeRange(rowBegin, 1 + rowEnd - rowBegin);
 }
 
+- (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point {
+    CGRect rect = CGRectMake(point.x, point.y, self.itemSize.width, self.itemSize.height);
+    NSArray *indexPaths = [self indexPathsForItemsInRect:rect];
+    return [indexPaths firstObject];
+}
+
 @end

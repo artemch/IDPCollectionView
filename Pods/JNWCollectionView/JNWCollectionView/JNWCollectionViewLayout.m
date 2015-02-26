@@ -36,18 +36,6 @@
 	// For subclasses
 }
 
-- (void)startDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-- (void)updateDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
-- (void)endDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
-    
-}
-
 - (instancetype)initWithCollectionView:(JNWCollectionView *)collectionView {
 	return [super init];
 }
@@ -86,6 +74,10 @@
 
 - (BOOL)shouldApplyExistingLayoutAttributesOnLayout {
 	return YES;
+}
+
+- (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point {
+    return nil;
 }
 
 @end

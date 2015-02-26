@@ -32,7 +32,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 @implementation IDPCollectionViewController
 
 #pragma mark -
-#pragma mark Initializations and Deallocations
+#pragma mark Initializations and DeallocationsTest string
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -41,6 +41,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
     self.objects = [NSMutableArray array];
     for (NSInteger index = 0; index < kIDPTestObjectsCount; index++) {
         IDPTestModel *model = [IDPTestModel new];
+        model.title = [NSString stringWithFormat:@"Title %ld", (long)index];
         [self.objects addObject:model];
     }
     
@@ -122,6 +123,16 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 - (BOOL)collectionView:(JNWCollectionView *)collectionView canDragItemAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
+}
+
+- (id<NSPasteboardWriting>)collectionView:(JNWCollectionView *)collectionView pasteboardWriterForItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSPasteboardItem *pboardItem = [[NSPasteboardItem alloc] init];
+    [pboardItem setString:@"Test string" forType:NSPasteboardTypeString];
+    return pboardItem;
+}
+
+- (void)collectionView:(JNWCollectionView *)collectionView performDragOperation:(id<NSDraggingInfo>)sender fromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexpath {
+    
 }
 
 @end

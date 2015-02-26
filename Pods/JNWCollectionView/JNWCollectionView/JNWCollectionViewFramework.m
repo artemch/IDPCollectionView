@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 	JNWCollectionViewSelectionTypeMultiple
 };
 
+static NSString *const kIDPDraggedTempCell = @"kIDPDraggedTempCell";
+
 @interface JNWCollectionView() {
 	struct {
 		unsigned int dataSourceNumberOfSections:1;
@@ -77,6 +79,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 @property (nonatomic, strong) NSMutableDictionary *supplementaryViewNibMap; // { "kind/identifier" : nib }
 
 @property (nonatomic, strong) NSView *documentView;
+
+@property (nonatomic, strong) NSIndexPath   *originDraggingIndexPath;
+@property (nonatomic, strong) NSIndexPath   *currentDraggingIndexPath;
 
 @end
 
@@ -377,7 +382,15 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-	return [self.data numberOfItemsInSection:section];
+    NSInteger value = 0;
+    if (self.currentDraggingIndexPath != nil && self.currentDraggingIndexPath != nil) {
+        value = self.currentDraggingIndexPath.jnw_section == section && self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section ? 1 : 0;
+        if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section && self.originDraggingIndexPath.jnw_section == section) {
+            value = -1;
+        }
+    }
+    
+    return [self.data numberOfItemsInSection:section] + value;
 }
 
 - (NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point {
@@ -690,7 +703,19 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	
 	// Add the new cells
 	for (NSIndexPath *indexPath in indexPathsToAdd) {
-		JNWCollectionViewCell *cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+        JNWCollectionViewCell *cell = nil;
+        
+        if (self.originDraggingIndexPath && self.currentDraggingIndexPath) {
+            NSInteger section = indexPath.jnw_section;
+            NSInteger row = indexPath.jnw_item;
+            if (self.originDraggingIndexPath.jnw_section == self.currentDraggingIndexPath.jnw_section && self.currentDraggingIndexPath.jnw_section == section && self.currentDraggingIndexPath.jnw_item == row) {
+                cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
+            } else {
+                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+            }
+        } else {
+            cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+        }
 		
 		// If any of these are true this cell isn't valid, and we'll be forced to skip it and throw the relevant exceptions.
 		if (cell == nil || ![cell isKindOfClass:JNWCollectionViewCell.class]) {
@@ -1116,21 +1141,27 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 #pragma mark -
 #pragma mark Private methods
 
-- (void)mouseWillHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
-    if (_collectionViewFlags.delegateCanDragItem) {
-        NSIndexPath *indexPath = [self indexPathForCell:cell];
-        [self.collectionViewLayout startDraggedTrackingForIndexPath:indexPath];
-    }
-}
-
-- (void)mouseDidHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
-    if (_collectionViewFlags.delegateCanDragItem) {
+- (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    self.originDraggingIndexPath = indexPath;
+    self.currentDraggingIndexPath = indexPath;
+    
+    id<NSPasteboardWriting> pasteboardWriter = [self.delegate collectionView:self pasteboardWriterForItemAtIndexPath:indexPath];
+    
+    NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardWriter];
+    dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
+    dragItem.imageComponentsProvider = ^ {
+        NSImage *image = cell.draggingImageRepresentation;
+        NSSize size = image.size;
+        NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:NSDraggingImageComponentIconKey];
+        component.contents = image;
+        component.frame = NSMakeRect(0, 0, size.width, size.height);
+        return @[ component ];
+    };
+    
+    if (![self beginDraggingSessionWithItems:@[dragItem] event:event source:self]) {
         
     }
-}
-
-- (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
-
 }
 
 #pragma mark -
@@ -1144,42 +1175,38 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 #pragma mark NSDraggingSource
 
 - (void)draggingSession:(NSDraggingSession *)session
+       willBeginAtPoint:(NSPoint)screenPoint {
+    [self reloadData];
+}
+
+- (void)draggingSession:(NSDraggingSession *)session
            endedAtPoint:(NSPoint)screenPoint
               operation:(NSDragOperation)operation
 {
-    
+    self.currentDraggingIndexPath = nil;
+    self.originDraggingIndexPath = nil;
+    [self reloadData];
 }
 
-#pragma mark -
-#pragma mark NSDraggingDestination
-
-- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
-    if (([sender draggingSourceOperationMask] & NSDragOperationGeneric) != 0) {
-        return NSDragOperationGeneric;
-    } else {
-        return NSDragOperationNone;
+- (void)draggingSession:(NSDraggingSession *)session
+           movedToPoint:(NSPoint)screenPoint
+{
+    NSRect rect = NSMakeRect(screenPoint.x, screenPoint.y, 185, 80);
+    rect = [self.documentView.window convertRectFromScreen:rect];
+    
+    rect = [self.documentView convertRect:rect fromView:nil];
+    CGPoint viewPoint = rect.origin;
+    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForPoint:viewPoint];
+    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath]) {
+        self.currentDraggingIndexPath = indexPath;
+        [self reloadData];
     }
 }
 
-- (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender {
-    NSPoint windowPoint = [sender draggingLocation];
-    NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
-    
-//    return _dragContext.dropPath ? NSDragOperationGeneric : NSDragOperationNone;
-    return NSDragOperationNone;
-}
-
-- (void)draggingExited:(id<NSDraggingInfo>)sender {
-    
-}
-
-- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-    return YES;
-}
-
-- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    BOOL result = NO;
-    return result;
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session
+    sourceOperationMaskForDraggingContext:(NSDraggingContext)context
+{
+    return NSDragOperationGeneric;
 }
 
 @end

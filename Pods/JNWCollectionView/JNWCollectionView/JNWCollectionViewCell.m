@@ -87,7 +87,6 @@ static NSString *const kIDPEventKey = @"event";
 
 @property (nonatomic, strong) JNWCollectionViewCellBackgroundView *backgroundView;
 @property (nonatomic, strong) NSTimer *mouseHoldTimer;
-@property (nonatomic, assign, getter = isMouseHold) BOOL mouseHold;
 
 @end
 
@@ -132,7 +131,6 @@ static NSString *const kIDPEventKey = @"event";
 - (void)prepareForReuse {
 	[self.backgroundView.layer removeAllAnimations];
     [self stopMouseDownTimer];
-    self.mouseHold = NO;
 	// for subclasses
 }
 
@@ -205,11 +203,6 @@ static NSString *const kIDPEventKey = @"event";
 - (void)mouseUp:(NSEvent *)theEvent {
     [self checkMouseDownTimer];
 	[super mouseUp:theEvent];
-    if (self.isMouseHold) {
-        [self.collectionView mouseDidHoldInCollectionViewCell:self withEvent:theEvent];
-        self.mouseHold = NO;
-    }
-    
 	[self.collectionView mouseUpInCollectionViewCell:self withEvent:theEvent];
 	
 	if (theEvent.clickCount == 2) {
@@ -223,12 +216,10 @@ static NSString *const kIDPEventKey = @"event";
 	[self.collectionView rightClickInCollectionViewCell:self withEvent:theEvent];
 }
 
-- (void)mouseDragged:(NSEvent *)theEvent {
-    [super mouseDragged:theEvent];
-    if (self.mouseHold) {
-        [self.collectionView mouseDraggedInCollectionViewCell:self withEvent:theEvent];
-    }
-}
+//- (void)mouseDragged:(NSEvent *)theEvent {
+//    [super mouseDragged:theEvent];
+//    [self.collectionView mouseDraggedInCollectionViewCell:self withEvent:theEvent];
+//}
 
 #pragma mark NSObject
 
@@ -245,6 +236,23 @@ static NSString *const kIDPEventKey = @"event";
 }
 
 #pragma mark -
+#pragma mark Public methods
+
+- (NSImage *)draggingImageRepresentation {
+    NSSize imgSize = self.bounds.size;
+    
+    NSBitmapImageRep *bir = [self bitmapImageRepForCachingDisplayInRect:[self bounds]];
+    [bir setSize:imgSize];
+    
+    [self cacheDisplayInRect:[self bounds] toBitmapImageRep:bir];
+    
+    NSImage *image = [[NSImage alloc] initWithSize:imgSize];
+    [image addRepresentation:bir];
+    
+    return image;
+}
+
+#pragma mark -
 #pragma mark Private methods
 
 - (void)starMouseDownTimer:(NSEvent *)event {
@@ -252,11 +260,10 @@ static NSString *const kIDPEventKey = @"event";
 }
 
 - (void)checkMouseDownTimer {
-    if (self.mouseHoldTimer && !self.isMouseHold) {
+    if (self.mouseHoldTimer) {
         NSDictionary *userInfo = (NSDictionary *)self.mouseHoldTimer.userInfo;
         NSEvent *theEvent = [userInfo objectForKey:kIDPEventKey];
         [self.collectionView mouseDownInCollectionViewCell:self withEvent:theEvent];
-        
     }
     [self stopMouseDownTimer];
 }
@@ -267,11 +274,9 @@ static NSString *const kIDPEventKey = @"event";
 
 - (void)mouseHoldTimerFire:(NSTimer *)timer {
     if (timer == self.mouseHoldTimer) {
-        self.mouseHold = YES;
-        NSLog(@"mouse hold");
         NSDictionary *userInfo = (NSDictionary *)self.mouseHoldTimer.userInfo;
         NSEvent *theEvent = [userInfo objectForKey:kIDPEventKey];
-        [self.collectionView mouseWillHoldInCollectionViewCell:self withEvent:theEvent];
+        [self.collectionView mouseDraggedInCollectionViewCell:self withEvent:theEvent];
     }
 }
 
