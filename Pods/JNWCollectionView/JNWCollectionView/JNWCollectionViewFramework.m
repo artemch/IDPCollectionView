@@ -705,16 +705,35 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	for (NSIndexPath *indexPath in indexPathsToAdd) {
         JNWCollectionViewCell *cell = nil;
         
+        NSIndexPath *fakeIndexPath = indexPath;
+        
+        
+        
         if (self.originDraggingIndexPath && self.currentDraggingIndexPath) {
-            NSInteger section = indexPath.jnw_section;
-            NSInteger row = indexPath.jnw_item;
-            if (self.originDraggingIndexPath.jnw_section == self.currentDraggingIndexPath.jnw_section && self.currentDraggingIndexPath.jnw_section == section && self.currentDraggingIndexPath.jnw_item == row) {
-                cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
-            } else {
-                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+            if (self.originDraggingIndexPath.jnw_section == self.currentDraggingIndexPath.jnw_section
+                && indexPath.jnw_section == self.currentDraggingIndexPath.jnw_section)
+            {
+                if (([self.originDraggingIndexPath isEqual:self.currentDraggingIndexPath]
+                    && [self.currentDraggingIndexPath isEqual:indexPath]) || [self.currentDraggingIndexPath isEqual:indexPath])
+                {
+                    cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
+                } else if (self.currentDraggingIndexPath.jnw_item < self.originDraggingIndexPath.jnw_item) {
+                    if (indexPath.jnw_item > self.currentDraggingIndexPath.jnw_item && indexPath.jnw_item <= self.originDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item-1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                } else {
+                    if (indexPath.jnw_item < self.currentDraggingIndexPath.jnw_item && indexPath.jnw_item >= self.originDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item+1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                }
+            } else
+            {
+                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
             }
         } else {
-            cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+            cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
         }
 		
 		// If any of these are true this cell isn't valid, and we'll be forced to skip it and throw the relevant exceptions.
