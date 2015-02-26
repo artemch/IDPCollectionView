@@ -707,8 +707,6 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
         
         NSIndexPath *fakeIndexPath = indexPath;
         
-        
-        
         if (self.originDraggingIndexPath && self.currentDraggingIndexPath) {
             if (self.originDraggingIndexPath.jnw_section == self.currentDraggingIndexPath.jnw_section
                 && indexPath.jnw_section == self.currentDraggingIndexPath.jnw_section)
@@ -728,8 +726,25 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
                     }
                     cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
                 }
-            } else
+            } else if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section
+                       && indexPath.jnw_section == self.originDraggingIndexPath.jnw_section)
             {
+                if (indexPath.jnw_item >= self.originDraggingIndexPath.jnw_item) {
+                    fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item+1 inSection:indexPath.jnw_section];
+                }
+                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+            } else if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section
+                       && indexPath.jnw_section == self.currentDraggingIndexPath.jnw_section)
+            {
+                if (indexPath.jnw_item == self.currentDraggingIndexPath.jnw_item) {
+                    cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
+                } else {
+                    if (indexPath.jnw_item > self.currentDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item-1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                }
+            } else {
                 cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
             }
         } else {
@@ -1181,13 +1196,6 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     if (![self beginDraggingSessionWithItems:@[dragItem] event:event source:self]) {
         
     }
-}
-
-#pragma mark -
-#pragma mark Drag & Drop
-
-- (void)updateDropMarker {
-    
 }
 
 #pragma mark -
