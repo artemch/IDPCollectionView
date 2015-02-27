@@ -403,6 +403,10 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     return [self.data numberOfItemsInSection:section] + value;
 }
 
+- (NSInteger)realNumberOfItemsInSectionWhileDragging:(NSInteger)section {
+    return [self.data numberOfItemsInSection:section];
+}
+
 - (NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point {
 	// TODO: Optimize, and perhaps have an option to defer this to the layout class.
 	for (int i = 0; i < self.data.numberOfSections; i++) {
@@ -1255,18 +1259,16 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
-    NSPoint windowPoint = [sender draggingLocation];
-    NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
-    
     NSPoint point = [sender draggedImageLocation];
     point = [self.documentView convertPoint:point fromView:nil];
     NSRect draggedImageRect = NSMakeRect(point.x, point.y, self.draggedItemSize.width, self.draggedItemSize.height);
-    
     NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForRect:draggedImageRect];
     
     NSDragOperation operation = NSDragOperationNone;
     
-    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath]) {
+    BOOL update = indexPath.jnw_section == self.originDraggingIndexPath.jnw_section && indexPath.jnw_item >= [self realNumberOfItemsInSectionWhileDragging:self.originDraggingIndexPath.jnw_section] ? NO : YES;
+    
+    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath] && update) {
         operation = NSDragOperationGeneric;
         self.currentDraggingIndexPath = indexPath;
         [self reloadData];
