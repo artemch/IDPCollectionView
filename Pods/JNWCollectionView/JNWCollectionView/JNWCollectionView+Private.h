@@ -32,4 +32,6 @@
 
 - (void)collectionViewLayoutWasInvalidated:(JNWCollectionViewLayout *)layout;
 
+- (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event;
+
 @end

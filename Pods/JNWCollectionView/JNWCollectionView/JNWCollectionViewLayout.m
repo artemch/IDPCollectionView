@@ -76,4 +76,12 @@
 	return YES;
 }
 
+- (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point {
+    return nil;
+}
+
+- (NSIndexPath *)dropIndexPathForRect:(CGRect)rect {
+    return nil;
+}
+
 @end

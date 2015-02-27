@@ -34,6 +34,8 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 	JNWCollectionViewSelectionTypeMultiple
 };
 
+static NSString *const kIDPDraggedTempCell = @"kIDPDraggedTempCell";
+
 @interface JNWCollectionView() {
 	struct {
 		unsigned int dataSourceNumberOfSections:1;
@@ -50,7 +52,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 		unsigned int delegateDidDoubleClick:1;
 		unsigned int delegateDidRightClick:1;
 		unsigned int delegateDidEndDisplayingCell:1;
-		
+        unsigned int delegateCanDragItem:1;
+        unsigned int delegateDragItemFromTo:1;
+        
 		unsigned int wantsLayout;
 	} _collectionViewFlags;
 	
@@ -76,6 +80,10 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 @property (nonatomic, strong) NSMutableDictionary *supplementaryViewNibMap; // { "kind/identifier" : nib }
 
 @property (nonatomic, strong) NSView *documentView;
+
+@property (nonatomic, strong) NSIndexPath   *originDraggingIndexPath;
+@property (nonatomic, strong) NSIndexPath   *currentDraggingIndexPath;
+@property (nonatomic, assign) CGSize        draggedItemSize;
 
 @end
 
@@ -144,6 +152,15 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     _collectionViewFlags.delegateDidEndDisplayingCell = [delegate respondsToSelector:@selector(collectionView:didEndDisplayingCell:forItemAtIndexPath:)];
     _collectionViewFlags.delegateShouldScroll = [delegate respondsToSelector:@selector(collectionView:shouldScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateDidScroll = [delegate respondsToSelector:@selector(collectionView:didScrollToItemAtIndexPath:)];
+    _collectionViewFlags.delegateCanDragItem = [delegate respondsToSelector:@selector(collectionView:canDragItemAtIndexPath:)];
+    _collectionViewFlags.delegateDragItemFromTo = [delegate respondsToSelector:@selector(collectionView:dragFromIndexPath:toIndexPath:)];
+    
+    [self unregisterDraggedTypes];
+    if (_collectionViewFlags.delegateCanDragItem &&
+        _collectionViewFlags.delegateDragItemFromTo)
+    {
+        [self registerForDraggedTypes:@[NSPasteboardTypeTIFF]];
+    }
 }
 
 - (void)setDataSource:(id<JNWCollectionViewDataSource>)dataSource {
@@ -375,7 +392,19 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 }
 
 - (NSInteger)numberOfItemsInSection:(NSInteger)section {
-	return [self.data numberOfItemsInSection:section];
+    NSInteger value = 0;
+    if (self.currentDraggingIndexPath != nil && self.currentDraggingIndexPath != nil) {
+        value = self.currentDraggingIndexPath.jnw_section == section && self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section ? 1 : 0;
+        if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section && self.originDraggingIndexPath.jnw_section == section) {
+            value = -1;
+        }
+    }
+    
+    return [self.data numberOfItemsInSection:section] + value;
+}
+
+- (NSInteger)realNumberOfItemsInSectionWhileDragging:(NSInteger)section {
+    return [self.data numberOfItemsInSection:section];
 }
 
 - (NSIndexPath *)indexPathForItemAtPoint:(CGPoint)point {
@@ -688,7 +717,53 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	
 	// Add the new cells
 	for (NSIndexPath *indexPath in indexPathsToAdd) {
-		JNWCollectionViewCell *cell = [self.dataSource collectionView:self cellForItemAtIndexPath:indexPath];
+        JNWCollectionViewCell *cell = nil;
+        
+        NSIndexPath *fakeIndexPath = indexPath;
+        
+        if (self.originDraggingIndexPath && self.currentDraggingIndexPath) {
+            if (self.originDraggingIndexPath.jnw_section == self.currentDraggingIndexPath.jnw_section
+                && indexPath.jnw_section == self.currentDraggingIndexPath.jnw_section)
+            {
+                if (([self.originDraggingIndexPath isEqual:self.currentDraggingIndexPath]
+                    && [self.currentDraggingIndexPath isEqual:indexPath]) || [self.currentDraggingIndexPath isEqual:indexPath])
+                {
+                    cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
+                } else if (self.currentDraggingIndexPath.jnw_item < self.originDraggingIndexPath.jnw_item) {
+                    if (indexPath.jnw_item > self.currentDraggingIndexPath.jnw_item && indexPath.jnw_item <= self.originDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item-1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                } else {
+                    if (indexPath.jnw_item < self.currentDraggingIndexPath.jnw_item && indexPath.jnw_item >= self.originDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item+1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                }
+            } else if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section
+                       && indexPath.jnw_section == self.originDraggingIndexPath.jnw_section)
+            {
+                if (indexPath.jnw_item >= self.originDraggingIndexPath.jnw_item) {
+                    fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item+1 inSection:indexPath.jnw_section];
+                }
+                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+            } else if (self.originDraggingIndexPath.jnw_section != self.currentDraggingIndexPath.jnw_section
+                       && indexPath.jnw_section == self.currentDraggingIndexPath.jnw_section)
+            {
+                if (indexPath.jnw_item == self.currentDraggingIndexPath.jnw_item) {
+                    cell = [self dequeueReusableCellWithIdentifier:kIDPDraggedTempCell];
+                } else {
+                    if (indexPath.jnw_item > self.currentDraggingIndexPath.jnw_item) {
+                        fakeIndexPath = [NSIndexPath jnw_indexPathForItem:indexPath.jnw_item-1 inSection:indexPath.jnw_section];
+                    }
+                    cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+                }
+            } else {
+                cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+            }
+        } else {
+            cell = [self.dataSource collectionView:self cellForItemAtIndexPath:fakeIndexPath];
+        }
 		
 		// If any of these are true this cell isn't valid, and we'll be forced to skip it and throw the relevant exceptions.
 		if (cell == nil || ![cell isKindOfClass:JNWCollectionViewCell.class]) {
@@ -1109,6 +1184,117 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	NSSize documentSize = ((JNWCollectionViewDocumentView *)self.clipView.documentView).frame.size;
 	NSRect scrollToRect = NSMakeRect(documentSize.width, documentSize.height, 0, 0);
 	[self.clipView scrollRectToVisible:scrollToRect animated:self.animatesSelection];
+}
+
+#pragma mark -
+#pragma mark Private methods
+
+- (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
+    NSIndexPath *indexPath = [self indexPathForCell:cell];
+    
+    BOOL canDrag = NO;
+    
+    if (_collectionViewFlags.delegateCanDragItem) {
+        canDrag = [self.delegate collectionView:self canDragItemAtIndexPath:indexPath];
+    }
+    
+    if (canDrag) {
+        self.originDraggingIndexPath = indexPath;
+        self.currentDraggingIndexPath = indexPath;
+        
+        NSPasteboardItem *pasteboardItem = [[NSPasteboardItem alloc] init];
+        
+        NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardItem];
+        dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
+        self.draggedItemSize = dragItem.draggingFrame.size;
+        dragItem.imageComponentsProvider = ^ {
+            NSImage *image = cell.draggingImageRepresentation;
+            [pasteboardItem setData:[image TIFFRepresentation] forType:NSPasteboardTypeTIFF];
+            NSSize size = image.size;
+            NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:NSDraggingImageComponentIconKey];
+            component.contents = image;
+            component.frame = NSMakeRect(0, 0, size.width, size.height);
+            return @[ component ];
+        };
+        
+        NSDraggingSession  *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
+        draggingSession.animatesToStartingPositionsOnCancelOrFail = NO;
+    }
+}
+
+#pragma mark -
+#pragma mark NSDraggingSource
+
+- (void)draggingSession:(NSDraggingSession *)session
+       willBeginAtPoint:(NSPoint)screenPoint {
+    [self reloadData];
+}
+
+- (void)draggingSession:(NSDraggingSession *)session
+           endedAtPoint:(NSPoint)screenPoint
+              operation:(NSDragOperation)operation
+{
+    self.currentDraggingIndexPath = nil;
+    self.originDraggingIndexPath = nil;
+    self.draggedItemSize = CGSizeZero;
+    [self reloadData];
+}
+
+- (NSDragOperation)draggingSession:(NSDraggingSession *)session
+    sourceOperationMaskForDraggingContext:(NSDraggingContext)context
+{
+    return NSDragOperationGeneric;
+}
+
+#pragma mark -
+#pragma mark
+
+- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
+    if (([sender draggingSourceOperationMask] & NSDragOperationGeneric) != 0) {
+        return NSDragOperationGeneric;
+    } else {
+        return NSDragOperationNone;
+    }
+}
+
+- (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
+{
+    NSPoint point = [sender draggedImageLocation];
+    point = [self.documentView convertPoint:point fromView:nil];
+    NSRect draggedImageRect = NSMakeRect(point.x, point.y, self.draggedItemSize.width, self.draggedItemSize.height);
+    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForRect:draggedImageRect];
+    
+    NSDragOperation operation = NSDragOperationNone;
+    
+    BOOL update = indexPath.jnw_section == self.originDraggingIndexPath.jnw_section && indexPath.jnw_item >= [self realNumberOfItemsInSectionWhileDragging:self.originDraggingIndexPath.jnw_section] ? NO : YES;
+    
+    if (indexPath && ![self.currentDraggingIndexPath isEqual:indexPath] && update) {
+        operation = NSDragOperationGeneric;
+        self.currentDraggingIndexPath = indexPath;
+        [self reloadData];
+    }
+    
+    return NSDragOperationGeneric;
+}
+
+- (void)draggingExited:(id<NSDraggingInfo>)sender {
+    
+}
+
+- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender
+{
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    BOOL result = NO;
+    if (![self.currentDraggingIndexPath isEqual:self.originDraggingIndexPath]) {
+        if (_collectionViewFlags.delegateDragItemFromTo) {
+            result = YES;
+            [self.delegate collectionView:self dragFromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
+        }
+    }
+    return result;
 }
 
 @end

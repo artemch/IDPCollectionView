@@ -159,6 +159,18 @@ static const CGSize JNWCollectionViewGridLayoutDefaultSize = (CGSize){ 44.f, 44.
 	}
 }
 
+- (void)startDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)updateDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+- (void)endDraggedTrackingForIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
 - (JNWCollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
 	JNWCollectionViewGridLayoutSection *section = self.sections[indexPath.jnw_section];
 	JNWCollectionViewGridLayoutItemInfo itemInfo = section.itemInfo[indexPath.jnw_item];
@@ -279,6 +291,74 @@ static const CGSize JNWCollectionViewGridLayoutDefaultSize = (CGSize){ 44.f, 44.
 	NSInteger rowBegin = relativeRectTop / (self.itemSize.height + self.verticalSpacing);
 	NSInteger rowEnd = floorf(relativeRectBottom / self.itemSize.height);
 	return NSMakeRange(rowBegin, 1 + rowEnd - rowBegin);
+}
+
+- (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point {
+    CGRect rect = CGRectMake(point.x - self.itemSize.width / 2, point.y + self.itemSize.height / 2, self.itemSize.width, self.itemSize.height);
+    return [self dropIndexPathForRect:rect];
+}
+
+- (NSIndexPath *)dropIndexPathForRect:(CGRect)rect {
+    NSIndexPath *dropIndexPath = nil;
+    NSMutableArray *visibleRows = [NSMutableArray array];
+
+    NSRange columns = NSMakeRange(0, 0);
+    
+    CGPoint point = CGPointMake(0, CGRectGetMinY(rect));
+    for (NSUInteger column = 0; column < self.numberOfColumns; column++) {
+        point.x += self.itemPadding;
+        CGRect cellRect = CGRectMake(point.x, point.y, self.itemSize.width, self.itemSize.height);
+        if (CGRectIntersectsRect(rect, cellRect)) {
+            if (columns.length == 0) {
+                columns = NSMakeRange(column, 1);
+            }
+            else {
+                columns.length++;
+            }
+        }
+        
+        point.x += self.itemSize.width;
+    }
+    
+    JNWCollectionViewGridLayoutSection *section = [self bestFitSectionForRect:rect];
+    NSRange rows = [self rowsInRect:rect fromSection:section];
+        
+    for (NSUInteger rowIdx = rows.location; rowIdx < NSMaxRange(rows); rowIdx++) {
+        for (NSUInteger columnIdx = columns.location; columnIdx < NSMaxRange(columns); columnIdx++) {
+            NSUInteger itemIdx = (self.numberOfColumns * rowIdx) + columnIdx;
+            if (itemIdx >= section.numberOfItems)
+                break;
+            [visibleRows addObject:[NSIndexPath jnw_indexPathForItem:itemIdx inSection:section.index]];
+        }
+    }
+
+    NSInteger countDif = [self.collectionView numberOfItemsInSection:section.index] - [self.collectionView realNumberOfItemsInSectionWhileDragging:section.index];
+    if (visibleRows.count > 0) {
+        dropIndexPath = [visibleRows firstObject];
+    } else if (visibleRows && visibleRows.count == 0 && section && NSMaxRange(rows) == 0 && NSMaxRange(columns) > 0 && countDif == 0) {
+        dropIndexPath = [NSIndexPath jnw_indexPathForItem:section.numberOfItems inSection:section.index];
+    }
+    
+    return dropIndexPath;
+}
+
+- (JNWCollectionViewGridLayoutSection *)bestFitSectionForRect:(CGRect)rect {
+    
+    JNWCollectionViewGridLayoutSection *resultSection = nil;
+    CGFloat width = self.numberOfColumns * self.itemSize.width + (self.numberOfColumns-1)*self.itemPadding;
+    CGFloat bestArea = 0;
+    
+    for (JNWCollectionViewGridLayoutSection *section in self.sections) {
+        CGRect sectionRect = CGRectMake(0, section.offset, width, section.height+section.headerHeight+section.footerHeight);
+        CGRect result = CGRectIntersection(sectionRect, rect);
+        CGFloat area = result.size.width * result.size.height;
+        if (!CGRectEqualToRect(result, CGRectZero) && area > bestArea) {
+            resultSection = section;
+            bestArea = area;
+        }
+    }
+    
+    return resultSection;
 }
 
 @end

@@ -137,6 +137,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollDirection) {
 /// The default return value is NO, for performance reasons.
 - (BOOL)shouldApplyExistingLayoutAttributesOnLayout;
 
+- (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point;
+- (NSIndexPath *)dropIndexPathForRect:(CGRect)rect;
+
 @end
 
 @interface JNWCollectionView()

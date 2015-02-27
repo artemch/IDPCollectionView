@@ -118,12 +118,17 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 /// back into the reuse queue.
 - (void)collectionView:(JNWCollectionView *)collectionView didEndDisplayingCell:(JNWCollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath;
 
+#pragma mark Optional drag and drop methods
+
+- (BOOL)collectionView:(JNWCollectionView *)collectionView canDragItemAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(JNWCollectionView *)collectionView dragFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexpath;
+
 @end
 
 #pragma mark Reloading and customizing
 
 @class JNWCollectionViewLayout;
-@interface JNWCollectionView : JNWScrollView
+@interface JNWCollectionView : JNWScrollView <NSDraggingSource>
 
 /// The delegate for the collection view.
 @property (nonatomic, unsafe_unretained) IBOutlet id<JNWCollectionViewDelegate> delegate;
@@ -203,6 +208,7 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 
 /// Returns the number of items in the specified section.
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
+- (NSInteger)realNumberOfItemsInSectionWhileDragging:(NSInteger)section;
 
 /// The following methods will return frames in flipped coordinates, where the origin is the
 /// top left point in the scroll view. All of these methods will return CGRectZero if an invalid

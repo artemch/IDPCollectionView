@@ -11,6 +11,9 @@
 #import "NSColor+IDPExtension.h"
 #import "NSView+IDPExtension.h"
 
+#define kIDPUnselectedCellColor [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255]
+#define kIDPSelectedCellColor   [NSColor colorWithIntRed:247 green:247 blue:247 alpha:255]
+
 @implementation IDPCollectionViewCell
 
 #pragma mark -
@@ -18,7 +21,7 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255];
+    self.backgroundColor = kIDPUnselectedCellColor;
     
     NSShadow *dropShadow = [[NSShadow alloc] init];
     [dropShadow setShadowColor:[NSColor colorWithIntRed:216 green:219 blue:219 alpha:255]];
@@ -39,9 +42,9 @@
     }
 }
 
-//- (void)setSelected:(BOOL)selected {
-//    [super setSelected:selected];
-//    self.backgroundColor = selected ? [NSColor greenColor] : [NSColor clearColor];
-//}
+- (void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    self.backgroundColor = selected ? kIDPSelectedCellColor : kIDPUnselectedCellColor;
+}
 
 @end
