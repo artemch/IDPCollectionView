@@ -32,8 +32,6 @@
 
 - (void)collectionViewLayoutWasInvalidated:(JNWCollectionViewLayout *)layout;
 
-- (void)mouseWillHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event;
-- (void)mouseDidHoldInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event;
 - (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event;
 
 @end

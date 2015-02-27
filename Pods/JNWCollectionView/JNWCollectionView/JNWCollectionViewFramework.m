@@ -83,6 +83,7 @@ static NSString *const kIDPDraggedTempCell = @"kIDPDraggedTempCell";
 
 @property (nonatomic, strong) NSIndexPath   *originDraggingIndexPath;
 @property (nonatomic, strong) NSIndexPath   *currentDraggingIndexPath;
+@property (nonatomic, assign) CGSize        draggedItemSize;
 
 @end
 
@@ -1201,6 +1202,7 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
         
         NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardItem];
         dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
+        self.draggedItemSize = dragItem.draggingFrame.size;
         dragItem.imageComponentsProvider = ^ {
             NSImage *image = cell.draggingImageRepresentation;
             [pasteboardItem setData:[image TIFFRepresentation] forType:NSPasteboardTypeTIFF];
@@ -1228,9 +1230,9 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
            endedAtPoint:(NSPoint)screenPoint
               operation:(NSDragOperation)operation
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
     self.currentDraggingIndexPath = nil;
     self.originDraggingIndexPath = nil;
+    self.draggedItemSize = CGSizeZero;
     [self reloadData];
 }
 
@@ -1244,7 +1246,6 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 #pragma mark
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
     if (([sender draggingSourceOperationMask] & NSDragOperationGeneric) != 0) {
         return NSDragOperationGeneric;
     } else {
@@ -1254,15 +1255,12 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 
 - (NSDragOperation)draggingUpdated:(id<NSDraggingInfo>)sender
 {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
     NSPoint windowPoint = [sender draggingLocation];
     NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
     
     NSPoint point = [sender draggedImageLocation];
     point = [self.documentView convertPoint:point fromView:nil];
-    NSImage *draggedImage = [sender draggedImage];
-    NSSize imageSize = [draggedImage size];
-    NSRect draggedImageRect = NSMakeRect(point.x, point.y, imageSize.width, imageSize.height);
+    NSRect draggedImageRect = NSMakeRect(point.x, point.y, self.draggedItemSize.width, self.draggedItemSize.height);
     
     NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForRect:draggedImageRect];
     
@@ -1287,7 +1285,6 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    NSLog(@"%@",NSStringFromSelector(_cmd));
     BOOL result = NO;
     if (![self.currentDraggingIndexPath isEqual:self.originDraggingIndexPath]) {
         if (_collectionViewFlags.delegateDragItemFromTo) {
