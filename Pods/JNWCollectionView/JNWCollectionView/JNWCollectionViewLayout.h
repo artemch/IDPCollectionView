@@ -138,6 +138,7 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollDirection) {
 - (BOOL)shouldApplyExistingLayoutAttributesOnLayout;
 
 - (NSIndexPath *)dropIndexPathForPoint:(CGPoint)point;
+- (NSIndexPath *)dropIndexPathForRect:(CGRect)rect;
 
 @end
 

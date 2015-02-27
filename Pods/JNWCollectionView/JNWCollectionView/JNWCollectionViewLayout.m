@@ -80,4 +80,8 @@
     return nil;
 }
 
+- (NSIndexPath *)dropIndexPathForRect:(CGRect)rect {
+    return nil;
+}
+
 @end

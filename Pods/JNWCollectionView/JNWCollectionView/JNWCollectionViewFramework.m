@@ -1257,7 +1257,14 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     NSLog(@"%@",NSStringFromSelector(_cmd));
     NSPoint windowPoint = [sender draggingLocation];
     NSPoint viewPoint = [self.documentView convertPoint:windowPoint fromView:nil];
-    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForPoint:viewPoint];
+    
+    NSPoint point = [sender draggedImageLocation];
+    point = [self.documentView convertPoint:point fromView:nil];
+    NSImage *draggedImage = [sender draggedImage];
+    NSSize imageSize = [draggedImage size];
+    NSRect draggedImageRect = NSMakeRect(point.x, point.y, imageSize.width, imageSize.height);
+    
+    NSIndexPath *indexPath = [self.collectionViewLayout dropIndexPathForRect:draggedImageRect];
     
     NSDragOperation operation = NSDragOperationNone;
     
