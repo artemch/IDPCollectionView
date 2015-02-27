@@ -53,6 +53,7 @@ static NSString *const kIDPDraggedTempCell = @"kIDPDraggedTempCell";
 		unsigned int delegateDidRightClick:1;
 		unsigned int delegateDidEndDisplayingCell:1;
         unsigned int delegateCanDragItem:1;
+        unsigned int delegateDragItemFromTo:1;
         
 		unsigned int wantsLayout;
 	} _collectionViewFlags;
@@ -151,9 +152,14 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     _collectionViewFlags.delegateShouldScroll = [delegate respondsToSelector:@selector(collectionView:shouldScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateDidScroll = [delegate respondsToSelector:@selector(collectionView:didScrollToItemAtIndexPath:)];
     _collectionViewFlags.delegateCanDragItem = [delegate respondsToSelector:@selector(collectionView:canDragItemAtIndexPath:)];
+    _collectionViewFlags.delegateDragItemFromTo = [delegate respondsToSelector:@selector(collectionView:dragFromIndexPath:toIndexPath:)];
     
     [self unregisterDraggedTypes];
-    [self registerForDraggedTypes:@[NSPasteboardTypeTIFF]];
+    if (_collectionViewFlags.delegateCanDragItem &&
+        _collectionViewFlags.delegateDragItemFromTo)
+    {
+        [self registerForDraggedTypes:@[NSPasteboardTypeTIFF]];
+    }
 }
 
 - (void)setDataSource:(id<JNWCollectionViewDataSource>)dataSource {
@@ -1180,25 +1186,34 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 
 - (void)mouseDraggedInCollectionViewCell:(JNWCollectionViewCell *)cell withEvent:(NSEvent *)event {
     NSIndexPath *indexPath = [self indexPathForCell:cell];
-    self.originDraggingIndexPath = indexPath;
-    self.currentDraggingIndexPath = indexPath;
     
-    id<NSPasteboardWriting> pasteboardWriter = [self.delegate collectionView:self pasteboardWriterForItemAtIndexPath:indexPath];
+    BOOL canDrag = NO;
     
-    NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardWriter];
-    dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
-    dragItem.imageComponentsProvider = ^ {
-        NSImage *image = cell.draggingImageRepresentation;
-        [(NSPasteboardItem *)pasteboardWriter setData:[image TIFFRepresentation] forType:NSPasteboardTypeTIFF];
-        NSSize size = image.size;
-        NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:NSDraggingImageComponentIconKey];
-        component.contents = image;
-        component.frame = NSMakeRect(0, 0, size.width, size.height);
-        return @[ component ];
-    };
+    if (_collectionViewFlags.delegateCanDragItem) {
+        canDrag = [self.delegate collectionView:self canDragItemAtIndexPath:indexPath];
+    }
     
-    NSDraggingSession  *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
-    draggingSession.animatesToStartingPositionsOnCancelOrFail = NO;
+    if (canDrag) {
+        self.originDraggingIndexPath = indexPath;
+        self.currentDraggingIndexPath = indexPath;
+        
+        NSPasteboardItem *pasteboardItem = [[NSPasteboardItem alloc] init];
+        
+        NSDraggingItem *dragItem = [[NSDraggingItem alloc] initWithPasteboardWriter:pasteboardItem];
+        dragItem.draggingFrame = [self convertRect:cell.frame fromView:self.documentView];
+        dragItem.imageComponentsProvider = ^ {
+            NSImage *image = cell.draggingImageRepresentation;
+            [pasteboardItem setData:[image TIFFRepresentation] forType:NSPasteboardTypeTIFF];
+            NSSize size = image.size;
+            NSDraggingImageComponent *component = [[NSDraggingImageComponent alloc] initWithKey:NSDraggingImageComponentIconKey];
+            component.contents = image;
+            component.frame = NSMakeRect(0, 0, size.width, size.height);
+            return @[ component ];
+        };
+        
+        NSDraggingSession  *draggingSession = [self beginDraggingSessionWithItems:@[dragItem] event:event source:self];
+        draggingSession.animatesToStartingPositionsOnCancelOrFail = NO;
+    }
 }
 
 #pragma mark -
@@ -1268,10 +1283,11 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     NSLog(@"%@",NSStringFromSelector(_cmd));
     BOOL result = NO;
     if (![self.currentDraggingIndexPath isEqual:self.originDraggingIndexPath]) {
-        result = YES;
-        [self.delegate collectionView:self performDragOperation:nil fromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
+        if (_collectionViewFlags.delegateDragItemFromTo) {
+            result = YES;
+            [self.delegate collectionView:self dragFromIndexPath:self.originDraggingIndexPath toIndexPath:self.currentDraggingIndexPath];
+        }
     }
-    
     return result;
 }
 

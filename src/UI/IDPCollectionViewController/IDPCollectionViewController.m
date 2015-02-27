@@ -127,15 +127,9 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
     return YES;
 }
 
-- (id<NSPasteboardWriting>)collectionView:(JNWCollectionView *)collectionView pasteboardWriterForItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSPasteboardItem *pboardItem = [[NSPasteboardItem alloc] init];
-    return pboardItem;
-}
-
 - (void)collectionView:(JNWCollectionView *)collectionView
-performDragOperation:(id<NSDraggingInfo>)sender
-         fromIndexPath:(NSIndexPath *)fromIndexPath
-toIndexPath:(NSIndexPath *)toIndexpath
+     dragFromIndexPath:(NSIndexPath *)fromIndexPath
+           toIndexPath:(NSIndexPath *)toIndexpath
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
         NSMutableArray *array = [self.objects objectAtIndex:fromIndexPath.jnw_section];
