@@ -337,9 +337,7 @@ static const CGSize JNWCollectionViewGridLayoutDefaultSize = (CGSize){ 44.f, 44.
         dropIndexPath = [visibleRows firstObject];
     } else if (visibleRows && visibleRows.count == 0 && section && NSMaxRange(rows) == 0 && NSMaxRange(columns) > 0 && countDif == 0) {
         dropIndexPath = [NSIndexPath jnw_indexPathForItem:section.numberOfItems inSection:section.index];
-        NSLog(@"!!! rows %@, columns %@, dif %ld",NSStringFromRange(rows),NSStringFromRange(columns), (long)countDif);
     }
-    NSLog(@"%ld %@",(long)section.index ,dropIndexPath);
     
     return dropIndexPath;
 }
