@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */; };
+		69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */; };
+		69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */; };
+		69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D211AA4BDC30042B0DF /* JNWCollectionViewFramework.m */; };
+		69D59D3A1AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D231AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m */; };
+		69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D261AA4BDC30042B0DF /* JNWCollectionViewLayout.m */; };
+		69D59D3C1AA4BDC30042B0DF /* JNWCollectionViewListLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D281AA4BDC30042B0DF /* JNWCollectionViewListLayout.m */; };
+		69D59D3D1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D2B1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m */; };
+		69D59D3E1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D2D1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m */; };
+		69D59D3F1AA4BDC30042B0DF /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D2E1AA4BDC30042B0DF /* LICENSE.md */; };
+		69D59D401AA4BDC30042B0DF /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D2F1AA4BDC30042B0DF /* README.md */; };
+		69D59D411AA4BDC30042B0DF /* JNWClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D321AA4BDC30042B0DF /* JNWClipView.m */; };
+		69D59D421AA4BDC30042B0DF /* JNWScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D341AA4BDC30042B0DF /* JNWScrollView.m */; };
+		69D59D431AA4BDC30042B0DF /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D351AA4BDC30042B0DF /* LICENSE.md */; };
 		69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59E811A9C6AFB00174BC7 /* AppDelegate.m */; };
 		69D59E841A9C6AFB00174BC7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59E831A9C6AFB00174BC7 /* main.m */; };
 		69D59E861A9C6AFB00174BC7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69D59E851A9C6AFB00174BC7 /* Images.xcassets */; };
@@ -28,7 +42,6 @@
 		69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */; };
 		69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */; };
 		69D59F201A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1F1A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib */; };
-		9D303952CA5740E8883991F3 /* libPods-IDPCollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +55,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-IDPCollectionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IDPCollectionView.xcconfig"; path = "Pods/Pods-IDPCollectionView.xcconfig"; sourceTree = "<group>"; };
+		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
+		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
+		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
+		69D59D1A1AA4BDC30042B0DF /* JNWCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewCell.h; sourceTree = "<group>"; };
+		69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewCell.m; sourceTree = "<group>"; };
+		69D59D1C1AA4BDC30042B0DF /* JNWCollectionViewData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewData.h; sourceTree = "<group>"; };
+		69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewData.m; sourceTree = "<group>"; };
+		69D59D1E1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewDocumentView.h; sourceTree = "<group>"; };
+		69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewDocumentView.m; sourceTree = "<group>"; };
+		69D59D201AA4BDC30042B0DF /* JNWCollectionViewFramework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewFramework.h; sourceTree = "<group>"; };
+		69D59D211AA4BDC30042B0DF /* JNWCollectionViewFramework.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewFramework.m; sourceTree = "<group>"; };
+		69D59D221AA4BDC30042B0DF /* JNWCollectionViewGridLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewGridLayout.h; sourceTree = "<group>"; };
+		69D59D231AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewGridLayout.m; sourceTree = "<group>"; };
+		69D59D241AA4BDC30042B0DF /* JNWCollectionViewLayout+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewLayout+Private.h"; sourceTree = "<group>"; };
+		69D59D251AA4BDC30042B0DF /* JNWCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewLayout.h; sourceTree = "<group>"; };
+		69D59D261AA4BDC30042B0DF /* JNWCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewLayout.m; sourceTree = "<group>"; };
+		69D59D271AA4BDC30042B0DF /* JNWCollectionViewListLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewListLayout.h; sourceTree = "<group>"; };
+		69D59D281AA4BDC30042B0DF /* JNWCollectionViewListLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewListLayout.m; sourceTree = "<group>"; };
+		69D59D291AA4BDC30042B0DF /* JNWCollectionViewReusableView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewReusableView+Private.h"; sourceTree = "<group>"; };
+		69D59D2A1AA4BDC30042B0DF /* JNWCollectionViewReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionViewReusableView.h; sourceTree = "<group>"; };
+		69D59D2B1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWCollectionViewReusableView.m; sourceTree = "<group>"; };
+		69D59D2C1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSIndexPath+JNWAdditions.h"; sourceTree = "<group>"; };
+		69D59D2D1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexPath+JNWAdditions.m"; sourceTree = "<group>"; };
+		69D59D2E1AA4BDC30042B0DF /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		69D59D2F1AA4BDC30042B0DF /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		69D59D311AA4BDC30042B0DF /* JNWClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWClipView.h; sourceTree = "<group>"; };
+		69D59D321AA4BDC30042B0DF /* JNWClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWClipView.m; sourceTree = "<group>"; };
+		69D59D331AA4BDC30042B0DF /* JNWScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWScrollView.h; sourceTree = "<group>"; };
+		69D59D341AA4BDC30042B0DF /* JNWScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JNWScrollView.m; sourceTree = "<group>"; };
+		69D59D351AA4BDC30042B0DF /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		69D59E7B1A9C6AFB00174BC7 /* IDPCollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IDPCollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69D59E7F1A9C6AFB00174BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69D59E801A9C6AFB00174BC7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -91,7 +132,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D303952CA5740E8883991F3 /* libPods-IDPCollectionView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +145,75 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69D59D131AA4BDC30042B0DF /* frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69D59D141AA4BDC30042B0DF /* JNWCollectionView */,
+			);
+			path = frameworks;
+			sourceTree = "<group>";
+		};
+		69D59D141AA4BDC30042B0DF /* JNWCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				69D59D151AA4BDC30042B0DF /* JNWCollectionView */,
+				69D59D301AA4BDC30042B0DF /* JNWScrollView */,
+			);
+			path = JNWCollectionView;
+			sourceTree = "<group>";
+		};
+		69D59D151AA4BDC30042B0DF /* JNWCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				69D59D161AA4BDC30042B0DF /* JNWCollectionView */,
+				69D59D2E1AA4BDC30042B0DF /* LICENSE.md */,
+				69D59D2F1AA4BDC30042B0DF /* README.md */,
+			);
+			path = JNWCollectionView;
+			sourceTree = "<group>";
+		};
+		69D59D161AA4BDC30042B0DF /* JNWCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */,
+				69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */,
+				69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */,
+				69D59D1A1AA4BDC30042B0DF /* JNWCollectionViewCell.h */,
+				69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */,
+				69D59D1C1AA4BDC30042B0DF /* JNWCollectionViewData.h */,
+				69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */,
+				69D59D1E1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.h */,
+				69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */,
+				69D59D201AA4BDC30042B0DF /* JNWCollectionViewFramework.h */,
+				69D59D211AA4BDC30042B0DF /* JNWCollectionViewFramework.m */,
+				69D59D221AA4BDC30042B0DF /* JNWCollectionViewGridLayout.h */,
+				69D59D231AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m */,
+				69D59D241AA4BDC30042B0DF /* JNWCollectionViewLayout+Private.h */,
+				69D59D251AA4BDC30042B0DF /* JNWCollectionViewLayout.h */,
+				69D59D261AA4BDC30042B0DF /* JNWCollectionViewLayout.m */,
+				69D59D271AA4BDC30042B0DF /* JNWCollectionViewListLayout.h */,
+				69D59D281AA4BDC30042B0DF /* JNWCollectionViewListLayout.m */,
+				69D59D291AA4BDC30042B0DF /* JNWCollectionViewReusableView+Private.h */,
+				69D59D2A1AA4BDC30042B0DF /* JNWCollectionViewReusableView.h */,
+				69D59D2B1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m */,
+				69D59D2C1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.h */,
+				69D59D2D1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m */,
+			);
+			path = JNWCollectionView;
+			sourceTree = "<group>";
+		};
+		69D59D301AA4BDC30042B0DF /* JNWScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				69D59D311AA4BDC30042B0DF /* JNWClipView.h */,
+				69D59D321AA4BDC30042B0DF /* JNWClipView.m */,
+				69D59D331AA4BDC30042B0DF /* JNWScrollView.h */,
+				69D59D341AA4BDC30042B0DF /* JNWScrollView.m */,
+				69D59D351AA4BDC30042B0DF /* LICENSE.md */,
+			);
+			path = JNWScrollView;
+			sourceTree = "<group>";
+		};
 		69D59E721A9C6AFA00174BC7 = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +221,6 @@
 				69D59E7D1A9C6AFB00174BC7 /* IDPCollectionView */,
 				69D59E911A9C6AFB00174BC7 /* IDPCollectionViewTests */,
 				69D59E7C1A9C6AFB00174BC7 /* Products */,
-				3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */,
 				9A1EBF4DC96F46E7B6FF585D /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +275,7 @@
 		69D59EC01A9C6D9C00174BC7 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				69D59D131AA4BDC30042B0DF /* frameworks */,
 				69D59EEB1A9C756C00174BC7 /* Models */,
 				69D59EE21A9C733900174BC7 /* UI */,
 				69D59EC11A9C6D9C00174BC7 /* IDPKit */,
@@ -300,7 +409,6 @@
 		9A1EBF4DC96F46E7B6FF585D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				02399D1B98E34812AEBA182D /* libPods-IDPCollectionView.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -312,11 +420,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 69D59E981A9C6AFB00174BC7 /* Build configuration list for PBXNativeTarget "IDPCollectionView" */;
 			buildPhases = (
-				6E3E6F58CFE7453D88648B9E /* Check Pods Manifest.lock */,
 				69D59E771A9C6AFA00174BC7 /* Sources */,
 				69D59E781A9C6AFA00174BC7 /* Frameworks */,
 				69D59E791A9C6AFA00174BC7 /* Resources */,
-				F2E2B7E6FB2A483A9B630C28 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -404,39 +510,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		6E3E6F58CFE7453D88648B9E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F2E2B7E6FB2A483A9B630C28 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-IDPCollectionView-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		69D59E771A9C6AFA00174BC7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -446,16 +519,30 @@
 				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
 				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
 				69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */,
+				69D59D401AA4BDC30042B0DF /* README.md in Sources */,
+				69D59D3E1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m in Sources */,
 				69D59E841A9C6AFB00174BC7 /* main.m in Sources */,
 				69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */,
+				69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */,
 				69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */,
 				69D59EDD1A9C6D9C00174BC7 /* NSTableView+IDPExtension.m in Sources */,
+				69D59D421AA4BDC30042B0DF /* JNWScrollView.m in Sources */,
+				69D59D411AA4BDC30042B0DF /* JNWClipView.m in Sources */,
+				69D59D3D1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m in Sources */,
+				69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */,
+				69D59D3C1AA4BDC30042B0DF /* JNWCollectionViewListLayout.m in Sources */,
 				69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */,
 				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
+				69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */,
+				69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */,
 				69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */,
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
+				69D59D3F1AA4BDC30042B0DF /* LICENSE.md in Sources */,
 				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,
+				69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */,
+				69D59D431AA4BDC30042B0DF /* LICENSE.md in Sources */,
+				69D59D3A1AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m in Sources */,
 				69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,7 +655,6 @@
 		};
 		69D59E991A9C6AFB00174BC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -580,7 +666,6 @@
 		};
 		69D59E9A1A9C6AFB00174BC7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3E4A37B34E604CA3892E598C /* Pods-IDPCollectionView.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;

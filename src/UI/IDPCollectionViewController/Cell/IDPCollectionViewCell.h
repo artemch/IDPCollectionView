@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import <JNWCollectionView/JNWCollectionViewCell.h>
+#import "JNWCollectionViewCell.h"
 
 @interface IDPCollectionViewCell : JNWCollectionViewCell
 

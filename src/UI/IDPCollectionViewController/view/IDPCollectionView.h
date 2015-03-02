@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <JNWCollectionView/JNWCollectionView.h>
+#import "JNWCollectionView.h"
 
 @interface IDPCollectionView : NSView
 
