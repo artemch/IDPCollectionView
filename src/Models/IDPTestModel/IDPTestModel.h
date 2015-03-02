@@ -12,5 +12,7 @@
 
 @property (nonatomic, copy) NSString    *title;
 @property (nonatomic, copy) NSString    *subtitle;
+@property (nonatomic, assign) NSInteger value1;
+@property (nonatomic, assign) NSInteger value2;
 
 @end

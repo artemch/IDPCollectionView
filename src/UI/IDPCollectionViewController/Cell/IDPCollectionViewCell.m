@@ -38,7 +38,7 @@
     if ([object isKindOfClass:[IDPTestModel class]]) {
         IDPTestModel *model = (IDPTestModel *)object;
         self.title.stringValue = model.title;
-        self.subtitle.stringValue = model.subtitle;
+        self.subtitle.stringValue = [NSString stringWithFormat:@"%@ %@/%@",model.subtitle,@(model.value1),@(model.value2)];
     }
 }
 
