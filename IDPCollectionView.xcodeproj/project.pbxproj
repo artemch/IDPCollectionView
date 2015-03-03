@@ -34,7 +34,7 @@
 		69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ECE1A9C6D9C00174BC7 /* NSView+IDPExtension.m */; };
 		69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED01A9C6D9C00174BC7 /* NSViewController+IDPExtension.m */; };
 		69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED41A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m */; };
-		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; };
 		69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */; };
 		69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */; };
 		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
