@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69297B231AA74ADE00CE0166 /* IDPCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 69297B211AA74ADE00CE0166 /* IDPCollectionViewItem.m */; };
+		69297B241AA74ADE00CE0166 /* IDPCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69297B221AA74ADE00CE0166 /* IDPCollectionViewItem.xib */; };
+		69297B271AA74C3700CE0166 /* IDPCollectionViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69297B261AA74C3700CE0166 /* IDPCollectionViewView.m */; };
+		69297B2B1AA757F600CE0166 /* IDPCollectionViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 69297B291AA757F600CE0166 /* IDPCollectionViewSectionItem.m */; };
+		69297B2C1AA757F600CE0166 /* IDPCollectionViewSectionItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69297B2A1AA757F600CE0166 /* IDPCollectionViewSectionItem.xib */; };
+		69297B311AA758EF00CE0166 /* IDPItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69297B2F1AA758EF00CE0166 /* IDPItemModel.m */; };
+		69297B341AA7591D00CE0166 /* IDPSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69297B331AA7591D00CE0166 /* IDPSectionModel.m */; };
 		69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */; };
 		69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */; };
 		69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */; };
@@ -37,7 +44,6 @@
 		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; };
 		69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */; };
 		69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */; };
-		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
 		69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */; };
 		69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */; };
 		69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */; };
@@ -55,6 +61,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69297B201AA74ADE00CE0166 /* IDPCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewItem.h; sourceTree = "<group>"; };
+		69297B211AA74ADE00CE0166 /* IDPCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewItem.m; sourceTree = "<group>"; };
+		69297B221AA74ADE00CE0166 /* IDPCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewItem.xib; sourceTree = "<group>"; };
+		69297B251AA74C3700CE0166 /* IDPCollectionViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewView.h; sourceTree = "<group>"; };
+		69297B261AA74C3700CE0166 /* IDPCollectionViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewView.m; sourceTree = "<group>"; };
+		69297B281AA757F600CE0166 /* IDPCollectionViewSectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewSectionItem.h; sourceTree = "<group>"; };
+		69297B291AA757F600CE0166 /* IDPCollectionViewSectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewSectionItem.m; sourceTree = "<group>"; };
+		69297B2A1AA757F600CE0166 /* IDPCollectionViewSectionItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewSectionItem.xib; sourceTree = "<group>"; };
+		69297B2E1AA758EF00CE0166 /* IDPItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPItemModel.h; sourceTree = "<group>"; };
+		69297B2F1AA758EF00CE0166 /* IDPItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPItemModel.m; sourceTree = "<group>"; };
+		69297B321AA7591D00CE0166 /* IDPSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSectionModel.h; sourceTree = "<group>"; };
+		69297B331AA7591D00CE0166 /* IDPSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSectionModel.m; sourceTree = "<group>"; };
 		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
 		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
 		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
@@ -117,8 +135,6 @@
 		69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewController.m; sourceTree = "<group>"; };
 		69D59EE81A9C737F00174BC7 /* IDPCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionView.h; sourceTree = "<group>"; };
 		69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionView.m; sourceTree = "<group>"; };
-		69D59EED1A9C757A00174BC7 /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
-		69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestModel.m; sourceTree = "<group>"; };
 		69D59F171A9C900400174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
 		69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
 		69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -145,6 +161,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69297B2D1AA758EF00CE0166 /* IDPItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				69297B2E1AA758EF00CE0166 /* IDPItemModel.h */,
+				69297B2F1AA758EF00CE0166 /* IDPItemModel.m */,
+			);
+			path = IDPItemModel;
+			sourceTree = "<group>";
+		};
+		69297B301AA758EF00CE0166 /* IDPSectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				69297B321AA7591D00CE0166 /* IDPSectionModel.h */,
+				69297B331AA7591D00CE0166 /* IDPSectionModel.m */,
+			);
+			path = IDPSectionModel;
+			sourceTree = "<group>";
+		};
 		69D59D131AA4BDC30042B0DF /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,9 +406,17 @@
 			children = (
 				69D59EE81A9C737F00174BC7 /* IDPCollectionView.h */,
 				69D59EE91A9C737F00174BC7 /* IDPCollectionView.m */,
+				69297B251AA74C3700CE0166 /* IDPCollectionViewView.h */,
+				69297B261AA74C3700CE0166 /* IDPCollectionViewView.m */,
 				69D59F1C1A9CA9F700174BC7 /* IDPCollectionViewReusableView.h */,
 				69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewReusableView.m */,
 				69D59F1F1A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib */,
+				69297B201AA74ADE00CE0166 /* IDPCollectionViewItem.h */,
+				69297B211AA74ADE00CE0166 /* IDPCollectionViewItem.m */,
+				69297B221AA74ADE00CE0166 /* IDPCollectionViewItem.xib */,
+				69297B281AA757F600CE0166 /* IDPCollectionViewSectionItem.h */,
+				69297B291AA757F600CE0166 /* IDPCollectionViewSectionItem.m */,
+				69297B2A1AA757F600CE0166 /* IDPCollectionViewSectionItem.xib */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -382,18 +424,10 @@
 		69D59EEB1A9C756C00174BC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				69D59EEC1A9C756C00174BC7 /* IDPTestModel */,
+				69297B2D1AA758EF00CE0166 /* IDPItemModel */,
+				69297B301AA758EF00CE0166 /* IDPSectionModel */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		69D59EEC1A9C756C00174BC7 /* IDPTestModel */ = {
-			isa = PBXGroup;
-			children = (
-				69D59EED1A9C757A00174BC7 /* IDPTestModel.h */,
-				69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */,
-			);
-			path = IDPTestModel;
 			sourceTree = "<group>";
 		};
 		69D59F161A9C900400174BC7 /* Cell */ = {
@@ -498,6 +532,8 @@
 				69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */,
 				69D59E891A9C6AFB00174BC7 /* MainMenu.xib in Resources */,
 				69D59F201A9CAA0400174BC7 /* IDPCollectionViewReusableView.xib in Resources */,
+				69297B2C1AA757F600CE0166 /* IDPCollectionViewSectionItem.xib in Resources */,
+				69297B241AA74ADE00CE0166 /* IDPCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,8 +552,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */,
+				69297B2B1AA757F600CE0166 /* IDPCollectionViewSectionItem.m in Sources */,
 				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
 				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
+				69297B231AA74ADE00CE0166 /* IDPCollectionViewItem.m in Sources */,
 				69D59EEA1A9C737F00174BC7 /* IDPCollectionView.m in Sources */,
 				69D59D401AA4BDC30042B0DF /* README.md in Sources */,
 				69D59D3E1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m in Sources */,
@@ -530,16 +568,18 @@
 				69D59D411AA4BDC30042B0DF /* JNWClipView.m in Sources */,
 				69D59D3D1AA4BDC30042B0DF /* JNWCollectionViewReusableView.m in Sources */,
 				69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */,
+				69297B271AA74C3700CE0166 /* IDPCollectionViewView.m in Sources */,
 				69D59D3C1AA4BDC30042B0DF /* JNWCollectionViewListLayout.m in Sources */,
 				69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */,
 				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
 				69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */,
 				69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */,
-				69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */,
+				69297B311AA758EF00CE0166 /* IDPItemModel.m in Sources */,
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
 				69D59D3F1AA4BDC30042B0DF /* LICENSE.md in Sources */,
 				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,
+				69297B341AA7591D00CE0166 /* IDPSectionModel.m in Sources */,
 				69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */,
 				69D59D431AA4BDC30042B0DF /* LICENSE.md in Sources */,
 				69D59D3A1AA4BDC30042B0DF /* JNWCollectionViewGridLayout.m in Sources */,

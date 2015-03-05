@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="IDPCollectionViewSectionItem">
+            <connections>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="601" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="vRE-Gf-PpX" userLabel="Header View">
+                    <rect key="frame" x="0.0" y="205" width="601" height="67"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZJo-I1-oOo">
+                            <rect key="frame" x="18" y="28" width="565" height="34"/>
+                            <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" id="5Yw-Wa-jbq">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="representedObject.title" id="XO7-G4-1bw"/>
+                            </connections>
+                        </textField>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kGv-wX-wug">
+                            <rect key="frame" x="20" y="9" width="563" height="11"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="11" id="mLr-Zz-FKU"/>
+                            </constraints>
+                            <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="ylA-3l-Cvc">
+                                <font key="font" metaFont="miniSystem"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="-2" name="value" keyPath="representedObject.subtitle" id="tgn-Ys-oQA"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="67" id="2Ih-YE-iWN"/>
+                        <constraint firstAttribute="trailing" secondItem="kGv-wX-wug" secondAttribute="trailing" constant="20" id="6EM-aJ-hyg"/>
+                        <constraint firstAttribute="bottom" secondItem="kGv-wX-wug" secondAttribute="bottom" constant="9" id="PtH-ad-NFr"/>
+                        <constraint firstItem="kGv-wX-wug" firstAttribute="leading" secondItem="vRE-Gf-PpX" secondAttribute="leading" constant="22" id="d0H-5F-cmR"/>
+                        <constraint firstItem="ZJo-I1-oOo" firstAttribute="top" secondItem="vRE-Gf-PpX" secondAttribute="top" constant="5" id="ehn-Ki-tWe"/>
+                        <constraint firstAttribute="trailing" secondItem="ZJo-I1-oOo" secondAttribute="trailing" constant="20" id="jCK-gv-KsW"/>
+                        <constraint firstItem="kGv-wX-wug" firstAttribute="top" secondItem="ZJo-I1-oOo" secondAttribute="bottom" constant="8" id="pqh-b3-OwP"/>
+                        <constraint firstItem="ZJo-I1-oOo" firstAttribute="leading" secondItem="vRE-Gf-PpX" secondAttribute="leading" constant="20" id="w3a-tc-onY"/>
+                    </constraints>
+                </customView>
+                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFi-Fl-CPI">
+                    <rect key="frame" x="0.0" y="0.0" width="601" height="206"/>
+                    <clipView key="contentView" id="bTm-fo-8zK">
+                        <rect key="frame" x="1" y="1" width="248" height="158"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView id="677-wg-cT5">
+                                <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <binding destination="nRw-As-Ifj" name="content" keyPath="arrangedObjects" id="BFy-69-WoT"/>
+                                    <outlet property="itemPrototype" destination="BF0-pI-B6C" id="TAB-VE-OeI"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                    </clipView>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="UCo-D4-VuJ">
+                        <rect key="frame" x="1" y="144" width="233" height="15"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                    <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="cu4-HI-q5A">
+                        <rect key="frame" x="234" y="1" width="15" height="143"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </scroller>
+                </scrollView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="vRE-Gf-PpX" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="5ng-ou-4Bi"/>
+                <constraint firstAttribute="trailing" secondItem="xFi-Fl-CPI" secondAttribute="trailing" id="C2q-6o-i9m"/>
+                <constraint firstItem="xFi-Fl-CPI" firstAttribute="top" secondItem="vRE-Gf-PpX" secondAttribute="bottom" constant="-1" id="CFB-f5-mlt"/>
+                <constraint firstAttribute="trailing" secondItem="vRE-Gf-PpX" secondAttribute="trailing" id="gnB-6N-OFh"/>
+                <constraint firstItem="vRE-Gf-PpX" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="hSp-xp-VWF"/>
+                <constraint firstItem="xFi-Fl-CPI" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="hcW-Vc-2mc"/>
+                <constraint firstAttribute="bottom" secondItem="xFi-Fl-CPI" secondAttribute="bottom" id="meP-03-EJY"/>
+            </constraints>
+            <point key="canvasLocation" x="437.5" y="296"/>
+        </customView>
+        <collectionViewItem nibName="IDPCollectionViewItem" id="BF0-pI-B6C"/>
+        <arrayController objectClassName="IDPItemModel" id="nRw-As-Ifj">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+            </declaredKeys>
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="representedObject.objects" id="c6y-Lh-g9f"/>
+            </connections>
+        </arrayController>
+    </objects>
+</document>

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import "IDPTestModel.h"
+#import "IDPItemModel.h"
 
-@implementation IDPTestModel
+@implementation IDPItemModel
 
 #pragma mark -
 #pragma mark Initializations and Deallocations

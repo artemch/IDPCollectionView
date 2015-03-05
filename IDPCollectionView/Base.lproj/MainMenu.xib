@@ -673,51 +673,61 @@
             <rect key="contentRect" x="335" y="390" width="580" height="570"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="580" height="570"/>
-            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPCollectionView">
+            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPCollectionViewView">
                 <rect key="frame" x="0.0" y="0.0" width="580" height="570"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-i9-ksC" customClass="JNWCollectionView">
+                    <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qw-Jf-irW">
                         <rect key="frame" x="-1" y="-1" width="582" height="572"/>
-                        <clipView key="contentView" id="fX2-9f-Lmm">
-                            <rect key="frame" x="1" y="1" width="166" height="79"/>
+                        <clipView key="contentView" id="TDB-dD-So1">
+                            <rect key="frame" x="1" y="1" width="248" height="158"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <view fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2v-Qo-dyT">
-                                    <rect key="frame" x="0.0" y="476" width="565" height="552"/>
-                                </view>
+                                <collectionView id="ZIw-md-tad" customClass="IDPCollectionView">
+                                    <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <connections>
+                                        <binding destination="I9Z-Ab-mfZ" name="content" keyPath="arrangedObjects" id="rkJ-Zc-B1Q"/>
+                                        <outlet property="itemPrototype" destination="rro-g9-CLD" id="3OW-qI-LxL"/>
+                                    </connections>
+                                </collectionView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="PKm-0B-XKT">
-                            <rect key="frame" x="1" y="80" width="166" height="15"/>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="LfD-AH-mHv">
+                            <rect key="frame" x="1" y="144" width="233" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yUz-Db-Mh4">
-                            <rect key="frame" x="167" y="1" width="15" height="79"/>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="ZHc-ky-cpd">
+                            <rect key="frame" x="234" y="1" width="15" height="143"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <connections>
-                            <outlet property="dataSource" destination="C3Q-MP-bV9" id="yuT-hE-xYx"/>
-                            <outlet property="delegate" destination="C3Q-MP-bV9" id="xuQ-VZ-kcG"/>
-                        </connections>
                     </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="Zdb-i9-ksC" secondAttribute="bottom" constant="-1" id="BTI-gP-hef"/>
-                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Kgt-ej-U7I"/>
-                    <constraint firstAttribute="trailing" secondItem="Zdb-i9-ksC" secondAttribute="trailing" constant="-1" id="Tbu-Z2-MVS"/>
-                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="x8s-Fb-tMv"/>
+                    <constraint firstItem="2Qw-Jf-irW" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="Eva-hc-UJY"/>
+                    <constraint firstItem="2Qw-Jf-irW" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="KOF-SK-poE"/>
+                    <constraint firstAttribute="trailing" secondItem="2Qw-Jf-irW" secondAttribute="trailing" constant="-1" id="TeT-ao-n6n"/>
+                    <constraint firstAttribute="bottom" secondItem="2Qw-Jf-irW" secondAttribute="bottom" constant="-1" id="gxz-eY-xpM"/>
                 </constraints>
                 <connections>
-                    <outlet property="collectionView" destination="Zdb-i9-ksC" id="uCo-HK-IOy"/>
+                    <outlet property="collectionView" destination="ZIw-md-tad" id="0HQ-EP-NAK"/>
                 </connections>
             </view>
             <point key="canvasLocation" x="354" y="444"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
-                <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
+                <outlet property="arrayController" destination="I9Z-Ab-mfZ" id="h1j-QT-VqG"/>
+                <outlet property="view" destination="EiT-Mj-1SZ" id="teD-DR-4wJ"/>
             </connections>
         </viewController>
+        <arrayController objectClassName="IDPSectionModel" id="I9Z-Ab-mfZ">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+            </declaredKeys>
+        </arrayController>
+        <collectionViewItem nibName="IDPCollectionViewSectionItem" id="rro-g9-CLD"/>
     </objects>
 </document>

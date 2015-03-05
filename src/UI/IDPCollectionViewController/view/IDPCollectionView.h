@@ -7,10 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "JNWCollectionView.h"
 
-@interface IDPCollectionView : NSView
-
-@property (nonatomic, strong) IBOutlet JNWCollectionView *collectionView;
+@interface IDPCollectionView : NSCollectionView
 
 @end

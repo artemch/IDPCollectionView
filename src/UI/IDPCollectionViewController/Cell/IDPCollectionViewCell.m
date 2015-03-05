@@ -7,7 +7,7 @@
 //
 
 #import "IDPCollectionViewCell.h"
-#import "IDPTestModel.h"
+#import "IDPItemModel.h"
 #import "NSColor+IDPExtension.h"
 #import "NSView+IDPExtension.h"
 
@@ -35,8 +35,8 @@
 #pragma mark Public methods
 
 - (void)fillFromObject:(id)object {
-    if ([object isKindOfClass:[IDPTestModel class]]) {
-        IDPTestModel *model = (IDPTestModel *)object;
+    if ([object isKindOfClass:[IDPItemModel class]]) {
+        IDPItemModel *model = (IDPItemModel *)object;
         self.title.stringValue = model.title;
         self.subtitle.stringValue = [NSString stringWithFormat:@"%@ %@/%@",model.subtitle,@(model.value1),@(model.value2)];
     }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="IDPCollectionViewItem">
+            <connections>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wmK-AW-RP8">
+                    <rect key="frame" x="18" y="39" width="341" height="17"/>
+                    <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="Multiline Label" id="fQy-ij-hle">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="representedObject.title" id="sNx-tO-Ciu"/>
+                    </connections>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hkC-9I-B0Y">
+                    <rect key="frame" x="20" y="20" width="339" height="11"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="11" id="Q99-5F-V8A"/>
+                    </constraints>
+                    <textFieldCell key="cell" controlSize="mini" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="FVQ-mI-OK7">
+                        <font key="font" metaFont="miniSystem"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="-2" name="value" keyPath="representedObject.subtitle" id="UNr-c1-Ndb"/>
+                    </connections>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hkC-9I-B0Y" secondAttribute="trailing" constant="20" id="A71-C2-Fys"/>
+                <constraint firstItem="hkC-9I-B0Y" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="22" id="EC7-Vu-hcP"/>
+                <constraint firstItem="wmK-AW-RP8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="OK8-jo-kbj"/>
+                <constraint firstItem="wmK-AW-RP8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="RgX-4F-87L"/>
+                <constraint firstItem="hkC-9I-B0Y" firstAttribute="top" secondItem="wmK-AW-RP8" secondAttribute="bottom" constant="8" id="XvY-Cv-Doh"/>
+                <constraint firstAttribute="bottom" secondItem="hkC-9I-B0Y" secondAttribute="bottom" constant="20" id="aCm-07-89a"/>
+                <constraint firstAttribute="trailing" secondItem="wmK-AW-RP8" secondAttribute="trailing" constant="20" id="ovd-3u-ByR"/>
+            </constraints>
+            <point key="canvasLocation" x="88.5" y="81"/>
+        </customView>
+    </objects>
+</document>
