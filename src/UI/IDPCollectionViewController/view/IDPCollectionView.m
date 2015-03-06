@@ -11,10 +11,10 @@
 
 @implementation IDPCollectionView
 
-- (NSCollectionViewItem *)newItemForRepresentedObject:(id)object {
-    IDPCollectionViewItem *item = [[IDPCollectionViewItem alloc] initWithNibName:NSStringFromClass([IDPCollectionViewItem class]) bundle:nil];
-    item.representedObject = object;
-    return item;
-}
+//- (NSCollectionViewItem *)newItemForRepresentedObject:(id)object {
+//    IDPCollectionViewItem *item = [[IDPCollectionViewItem alloc] initWithNibName:NSStringFromClass([IDPCollectionViewItem class]) bundle:nil];
+//    item.representedObject = object;
+//    return item;
+//}
 
 @end
