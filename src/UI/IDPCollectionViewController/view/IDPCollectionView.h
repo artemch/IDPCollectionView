@@ -12,5 +12,6 @@
 @interface IDPCollectionView : NSView
 
 @property (nonatomic, strong) IBOutlet JNWCollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet NSTableView  *tableView;
 
 @end

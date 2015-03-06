@@ -14,9 +14,10 @@
 
 @implementation IDPCollectionViewItem
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do view setup here.
+- (void)awakeFromNib {
+    self.view.wantsLayer = YES;
+    self.view.layer.backgroundColor = [[NSColor redColor] CGColor];
+    [super awakeFromNib];
 }
 
 @end

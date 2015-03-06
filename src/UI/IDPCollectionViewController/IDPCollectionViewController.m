@@ -54,7 +54,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 //    [self.myView.collectionView reloadData];
     
     for (NSInteger index = 0; index < kIDPSectionsCount; index++) {
-//        NSMutableArray *innerObjects = [NSMutableArray array];
+        NSMutableArray *innerObjects = [NSMutableArray array];
         IDPSectionModel *section = [IDPSectionModel new];
         section.title = [NSString stringWithFormat:@"Title %ld", (long)index];
         section.subtitle = @"Section Header";
@@ -63,8 +63,11 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
             IDPTestModel *model = [IDPTestModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
             [section.objects addObject:model];
-//            [innerObjects addObject:model];
+            [innerObjects addObject:model];
         }
+        section.arrayController = [[NSArrayController alloc] initWithContent:innerObjects];
+        [section.arrayController setObjectClass:[IDPTestModel class]];
+        
         [self.arrayController addObject:section];
 //        [self.objects addObject:innerObjects];
     }

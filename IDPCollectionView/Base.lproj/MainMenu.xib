@@ -684,7 +684,6 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="376" rowSizeStyle="automatic" viewBased="YES" id="z5E-Wz-seQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="238" height="117"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -716,9 +715,9 @@
                                                                     <collectionView id="vkx-Og-l8F">
                                                                         <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="primaryBackgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                         <connections>
-                                                                            <binding destination="qnw-pn-Ogj" name="content" keyPath="selection.objects" id="ct1-ES-WnR"/>
+                                                                            <binding destination="qnw-pn-Ogj" name="content" keyPath="selection.arrayController.arrangedObjects" id="sgb-9G-y6c"/>
                                                                             <outlet property="itemPrototype" destination="wq3-zT-8es" id="d4A-l2-QJN"/>
                                                                         </connections>
                                                                     </collectionView>
@@ -783,6 +782,9 @@
                                                         <constraint firstAttribute="bottom" secondItem="6vI-zW-DhP" secondAttribute="bottom" constant="3" id="bGV-9i-nAg"/>
                                                         <constraint firstAttribute="trailing" secondItem="ADg-3X-FF5" secondAttribute="trailing" constant="3" id="cnQ-in-t3i"/>
                                                     </constraints>
+                                                    <connections>
+                                                        <binding destination="qnw-pn-Ogj" name="toolTip" keyPath="selection.title" id="Lz9-1H-sZa"/>
+                                                    </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
@@ -810,8 +812,11 @@
                     <constraint firstItem="Bj5-uz-tuk" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="FDd-Er-k6m"/>
                     <constraint firstAttribute="trailing" secondItem="Bj5-uz-tuk" secondAttribute="trailing" constant="-1" id="x5e-q8-pon"/>
                 </constraints>
+                <connections>
+                    <outlet property="tableView" destination="z5E-Wz-seQ" id="jE7-eO-yjE"/>
+                </connections>
             </view>
-            <point key="canvasLocation" x="354" y="444"/>
+            <point key="canvasLocation" x="414" y="401"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
@@ -826,6 +831,6 @@
                 <string>Key</string>
             </declaredKeys>
         </arrayController>
-        <collectionViewItem nibName="IDPCollectionViewItem" id="wq3-zT-8es"/>
+        <collectionViewItem nibName="IDPCollectionViewItem" id="wq3-zT-8es" customClass="IDPCollectionViewItem"/>
     </objects>
 </document>

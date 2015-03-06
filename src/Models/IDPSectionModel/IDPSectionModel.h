@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AppKitKit.h"
 
 @interface IDPSectionModel : NSObject
 
 @property (nonatomic, copy) NSString    *title;
 @property (nonatomic, copy) NSString    *subtitle;
 @property (nonatomic, strong) NSMutableArray *objects;
+@property (nonatomic, strong) NSArrayController *arrayController;
 
 @end
