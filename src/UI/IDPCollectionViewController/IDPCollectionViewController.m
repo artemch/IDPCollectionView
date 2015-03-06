@@ -12,6 +12,7 @@
 #import "NSViewController+IDPExtension.h"
 #import "IDPCollectionViewCell.h"
 #import "IDPCollectionViewReusableView.h"
+#import "IDPSectionModel.h"
 
 static NSInteger const kIDPTestObjectsCount = 10;
 static NSInteger const kIDPSectionsCount = 5;
@@ -36,21 +37,37 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setupCollectionView];
+//    [self setupCollectionView];
     
-    self.objects = [NSMutableArray array];
+//    self.objects = [NSMutableArray array];
+    
+//    for (NSInteger index = 0; index < kIDPSectionsCount; index++) {
+//        NSMutableArray *innerObjects = [NSMutableArray array];
+//        for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
+//            IDPTestModel *model = [IDPTestModel new];
+//            model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
+//            [innerObjects addObject:model];
+//        }
+//        [self.objects addObject:innerObjects];
+//    }
+    
+//    [self.myView.collectionView reloadData];
     
     for (NSInteger index = 0; index < kIDPSectionsCount; index++) {
-        NSMutableArray *innerObjects = [NSMutableArray array];
+//        NSMutableArray *innerObjects = [NSMutableArray array];
+        IDPSectionModel *section = [IDPSectionModel new];
+        section.title = [NSString stringWithFormat:@"Title %ld", (long)index];
+        section.subtitle = @"Section Header";
+        
         for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
             IDPTestModel *model = [IDPTestModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
-            [innerObjects addObject:model];
+            [section.objects addObject:model];
+//            [innerObjects addObject:model];
         }
-        [self.objects addObject:innerObjects];
+        [self.arrayController addObject:section];
+//        [self.objects addObject:innerObjects];
     }
-    
-    [self.myView.collectionView reloadData];
 }
 
 - (void)setupCollectionView {
