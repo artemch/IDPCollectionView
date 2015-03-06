@@ -37,7 +37,7 @@
 - (void)fillFromObject:(id)object {
     if ([object isKindOfClass:[IDPTestModel class]]) {
         IDPTestModel *model = (IDPTestModel *)object;
-        self.title.stringValue = model.title;
+//        self.title.stringValue = model.title;
         self.subtitle.stringValue = [NSString stringWithFormat:@"%@ %@/%@",model.subtitle,@(model.value1),@(model.value2)];
     }
 }
@@ -45,6 +45,11 @@
 - (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
     self.backgroundColor = selected ? kIDPSelectedCellColor : kIDPUnselectedCellColor;
+}
+
+- (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
+//    [super bind:binding toObject:observable withKeyPath:keyPath options:options];
+    [self.title bind:@"value" toObject:observable withKeyPath:keyPath options:options];
 }
 
 @end

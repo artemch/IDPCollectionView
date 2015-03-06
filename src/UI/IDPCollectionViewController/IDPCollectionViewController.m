@@ -35,6 +35,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 #pragma mark Initializations and DeallocationsTest string
 
 - (void)awakeFromNib {
+    NSLog(@"%@",NSStringFromSelector(_cmd));
     [super awakeFromNib];
     [self setupCollectionView];
     
@@ -46,6 +47,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
             IDPTestModel *model = [IDPTestModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
             [innerObjects addObject:model];
+            [self.cellArrayController addObject:model];
         }
         [self.objects addObject:innerObjects];
     }

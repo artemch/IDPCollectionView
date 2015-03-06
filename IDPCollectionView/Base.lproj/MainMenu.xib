@@ -697,6 +697,8 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <connections>
+                            <binding destination="C3Q-MP-bV9" name="hidden" keyPath="string" id="R1P-mk-Uep"/>
+                            <binding destination="C3Q-MP-bV9" name="toolTip" keyPath="objects" id="350-6K-l0A"/>
                             <outlet property="dataSource" destination="C3Q-MP-bV9" id="yuT-hE-xYx"/>
                             <outlet property="delegate" destination="C3Q-MP-bV9" id="xuQ-VZ-kcG"/>
                         </connections>
@@ -716,8 +718,17 @@
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
+                <outlet property="cellArrayController" destination="oXc-Xb-c5g" id="f9o-iS-hak"/>
+                <outlet property="sectionArrayController" destination="tJo-Sk-Lbw" id="O2w-nj-gas"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
             </connections>
         </viewController>
+        <arrayController objectClassName="IDPTestModel" id="oXc-Xb-c5g">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+            </declaredKeys>
+        </arrayController>
+        <arrayController id="tJo-Sk-Lbw"/>
     </objects>
 </document>

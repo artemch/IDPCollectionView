@@ -28,6 +28,9 @@
 #import "JNWCollectionViewLayout.h"
 #import "JNWCollectionViewLayout+Private.h"
 
+static NSString *const kIDPBindingCellsArray = @"toolTip";
+static NSString *const kIDPBindingSectionsArray = @"hidden";
+
 typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 	JNWCollectionViewSelectionTypeSingle,
 	JNWCollectionViewSelectionTypeExtending,
@@ -1295,6 +1298,19 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
         }
     }
     return result;
+}
+
+#pragma mark -
+#pragma mark Binding
+
+- (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
+    if ([binding isEqualToString:kIDPBindingCellsArray]) {
+        
+    } else if ([binding isEqualToString:kIDPBindingSectionsArray]) {
+        
+    } else {
+        [super bind:binding toObject:observable withKeyPath:keyPath options:options];
+    }
 }
 
 @end

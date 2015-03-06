@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69B82D1B1AAA010B00ECF6D3 /* IDPSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B82D1A1AAA010B00ECF6D3 /* IDPSectionModel.m */; };
+		69B82D1F1AAA02CC00ECF6D3 /* IDPArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B82D1E1AAA02CC00ECF6D3 /* IDPArrayController.m */; };
 		69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */; };
 		69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */; };
 		69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */; };
@@ -55,6 +57,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		69B82D191AAA010B00ECF6D3 /* IDPSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSectionModel.h; sourceTree = "<group>"; };
+		69B82D1A1AAA010B00ECF6D3 /* IDPSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSectionModel.m; sourceTree = "<group>"; };
+		69B82D1D1AAA02CC00ECF6D3 /* IDPArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPArrayController.h; sourceTree = "<group>"; };
+		69B82D1E1AAA02CC00ECF6D3 /* IDPArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPArrayController.m; sourceTree = "<group>"; };
 		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
 		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
 		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
@@ -145,6 +151,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69B82D181AAA00DD00ECF6D3 /* IDPSectionModel */ = {
+			isa = PBXGroup;
+			children = (
+				69B82D191AAA010B00ECF6D3 /* IDPSectionModel.h */,
+				69B82D1A1AAA010B00ECF6D3 /* IDPSectionModel.m */,
+			);
+			path = IDPSectionModel;
+			sourceTree = "<group>";
+		};
+		69B82D1C1AAA02BE00ECF6D3 /* IDPArrayController */ = {
+			isa = PBXGroup;
+			children = (
+				69B82D1D1AAA02CC00ECF6D3 /* IDPArrayController.h */,
+				69B82D1E1AAA02CC00ECF6D3 /* IDPArrayController.m */,
+			);
+			path = IDPArrayController;
+			sourceTree = "<group>";
+		};
 		69D59D131AA4BDC30042B0DF /* frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -382,6 +406,8 @@
 		69D59EEB1A9C756C00174BC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				69B82D1C1AAA02BE00ECF6D3 /* IDPArrayController */,
+				69B82D181AAA00DD00ECF6D3 /* IDPSectionModel */,
 				69D59EEC1A9C756C00174BC7 /* IDPTestModel */,
 			);
 			path = Models;
@@ -522,6 +548,7 @@
 				69D59D401AA4BDC30042B0DF /* README.md in Sources */,
 				69D59D3E1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m in Sources */,
 				69D59E841A9C6AFB00174BC7 /* main.m in Sources */,
+				69B82D1B1AAA010B00ECF6D3 /* IDPSectionModel.m in Sources */,
 				69D59EDE1A9C6D9C00174BC7 /* NSView+IDPExtension.m in Sources */,
 				69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */,
 				69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */,
@@ -532,6 +559,7 @@
 				69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */,
 				69D59D3C1AA4BDC30042B0DF /* JNWCollectionViewListLayout.m in Sources */,
 				69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */,
+				69B82D1F1AAA02CC00ECF6D3 /* IDPArrayController.m in Sources */,
 				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
 				69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */,
 				69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */,

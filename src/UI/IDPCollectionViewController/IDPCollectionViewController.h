@@ -12,4 +12,9 @@
 
 @property (nonatomic, strong) NSMutableArray   *objects;
 
+@property (nonatomic, copy) NSString    *string;
+
+@property (nonatomic, strong) IBOutlet NSArrayController    *cellArrayController;
+@property (nonatomic, strong) IBOutlet NSArrayController    *sectionArrayController;
+
 @end
