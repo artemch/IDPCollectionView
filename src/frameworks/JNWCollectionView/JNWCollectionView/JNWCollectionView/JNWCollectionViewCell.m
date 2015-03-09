@@ -91,7 +91,9 @@ static NSString *const kIDPEventKey = @"event";
 @end
 
 @implementation JNWCollectionViewCell
+
 @synthesize contentView = _contentView;
+@synthesize backgroundColor = _backgroundColor;
 
 - (void)dealloc
 {
@@ -179,11 +181,12 @@ static NSString *const kIDPEventKey = @"event";
 }
 
 - (void)setBackgroundColor:(NSColor *)backgroundColor {
+    _backgroundColor = backgroundColor;
 	self.backgroundView.color = backgroundColor;
 }
 
 - (NSColor *)backgroundColor {
-	return self.backgroundView.color;
+    return _backgroundColor;
 }
 
 - (void)setBackgroundImage:(NSImage *)backgroundImage {

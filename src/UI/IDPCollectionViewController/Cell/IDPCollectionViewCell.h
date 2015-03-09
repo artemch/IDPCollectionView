@@ -7,12 +7,14 @@
 //
 
 #import "JNWCollectionViewCell.h"
+#import "IDPBindModel.h"
 
 @interface IDPCollectionViewCell : JNWCollectionViewCell
 
 @property (nonatomic, strong) IBOutlet NSTextField  *title;
 @property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
+@property (nonatomic, strong) NSArray  *bindRelation;
 
-- (void)fillFromObject:(id)object;
+- (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
 
 @end

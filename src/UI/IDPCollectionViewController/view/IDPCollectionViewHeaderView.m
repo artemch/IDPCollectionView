@@ -1,31 +1,14 @@
 //
-//  IDPCollectionViewCell.m
+//  IDPCollectionViewReusableView.m
 //  IDPCollectionView
 //
 //  Created by Artem Chabanniy on 2/24/15.
 //  Copyright (c) 2015 IDAP Group. All rights reserved.
 //
 
-#import "IDPCollectionViewCell.h"
-#import "IDPTestModel.h"
-#import "NSColor+IDPExtension.h"
-#import "NSView+IDPExtension.h"
+#import "IDPCollectionViewHeaderView.h"
 
-@implementation IDPCollectionViewCell
-
-#pragma mark -
-#pragma mark Initializations and Deallocations
-
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-    NSShadow *dropShadow = [[NSShadow alloc] init];
-    [dropShadow setShadowColor:[NSColor colorWithIntRed:216 green:219 blue:219 alpha:255]];
-    [dropShadow setShadowOffset:NSMakeSize(2.0, -2.0)];
-    [dropShadow setShadowBlurRadius:0.0];
-    
-    [self setShadow:dropShadow];
-}
+@implementation IDPCollectionViewHeaderView
 
 #pragma mark -
 #pragma mark Public methods

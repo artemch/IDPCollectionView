@@ -7,12 +7,15 @@
 //
 
 #import "JNWCollectionViewReusableView.h"
+#import "IDPBindModel.h"
 
-@interface IDPCollectionViewReusableView : JNWCollectionViewReusableView
+@interface IDPCollectionViewHeaderView : JNWCollectionViewReusableView
 
 @property (nonatomic, strong) IBOutlet NSTextField  *title;
 @property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
 
-- (void)fillFromObject:(id)object;
+@property (nonatomic, strong) NSArray  *bindRelation;
+
+- (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
 
 @end
