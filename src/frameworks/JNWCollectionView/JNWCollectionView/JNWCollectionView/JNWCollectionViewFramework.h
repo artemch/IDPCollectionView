@@ -37,6 +37,8 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 };
 
 @class JNWCollectionView;
+@class IDPCollectionViewCell;
+@class IDPCollectionViewHeaderView;
 
 #pragma mark - Data Source Protocol
 
@@ -129,6 +131,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 
 @class JNWCollectionViewLayout;
 @interface JNWCollectionView : JNWScrollView <NSDraggingSource>
+
+@property (nonatomic, strong) IBOutlet IDPCollectionViewCell *itemPrototype;
+@property (nonatomic, strong) IBOutlet IDPCollectionViewHeaderView  *headerPrototype;
 
 /// The delegate for the collection view.
 @property (nonatomic, unsafe_unretained) IBOutlet id<JNWCollectionViewDelegate> delegate;

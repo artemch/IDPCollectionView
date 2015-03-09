@@ -7,12 +7,14 @@
 //
 
 #import "IDPCollectionViewController.h"
-#import "IDPCollectionView.h"
+#import "IDPCollectionViewView.h"
 #import "NSViewController+IDPExtension.h"
-#import "IDPCollectionViewCell.h"
-#import "IDPCollectionViewHeaderView.h"
 #import "IDPKeyPathObserver.h"
 #import "IDPKVOMutableArray.h"
+#import "IDPCollectionViewCell.h"
+#import "IDPCollectionViewHeaderView.h"
+#import "NSNib+IDPExtension.h"
+#import "JNWCollectionViewGridLayout.h"
 
 static CGFloat const kIDPDefaultCellWidth  = 185;
 static CGFloat const kIDPDefaultCellHeight = 80;
@@ -23,12 +25,14 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 
 @interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate, IDPKeyPathObserverDelegate>
 
-@property (nonatomic, strong, readonly) IDPCollectionView   *myView;
+@property (nonatomic, strong, readonly) IDPCollectionViewView   *myView;
 
 @property (nonatomic, strong) NSMutableArray   *dataSourceObjects;
 
 @property (nonatomic, strong) IDPKeyPathObserver    *dataSourceKeyPathObserver;
 @property (nonatomic, strong) IDPKeyPathObserver    *headerKeyPathObserver;
+
+@property (nonatomic, assign) CGFloat  headerHeight;
 
 @end
 
@@ -86,28 +90,27 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 }
 
 - (void)setupCollectionView {
+    self.headerHeight = kIDPDefaultHeaderHeight;
+    
     JNWCollectionViewGridLayout *gridLayout = [[JNWCollectionViewGridLayout alloc] init];
-    gridLayout.delegate = self;
     gridLayout.verticalSpacing = kIDPItemVerticalSpacing;
     gridLayout.itemHorizontalMargin = kIDPItemHorizontalMargin;
     gridLayout.itemSize = CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
+    gridLayout.delegate = self;
     
     self.myView.collectionView.collectionViewLayout = gridLayout;
     
-    NSString *identifier = NSStringFromClass([IDPCollectionViewCell class]);
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
-    [self.myView.collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
+    IDPCollectionViewCell *cell = [NSNib objectOfClass:[IDPCollectionViewCell class]];
+    gridLayout.itemSize = cell.frame.size;
     
-    identifier = NSStringFromClass([IDPCollectionViewHeaderView class]);
-    nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
-    
-    [self.myView.collectionView registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewGridLayoutHeaderKind withReuseIdentifier:identifier];
+    IDPCollectionViewHeaderView *view = [NSNib objectOfClass:[IDPCollectionViewHeaderView class]];
+    self.headerHeight = NSHeight(view.frame);
 }
 
 #pragma mark -
 #pragma mark Accessor methods
 
-IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
+IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 
 #pragma mark -
 #pragma mark Public methods
@@ -137,17 +140,6 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 }
 
 #pragma mark -
-#pragma mark Private methods
-
-- (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath {
-    return NSStringFromClass([IDPCollectionViewCell class]);
-}
-
-- (NSString *)collectionViewSupplementaryViewIdentifierForSection:(NSInteger)section kind:(NSString *)kind {
-    return NSStringFromClass([IDPCollectionViewHeaderView class]);
-}
-
-#pragma mark -
 #pragma mark JNWCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(JNWCollectionView *)collectionView {
@@ -160,7 +152,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 }
 
 - (JNWCollectionViewCell *)collectionView:(JNWCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:[self cellIdentifierForIndexPath:indexPath]];
+    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:NSStringFromClass([collectionView.itemPrototype class])];
     IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:indexPath.jnw_section];
     id object = [model.sectionContent objectAtIndex:indexPath.jnw_item];
     [cell bindWithRelation:self.cellBindRelation toObject:object];
@@ -169,8 +161,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 
 - (JNWCollectionViewReusableView *)collectionView:(JNWCollectionView *)collectionView viewForSupplementaryViewOfKind:(NSString *)kind inSection:(NSInteger)section {
     IDPCollectionViewHeaderView *header = (IDPCollectionViewHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                                                                 withReuseIdentifer:[self collectionViewSupplementaryViewIdentifierForSection:section
-                                                                                                                                                                                         kind:kind]];
+                                                                                                             withReuseIdentifer:NSStringFromClass([collectionView.headerPrototype class])];
     IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:section];
     [header bindWithRelation:self.headerBindRelation toObject:model];
     return header;
@@ -180,7 +171,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 #pragma mark JNWCollectionViewGridLayoutDelegate
 
 - (CGFloat)collectionView:(JNWCollectionView *)collectionView heightForHeaderInSection:(NSInteger)index {
-    return kIDPDefaultHeaderHeight;
+    return self.headerHeight;
 }
 
 #pragma mark -

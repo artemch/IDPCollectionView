@@ -9,22 +9,14 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView identifier="IDPCollectionViewCell" id="QfY-1j-cN2" customClass="IDPCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="47"/>
+            <rect key="frame" x="0.0" y="0.0" width="185" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="gzK-zi-wgg">
-                    <rect key="frame" x="0.0" y="0.0" width="150" height="47"/>
+                    <rect key="frame" x="0.0" y="0.0" width="185" height="85"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yXC-iN-OAp">
-                            <rect key="frame" x="10" y="25" width="134" height="17"/>
-                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="kHv-pf-pNj">
-                                <font key="font" metaFont="system"/>
-                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                            </textFieldCell>
-                        </textField>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vsm-Vw-4Ue">
-                            <rect key="frame" x="10" y="5" width="134" height="17"/>
+                            <rect key="frame" x="10" y="5" width="169" height="17"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="17" id="IsH-6b-192"/>
                             </constraints>
@@ -34,14 +26,24 @@
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
+                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLD-sJ-FaN">
+                            <rect key="frame" x="10" y="30" width="169" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="jJs-1Y-Jk8"/>
+                            </constraints>
+                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Multiline Label" id="huS-Vu-HlL">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="yXC-iN-OAp" firstAttribute="top" secondItem="gzK-zi-wgg" secondAttribute="top" constant="5" id="5TP-2D-LvB"/>
                         <constraint firstAttribute="bottom" secondItem="Vsm-Vw-4Ue" secondAttribute="bottom" constant="5" id="GrO-af-dfm"/>
+                        <constraint firstItem="sLD-sJ-FaN" firstAttribute="leading" secondItem="gzK-zi-wgg" secondAttribute="leading" constant="12" id="Ij4-1X-60g"/>
+                        <constraint firstAttribute="trailing" secondItem="sLD-sJ-FaN" secondAttribute="trailing" constant="8" id="KlB-mT-TBG"/>
+                        <constraint firstItem="sLD-sJ-FaN" firstAttribute="top" secondItem="gzK-zi-wgg" secondAttribute="top" constant="7" id="lxp-aW-ujx"/>
                         <constraint firstItem="Vsm-Vw-4Ue" firstAttribute="leading" secondItem="gzK-zi-wgg" secondAttribute="leading" constant="12" id="pDT-Vq-Nco"/>
-                        <constraint firstAttribute="trailing" secondItem="yXC-iN-OAp" secondAttribute="trailing" constant="8" id="pgp-2g-A51"/>
-                        <constraint firstItem="yXC-iN-OAp" firstAttribute="leading" secondItem="gzK-zi-wgg" secondAttribute="leading" constant="12" id="rg2-fz-LEJ"/>
-                        <constraint firstItem="Vsm-Vw-4Ue" firstAttribute="top" secondItem="yXC-iN-OAp" secondAttribute="bottom" constant="3" id="sft-te-gW9"/>
                         <constraint firstAttribute="trailing" secondItem="Vsm-Vw-4Ue" secondAttribute="trailing" constant="8" id="xvq-ry-9CO"/>
                     </constraints>
                 </customView>
@@ -55,9 +57,9 @@
             <connections>
                 <outlet property="contentView" destination="gzK-zi-wgg" id="etJ-Sx-K5v"/>
                 <outlet property="subtitle" destination="Vsm-Vw-4Ue" id="HSf-ZZ-cM0"/>
-                <outlet property="title" destination="yXC-iN-OAp" id="xMG-q1-MEM"/>
+                <outlet property="title" destination="sLD-sJ-FaN" id="gJl-5Q-PSa"/>
             </connections>
-            <point key="canvasLocation" x="417" y="348"/>
+            <point key="canvasLocation" x="434.5" y="366.5"/>
         </customView>
     </objects>
 </document>

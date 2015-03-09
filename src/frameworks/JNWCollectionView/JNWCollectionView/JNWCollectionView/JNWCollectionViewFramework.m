@@ -27,6 +27,10 @@
 #import "JNWCollectionViewDocumentView.h"
 #import "JNWCollectionViewLayout.h"
 #import "JNWCollectionViewLayout+Private.h"
+#import "IDPCollectionViewCell.h"
+#import "IDPCollectionViewHeaderView.h"
+#import "NSNib+IDPExtension.h"
+#import "JNWCollectionViewGridLayout.h"
 
 typedef NS_ENUM(NSInteger, JNWCollectionViewSelectionType) {
 	JNWCollectionViewSelectionTypeSingle,
@@ -1295,6 +1299,23 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
         }
     }
     return result;
+}
+
+#pragma mark -
+#pragma mark
+
+- (void)setItemPrototype:(IDPCollectionViewCell *)itemPrototype {
+    _itemPrototype = itemPrototype;
+    NSString *identifier = NSStringFromClass([_itemPrototype class]);
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
+    [self registerNib:nib forCellWithReuseIdentifier:identifier];
+}
+
+- (void)setHeaderPrototype:(IDPCollectionViewHeaderView *)headerPrototype {
+    _headerPrototype = headerPrototype;
+    NSString *identifier = NSStringFromClass([_headerPrototype class]);
+    NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
+    [self registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewGridLayoutHeaderKind withReuseIdentifier:identifier];
 }
 
 @end
