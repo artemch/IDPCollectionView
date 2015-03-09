@@ -713,7 +713,7 @@
                     <outlet property="collectionView" destination="Zdb-i9-ksC" id="uCo-HK-IOy"/>
                 </connections>
             </view>
-            <point key="canvasLocation" x="354" y="444"/>
+            <point key="canvasLocation" x="462" y="401"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>

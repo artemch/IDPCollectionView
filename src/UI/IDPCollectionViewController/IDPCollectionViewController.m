@@ -195,14 +195,14 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
            toIndexPath:(NSIndexPath *)toIndexpath
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
-        NSMutableArray *array = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
-        [array exchangeObjectAtIndex:fromIndexPath.jnw_item withObjectAtIndex:toIndexpath.jnw_item];
+        IDPSectionModel *sectionModel = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
+        [sectionModel.sectionContent exchangeObjectAtIndex:fromIndexPath.jnw_item withObjectAtIndex:toIndexpath.jnw_item];
     } else {
-        NSMutableArray *fromArray = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
-        NSMutableArray *toArray = [self.dataSourceObjects objectAtIndex:toIndexpath.jnw_section];
-        id object = [fromArray objectAtIndex:fromIndexPath.jnw_item];
-        [toArray insertObject:object atIndex:toIndexpath.jnw_item];
-        [fromArray removeObject:object];
+        IDPSectionModel *sectionModelFrom = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
+        IDPSectionModel *sectionModelTo = [self.dataSourceObjects objectAtIndex:toIndexpath.jnw_section];
+        id object = [sectionModelFrom.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModelTo.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
+        [sectionModelFrom.sectionContent removeObject:object];
     }
 }
 
