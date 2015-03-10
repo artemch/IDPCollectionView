@@ -71,10 +71,7 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 }
 
 - (void)baseInit {
-//    self.dataSourceObjects = [IDPKVOMutableArray array];
-//    self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.dataSourceObjects observerObject:self];
-//    self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"count"];
-//    [self.dataSourceKeyPathObserver startObserving];
+    
 }
 
 - (void)awakeFromNib {
@@ -169,6 +166,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
     header.arrayController.content = model.sectionContent;
     [header bindWithRelation:self.headerBindRelation toObject:model];
+    [header startObservingArrayControllerWithObserver:self];
     return header;
 }
 
@@ -215,7 +213,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
         didCatchChanges:(NSDictionary *)changes
               inKeyPath:(NSString *)keyPath
                ofObject:(id<NSObject>)observedObject {
-    if (observer == self.dataSourceKeyPathObserver && observedObject == self.arrayController) {
+    if ([keyPath isEqualToString:@"arrangedObjects"]) {
         [self reloadData];
     }
 }

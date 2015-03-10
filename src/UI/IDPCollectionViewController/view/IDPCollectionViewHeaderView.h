@@ -8,6 +8,7 @@
 
 #import "JNWCollectionViewReusableView.h"
 #import "IDPBindModel.h"
+#import "IDPKeyPathObserver.h"
 
 @interface IDPCollectionViewHeaderView : JNWCollectionViewReusableView
 
@@ -16,8 +17,8 @@
 @property (nonatomic, strong) IBOutlet NSButton *button;
 @property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
 
-@property (nonatomic, strong) NSArray  *bindRelation;
-
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
+
+- (void)startObservingArrayControllerWithObserver:(id<IDPKeyPathObserverDelegate>)observer;
 
 @end

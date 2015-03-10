@@ -32,8 +32,12 @@
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PgG-TS-GAN">
-                    <rect key="frame" x="376" y="13" width="82" height="32"/>
-                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dqE-ym-pQY">
+                    <rect key="frame" x="416" y="13" width="42" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="1mp-Xk-2jo"/>
+                        <constraint firstAttribute="width" constant="30" id="gPs-rD-mrV"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dqE-ym-pQY">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -47,8 +51,8 @@
                 <constraint firstItem="YED-iJ-swL" firstAttribute="top" secondItem="44j-6W-rX6" secondAttribute="bottom" constant="5" id="5hm-uC-Pjp"/>
                 <constraint firstItem="44j-6W-rX6" firstAttribute="leading" secondItem="zAJ-xM-fLF" secondAttribute="leading" constant="12" id="9Am-OP-KIa"/>
                 <constraint firstAttribute="bottom" secondItem="YED-iJ-swL" secondAttribute="bottom" constant="6" id="GVz-qY-slV"/>
-                <constraint firstAttribute="centerX" secondItem="PgG-TS-GAN" secondAttribute="centerX" constant="-187.5" id="K18-LC-o2N"/>
                 <constraint firstItem="YED-iJ-swL" firstAttribute="leading" secondItem="zAJ-xM-fLF" secondAttribute="leading" constant="12" id="N2m-ux-CbH"/>
+                <constraint firstAttribute="trailing" secondItem="PgG-TS-GAN" secondAttribute="trailing" constant="7" id="TEX-TD-mPN"/>
                 <constraint firstItem="44j-6W-rX6" firstAttribute="top" secondItem="zAJ-xM-fLF" secondAttribute="top" constant="18" id="UTu-ZF-1UR"/>
                 <constraint firstAttribute="centerY" secondItem="PgG-TS-GAN" secondAttribute="centerY" constant="0.5" id="ap1-RB-qv5"/>
                 <constraint firstAttribute="trailing" secondItem="YED-iJ-swL" secondAttribute="trailing" constant="20" id="wyC-lX-Reb"/>

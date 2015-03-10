@@ -679,7 +679,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zdb-i9-ksC" customClass="JNWCollectionView">
-                        <rect key="frame" x="-1" y="-1" width="582" height="537"/>
+                        <rect key="frame" x="-1" y="-1" width="582" height="572"/>
                         <clipView key="contentView" id="fX2-9f-Lmm">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -693,7 +693,7 @@
                             <rect key="frame" x="1" y="80" width="166" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="yUz-Db-Mh4">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="yUz-Db-Mh4">
                             <rect key="frame" x="167" y="1" width="15" height="79"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -704,20 +704,10 @@
                             <outlet property="itemPrototype" destination="ORx-F7-dR5" id="6bk-7o-Pql"/>
                         </connections>
                     </scrollView>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ItG-0A-AJ8">
-                        <rect key="frame" x="14" y="537" width="82" height="32"/>
-                        <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qlG-LW-KeM">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="add:" target="wns-rc-0PI" id="A8m-js-iCc"/>
-                        </connections>
-                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="Zdb-i9-ksC" secondAttribute="bottom" constant="-1" id="BTI-gP-hef"/>
-                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="34" id="Kgt-ej-U7I"/>
+                    <constraint firstItem="Zdb-i9-ksC" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="-1" id="Kgt-ej-U7I"/>
                     <constraint firstAttribute="trailing" secondItem="Zdb-i9-ksC" secondAttribute="trailing" constant="-1" id="Tbu-Z2-MVS"/>
                     <constraint firstItem="Zdb-i9-ksC" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="-1" id="x8s-Fb-tMv"/>
                 </constraints>
