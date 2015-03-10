@@ -18,8 +18,6 @@
 @property (nonatomic, strong) NSArray   *cellBindRelation;
 @property (nonatomic, strong) NSArray   *headerBindRelation;
 
-@property (nonatomic, strong, readonly) id selectedObject;
-
 - (void)reloadData;
 
 @end

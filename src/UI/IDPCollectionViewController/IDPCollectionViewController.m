@@ -32,8 +32,6 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 
 @property (nonatomic, assign) CGFloat  headerHeight;
 
-@property (nonatomic, strong) id selectedObject;
-
 @property (nonatomic, assign) BOOL awakeOnce;
 
 - (IBAction)onAddItem:(id)sender;
@@ -209,8 +207,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 }
 
 - (void)collectionView:(JNWCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:indexPath.jnw_section];
-//    self.selectedObject = [model.sectionContent objectAtIndex:indexPath.jnw_item];
+    
 }
 
 #pragma mark -
