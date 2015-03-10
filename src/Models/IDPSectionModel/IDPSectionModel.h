@@ -14,6 +14,6 @@
 @property (nonatomic, copy) NSString    *title;
 @property (nonatomic, copy) NSString    *subtitle;
 
-@property (nonatomic, strong, readonly) NSArrayController    *sectionContent;
+@property (nonatomic, strong, readonly) NSMutableArray    *sectionContent;
 
 @end

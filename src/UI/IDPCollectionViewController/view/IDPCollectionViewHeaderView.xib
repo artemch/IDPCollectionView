@@ -37,6 +37,9 @@
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
+                    <connections>
+                        <action selector="add:" target="KPB-st-XBq" id="ifb-6F-dij"/>
+                    </connections>
                 </button>
             </subviews>
             <constraints>
@@ -51,10 +54,13 @@
                 <constraint firstAttribute="trailing" secondItem="YED-iJ-swL" secondAttribute="trailing" constant="20" id="wyC-lX-Reb"/>
             </constraints>
             <connections>
+                <outlet property="arrayController" destination="KPB-st-XBq" id="lWi-Ih-ucG"/>
+                <outlet property="button" destination="PgG-TS-GAN" id="rdL-KZ-NWX"/>
                 <outlet property="subtitle" destination="YED-iJ-swL" id="Zfs-Dm-0QZ"/>
                 <outlet property="title" destination="44j-6W-rX6" id="QIK-cs-T5j"/>
             </connections>
             <point key="canvasLocation" x="332.5" y="276"/>
         </customView>
+        <arrayController objectClassName="IDPTestModel" id="KPB-st-XBq"/>
     </objects>
 </document>

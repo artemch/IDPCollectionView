@@ -7,6 +7,7 @@
 //
 
 #import "IDPTestModel.h"
+#import "NSColor+IDPExtension.h"
 
 @implementation IDPTestModel
 
@@ -19,6 +20,7 @@
     if (self) {
         self.title = @"Title string";
         self.subtitle = @"Subtitle string";
+        self.backgroundColor = [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255];
     }
     return self;
 }

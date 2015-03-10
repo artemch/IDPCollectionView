@@ -13,6 +13,8 @@
 
 @property (nonatomic, strong) IBOutlet NSTextField  *title;
 @property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
+@property (nonatomic, strong) IBOutlet NSButton *button;
+@property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
 
 @property (nonatomic, strong) NSArray  *bindRelation;
 

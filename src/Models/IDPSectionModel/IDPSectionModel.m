@@ -11,7 +11,7 @@
 
 @interface IDPSectionModel ()
 
-@property (nonatomic, strong) NSArrayController    *sectionContent;
+@property (nonatomic, strong) NSMutableArray    *sectionContent;
 
 @end
 
@@ -24,7 +24,9 @@
 {
     self = [super init];
     if (self) {
-        self.sectionContent = [NSArrayController new];
+        self.title = @"Section Title";
+        self.subtitle = @"Section subtitle";
+        self.sectionContent = [NSMutableArray new];
     }
     return self;
 }

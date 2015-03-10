@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
 @property (nonatomic, strong) NSArray  *bindRelation;
 
+
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
 
 @end

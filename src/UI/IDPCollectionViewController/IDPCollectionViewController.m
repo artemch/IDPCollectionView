@@ -130,9 +130,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 #pragma mark Interface Handling
 
 - (IBAction)onAddItem:(id)sender {
-    NSRect rect = [self.myView.collectionView convertRect:[sender frame] fromView:[sender superview]];
-    NSIndexSet *set = [self.myView.collectionView indexesForSectionsInRect:rect];
-    NSLog(@"count %lu", (unsigned long)set.count);
+    
 }
 
 #pragma mark -
@@ -151,7 +149,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 
 - (NSUInteger)collectionView:(JNWCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
-    return [model.sectionContent.arrangedObjects count];
+    return [model.sectionContent count];
 }
 
 - (JNWCollectionViewCell *)collectionView:(JNWCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,8 +157,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
                                                                                                        owner:self];
     self.arrayController.selectionIndex = indexPath.jnw_section;
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:indexPath.jnw_section];
-    model.sectionContent.selectionIndex = indexPath.jnw_item;
-    id object = [[model.sectionContent arrangedObjects] objectAtIndex:indexPath.jnw_item];
+    id object = [model.sectionContent objectAtIndex:indexPath.jnw_item];
     [cell bindWithRelation:self.cellBindRelation toObject:object];
     return cell;
 }
@@ -170,6 +167,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
                                                                                                              withReuseIdentifer:NSStringFromClass([collectionView.headerPrototype class])
                                                                                                                           owner:self];
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
+    header.arrayController.content = model.sectionContent;
     [header bindWithRelation:self.headerBindRelation toObject:model];
     return header;
 }
@@ -194,14 +192,14 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
         IDPSectionModel *sectionModel = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
-        id object = [[sectionModel.sectionContent arrangedObjects] objectAtIndex:fromIndexPath.jnw_item];
+        id object = [sectionModel.sectionContent objectAtIndex:fromIndexPath.jnw_item];
         [sectionModel.sectionContent removeObject:object];
-        [sectionModel.sectionContent insertObject:object atArrangedObjectIndex:toIndexpath.jnw_item];
+        [sectionModel.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
     } else {
         IDPSectionModel *sectionModelFrom = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
         IDPSectionModel *sectionModelTo = [self.arrayController.arrangedObjects objectAtIndex:toIndexpath.jnw_section];
-        id object = [[sectionModelFrom.sectionContent arrangedObjects] objectAtIndex:fromIndexPath.jnw_item];
-        [sectionModelTo.sectionContent insertObject:object atArrangedObjectIndex:toIndexpath.jnw_item];
+        id object = [sectionModelFrom.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModelTo.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
         [sectionModelFrom.sectionContent removeObject:object];
     }
 }

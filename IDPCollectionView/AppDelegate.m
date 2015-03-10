@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "IDPCollectionViewController.h"
 #import "IDPTestModel.h"
-#import "NSColor+IDPExtension.h"
 #import "IDPSectionModel.h"
 
 static NSInteger const kIDPTestObjectsCount = 10;
@@ -45,7 +44,6 @@ static NSInteger const kIDPSectionsCount = 5;
     bindModel3.keyPath = @"backgroundColor";
     
     self.collectionViewController.cellBindRelation = @[bindModel, bindModel2, bindModel3];
-    NSColor *backgroundColor = [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255];
     
     bindModel = [IDPBindModel new];
     bindModel.bindTo = @"title";
@@ -62,12 +60,11 @@ static NSInteger const kIDPSectionsCount = 5;
         IDPSectionModel *sectionModel = [IDPSectionModel new];
         sectionModel.title = [NSString stringWithFormat:@"Section %ld", (long)index];
         sectionModel.subtitle = [NSString stringWithFormat:@"Section header subtitle %ld", (long)index];
-        [sectionModel.sectionContent setObjectClass:[IDPTestModel class]];
+//        [sectionModel.sectionContent setObjectClass:[IDPTestModel class]];
         for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
             IDPTestModel *model = [IDPTestModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
             model.subtitle = [NSString stringWithFormat:@"Subtitle %ld/%ld", (long)index, (long)kIndex];
-            model.backgroundColor = backgroundColor;
             [sectionModel.sectionContent addObject:model];
         }
         [self.collectionViewController.arrayController addObject:sectionModel];
