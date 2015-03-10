@@ -13,6 +13,7 @@
 		69B6D4661AADDB2700516434 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4651AADDB2700516434 /* NSArray+IDPExtensions.m */; };
 		69B6D46A1AADE4E900516434 /* IDPSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4691AADE4E900516434 /* IDPSectionModel.m */; };
 		69C9833D1AAF26DD00759F6C /* IDPItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C9833C1AAF26DD00759F6C /* IDPItemModel.m */; };
+		69C983401AAF292700759F6C /* IDPColorValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C9833F1AAF292700759F6C /* IDPColorValueTransformer.m */; };
 		69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */; };
 		69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */; };
 		69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */; };
@@ -72,6 +73,8 @@
 		69B6D4691AADE4E900516434 /* IDPSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSectionModel.m; sourceTree = "<group>"; };
 		69C9833B1AAF26DD00759F6C /* IDPItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPItemModel.h; sourceTree = "<group>"; };
 		69C9833C1AAF26DD00759F6C /* IDPItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPItemModel.m; sourceTree = "<group>"; };
+		69C9833E1AAF292700759F6C /* IDPColorValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPColorValueTransformer.h; sourceTree = "<group>"; };
+		69C9833F1AAF292700759F6C /* IDPColorValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPColorValueTransformer.m; sourceTree = "<group>"; };
 		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
 		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
 		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
@@ -433,6 +436,8 @@
 			children = (
 				69C9833A1AAF26DD00759F6C /* IDPItemModel */,
 				69B6D4671AADE4DC00516434 /* IDPSectionModel */,
+				69C9833E1AAF292700759F6C /* IDPColorValueTransformer.h */,
+				69C9833F1AAF292700759F6C /* IDPColorValueTransformer.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 				69D59EDB1A9C6D9C00174BC7 /* NSColor+IDPExtension.m in Sources */,
 				69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */,
 				69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */,
+				69C983401AAF292700759F6C /* IDPColorValueTransformer.m in Sources */,
 				69B6D4631AADDAEE00516434 /* NSObject+IDPExtensions.m in Sources */,
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
 				69C9833D1AAF26DD00759F6C /* IDPItemModel.m in Sources */,

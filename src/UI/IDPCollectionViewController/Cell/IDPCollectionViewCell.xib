@@ -61,7 +61,11 @@
                 <constraint firstAttribute="trailing" secondItem="gzK-zi-wgg" secondAttribute="trailing" id="cdM-Ly-3uU"/>
             </constraints>
             <connections>
-                <binding destination="uiG-at-0ch" name="hidden" keyPath="selection.backgroundColor" id="NDL-4l-Yxd"/>
+                <binding destination="uiG-at-0ch" name="hidden" keyPath="selection.backgroundColor" id="Vsd-Vc-SEi">
+                    <dictionary key="options">
+                        <string key="NSValueTransformerName">IDPColorValueTransformer</string>
+                    </dictionary>
+                </binding>
                 <outlet property="contentView" destination="gzK-zi-wgg" id="etJ-Sx-K5v"/>
                 <outlet property="objectController" destination="uiG-at-0ch" id="tPX-FV-Ved"/>
                 <outlet property="subtitle" destination="Vsm-Vw-4Ue" id="HSf-ZZ-cM0"/>

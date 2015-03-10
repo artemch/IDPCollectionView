@@ -10,8 +10,20 @@
 #import "IDPItemModel.h"
 #import "NSColor+IDPExtension.h"
 #import "NSView+IDPExtension.h"
+#import "IDPColorValueTransformer.h"
+
+static NSString *const kIDPBackgroundView    = @"backgroundView";
+static NSString *const kIDPBindingIdentifier = @"hidden";
+static NSString *const kIDPBindindValue      = @"color";
 
 @implementation IDPCollectionViewCell
+
++ (void)initialize {
+    if (self == [self class]) {
+        [NSValueTransformer setValueTransformer:[IDPColorValueTransformer new]
+                                        forName:NSStringFromClass([IDPColorValueTransformer class])];
+    }
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
@@ -40,9 +52,9 @@
 }
 
 - (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
-    if ([binding isEqualToString:@"hidden"]) {
-        NSView *backgroundView = [self valueForKey:@"backgroundView"];
-        [backgroundView bind:@"color" toObject:observable withKeyPath:keyPath options:options];
+    if ([binding isEqualToString:kIDPBindingIdentifier]) {
+        NSView *backgroundView = [self valueForKey:kIDPBackgroundView];
+        [backgroundView bind:kIDPBindindValue toObject:observable withKeyPath:keyPath options:options];
     } else {
         [super bind:binding toObject:observable withKeyPath:keyPath options:options];
     }
