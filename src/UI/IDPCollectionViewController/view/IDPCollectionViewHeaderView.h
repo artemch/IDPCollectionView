@@ -15,6 +15,7 @@
 @property (nonatomic, strong) IBOutlet NSTextField  *subtitle;
 @property (nonatomic, strong) IBOutlet NSButton *button;
 @property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
+@property (nonatomic, strong) IBOutlet NSObjectController   *objectController;
 
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
 

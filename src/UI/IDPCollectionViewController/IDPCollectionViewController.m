@@ -166,6 +166,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
                                                                                                                           owner:self];
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
     header.arrayController.content = model.sectionContent;
+    header.objectController.content = model;
     [header startObservingArrayControllerWithObserver:self];
     return header;
 }

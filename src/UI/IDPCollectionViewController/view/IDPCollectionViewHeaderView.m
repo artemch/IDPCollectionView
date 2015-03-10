@@ -26,6 +26,7 @@
     [self.arrayControllerKeyPathObserver stopObserving];
     self.arrayControllerKeyPathObserver = nil;
     self.arrayController.content = nil;
+    self.objectController.content = nil;
 }
 
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
