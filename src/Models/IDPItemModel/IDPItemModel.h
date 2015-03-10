@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-@interface IDPTestModel : NSObject
+@interface IDPItemModel : NSObject
 
 @property (nonatomic, copy) NSString    *title;
 @property (nonatomic, copy) NSString    *subtitle;
-@property (nonatomic, assign) NSInteger value1;
-@property (nonatomic, assign) NSInteger value2;
+@property (nonatomic, strong) NSColor   *backgroundColor;
 
 @end

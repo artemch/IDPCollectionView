@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "IDPSectionModel.h"
+#import "NSIndexPath+JNWAdditions.h"
 
 @interface IDPCollectionViewController : NSViewController
 
-@property (nonatomic, strong) NSMutableArray   *objects;
+@property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
+
+- (void)reloadData;
 
 @end

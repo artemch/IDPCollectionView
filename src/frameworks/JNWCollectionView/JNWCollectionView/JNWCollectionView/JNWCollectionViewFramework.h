@@ -37,6 +37,8 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 };
 
 @class JNWCollectionView;
+@class IDPCollectionViewCell;
+@class IDPCollectionViewHeaderView;
 
 #pragma mark - Data Source Protocol
 
@@ -130,6 +132,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 @class JNWCollectionViewLayout;
 @interface JNWCollectionView : JNWScrollView <NSDraggingSource>
 
+@property (nonatomic, strong) IBOutlet IDPCollectionViewCell *itemPrototype;
+@property (nonatomic, strong) IBOutlet IDPCollectionViewHeaderView  *headerPrototype;
+
 /// The delegate for the collection view.
 @property (nonatomic, unsafe_unretained) IBOutlet id<JNWCollectionViewDelegate> delegate;
 
@@ -176,6 +181,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 /// The identifer must not be nil, otherwise an exception will be thrown.
 - (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)identifier;
+
+- (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier owner:(id)owner;
+- (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)reuseIdentifier owner:(id)owner;
 
 /// The layout is responsible for providing the positioning and layout attributes for cells and views.
 /// It is also responsible for handling selection changes that are performed via the keyboard. See the

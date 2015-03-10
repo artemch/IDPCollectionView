@@ -7,21 +7,29 @@
 //
 
 #import "IDPCollectionViewCell.h"
-#import "IDPTestModel.h"
+#import "IDPItemModel.h"
 #import "NSColor+IDPExtension.h"
 #import "NSView+IDPExtension.h"
+#import "IDPColorValueTransformer.h"
 
-#define kIDPUnselectedCellColor [NSColor colorWithIntRed:255 green:245 blue:137 alpha:255]
-#define kIDPSelectedCellColor   [NSColor colorWithIntRed:247 green:247 blue:247 alpha:255]
+static NSString *const kIDPBackgroundView    = @"backgroundView";
+static NSString *const kIDPBindingIdentifier = @"hidden";
+static NSString *const kIDPBindindValue      = @"color";
 
 @implementation IDPCollectionViewCell
+
++ (void)initialize {
+    if (self == [self class]) {
+        [NSValueTransformer setValueTransformer:[IDPColorValueTransformer new]
+                                        forName:NSStringFromClass([IDPColorValueTransformer class])];
+    }
+}
 
 #pragma mark -
 #pragma mark Initializations and Deallocations
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    self.backgroundColor = kIDPUnselectedCellColor;
     
     NSShadow *dropShadow = [[NSShadow alloc] init];
     [dropShadow setShadowColor:[NSColor colorWithIntRed:216 green:219 blue:219 alpha:255]];
@@ -34,17 +42,22 @@
 #pragma mark -
 #pragma mark Public methods
 
-- (void)fillFromObject:(id)object {
-    if ([object isKindOfClass:[IDPTestModel class]]) {
-        IDPTestModel *model = (IDPTestModel *)object;
-        self.title.stringValue = model.title;
-        self.subtitle.stringValue = [NSString stringWithFormat:@"%@ %@/%@",model.subtitle,@(model.value1),@(model.value2)];
-    }
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    self.objectController.content = nil;
 }
 
-- (void)setSelected:(BOOL)selected {
-    [super setSelected:selected];
-    self.backgroundColor = selected ? kIDPSelectedCellColor : kIDPUnselectedCellColor;
+- (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
+    
+}
+
+- (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
+    if ([binding isEqualToString:kIDPBindingIdentifier]) {
+        NSView *backgroundView = [self valueForKey:kIDPBackgroundView];
+        [backgroundView bind:kIDPBindindValue toObject:observable withKeyPath:keyPath options:options];
+    } else {
+        [super bind:binding toObject:observable withKeyPath:keyPath options:options];
+    }
 }
 
 @end

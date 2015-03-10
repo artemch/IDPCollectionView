@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="collectionViewController" destination="C3Q-MP-bV9" id="Axz-6E-e2Z"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -673,7 +674,7 @@
             <rect key="contentRect" x="335" y="390" width="580" height="570"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <value key="minSize" type="size" width="580" height="570"/>
-            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPCollectionView">
+            <view key="contentView" id="EiT-Mj-1SZ" customClass="IDPCollectionViewView">
                 <rect key="frame" x="0.0" y="0.0" width="580" height="570"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -699,6 +700,8 @@
                         <connections>
                             <outlet property="dataSource" destination="C3Q-MP-bV9" id="yuT-hE-xYx"/>
                             <outlet property="delegate" destination="C3Q-MP-bV9" id="xuQ-VZ-kcG"/>
+                            <outlet property="headerPrototype" destination="ZC7-Df-yx4" id="XI9-3e-NtA"/>
+                            <outlet property="itemPrototype" destination="ORx-F7-dR5" id="6bk-7o-Pql"/>
                         </connections>
                     </scrollView>
                 </subviews>
@@ -712,12 +715,22 @@
                     <outlet property="collectionView" destination="Zdb-i9-ksC" id="uCo-HK-IOy"/>
                 </connections>
             </view>
-            <point key="canvasLocation" x="354" y="444"/>
+            <point key="canvasLocation" x="476" y="360"/>
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
+                <outlet property="arrayController" destination="wns-rc-0PI" id="Ijs-cN-Yrp"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
             </connections>
         </viewController>
+        <customObject id="ORx-F7-dR5" customClass="IDPCollectionViewCell"/>
+        <customObject id="ZC7-Df-yx4" customClass="IDPCollectionViewHeaderView"/>
+        <arrayController objectClassName="IDPSectionModel" id="wns-rc-0PI">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+                <string>sectionContent</string>
+            </declaredKeys>
+        </arrayController>
     </objects>
 </document>

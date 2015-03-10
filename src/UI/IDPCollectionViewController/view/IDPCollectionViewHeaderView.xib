@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="IDPCollectionViewController"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="zAJ-xM-fLF" customClass="IDPCollectionViewReusableView">
+        <customView id="zAJ-xM-fLF" customClass="IDPCollectionViewHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="459" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -31,6 +31,20 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PgG-TS-GAN">
+                    <rect key="frame" x="416" y="13" width="42" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="1mp-Xk-2jo"/>
+                        <constraint firstAttribute="width" constant="30" id="gPs-rD-mrV"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dqE-ym-pQY">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="add:" target="KPB-st-XBq" id="ifb-6F-dij"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="44j-6W-rX6" secondAttribute="trailing" constant="20" id="5TM-rQ-jfs"/>
@@ -38,14 +52,19 @@
                 <constraint firstItem="44j-6W-rX6" firstAttribute="leading" secondItem="zAJ-xM-fLF" secondAttribute="leading" constant="12" id="9Am-OP-KIa"/>
                 <constraint firstAttribute="bottom" secondItem="YED-iJ-swL" secondAttribute="bottom" constant="6" id="GVz-qY-slV"/>
                 <constraint firstItem="YED-iJ-swL" firstAttribute="leading" secondItem="zAJ-xM-fLF" secondAttribute="leading" constant="12" id="N2m-ux-CbH"/>
+                <constraint firstAttribute="trailing" secondItem="PgG-TS-GAN" secondAttribute="trailing" constant="7" id="TEX-TD-mPN"/>
                 <constraint firstItem="44j-6W-rX6" firstAttribute="top" secondItem="zAJ-xM-fLF" secondAttribute="top" constant="18" id="UTu-ZF-1UR"/>
+                <constraint firstAttribute="centerY" secondItem="PgG-TS-GAN" secondAttribute="centerY" constant="0.5" id="ap1-RB-qv5"/>
                 <constraint firstAttribute="trailing" secondItem="YED-iJ-swL" secondAttribute="trailing" constant="20" id="wyC-lX-Reb"/>
             </constraints>
             <connections>
+                <outlet property="arrayController" destination="KPB-st-XBq" id="lWi-Ih-ucG"/>
+                <outlet property="button" destination="PgG-TS-GAN" id="rdL-KZ-NWX"/>
                 <outlet property="subtitle" destination="YED-iJ-swL" id="Zfs-Dm-0QZ"/>
                 <outlet property="title" destination="44j-6W-rX6" id="QIK-cs-T5j"/>
             </connections>
-            <point key="canvasLocation" x="360.5" y="356.5"/>
+            <point key="canvasLocation" x="332.5" y="276"/>
         </customView>
+        <arrayController objectClassName="IDPItemModel" id="KPB-st-XBq"/>
     </objects>
 </document>

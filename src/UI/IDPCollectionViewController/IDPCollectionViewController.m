@@ -7,14 +7,14 @@
 //
 
 #import "IDPCollectionViewController.h"
-#import "IDPCollectionView.h"
-#import "IDPTestModel.h"
+#import "IDPCollectionViewView.h"
 #import "NSViewController+IDPExtension.h"
+#import "IDPKeyPathObserver.h"
+#import "IDPKVOMutableArray.h"
 #import "IDPCollectionViewCell.h"
-#import "IDPCollectionViewReusableView.h"
-
-static NSInteger const kIDPTestObjectsCount = 10;
-static NSInteger const kIDPSectionsCount = 5;
+#import "IDPCollectionViewHeaderView.h"
+#import "NSNib+IDPExtension.h"
+#import "JNWCollectionViewGridLayout.h"
 
 static CGFloat const kIDPDefaultCellWidth  = 185;
 static CGFloat const kIDPDefaultCellHeight = 80;
@@ -23,9 +23,18 @@ static CGFloat const kIDPDefaultHeaderHeight = 60;
 static CGFloat const kIDPItemVerticalSpacing = 10;
 static CGFloat const kIDPItemHorizontalMargin = 10;
 
-@interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate>
+@interface IDPCollectionViewController () <JNWCollectionViewDataSource, JNWCollectionViewDelegate, JNWCollectionViewGridLayoutDelegate, IDPKeyPathObserverDelegate>
 
-@property (nonatomic, strong, readonly) IDPCollectionView   *myView;
+@property (nonatomic, strong, readonly) IDPCollectionViewView   *myView;
+
+@property (nonatomic, strong) IDPKeyPathObserver    *dataSourceKeyPathObserver;
+@property (nonatomic, strong) IDPKeyPathObserver    *headerKeyPathObserver;
+
+@property (nonatomic, assign) CGFloat  headerHeight;
+
+@property (nonatomic, assign) BOOL awakeOnce;
+
+- (IBAction)onAddItem:(id)sender;
 
 @end
 
@@ -34,82 +43,131 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 #pragma mark -
 #pragma mark Initializations and DeallocationsTest string
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    [self setupCollectionView];
-    
-    self.objects = [NSMutableArray array];
-    
-    for (NSInteger index = 0; index < kIDPSectionsCount; index++) {
-        NSMutableArray *innerObjects = [NSMutableArray array];
-        for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
-            IDPTestModel *model = [IDPTestModel new];
-            model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
-            [innerObjects addObject:model];
-        }
-        [self.objects addObject:innerObjects];
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        [self baseInit];
     }
+    return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)coder
+{
+    self = [super initWithCoder:coder];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil
+                         bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self baseInit];
+    }
+    return self;
+}
+
+- (void)baseInit {
     
-    [self.myView.collectionView reloadData];
+}
+
+- (void)awakeFromNib {
+    if (!self.awakeOnce) {
+        self.awakeOnce = YES;
+        [super awakeFromNib];
+        [self viewBaseInit];
+    }
+}
+
+- (void)loadView {
+    [super loadView];
+    [self viewBaseInit];
+}
+
+- (void)viewBaseInit {
+    [self setupCollectionView];
 }
 
 - (void)setupCollectionView {
+    self.headerHeight = kIDPDefaultHeaderHeight;
+    
     JNWCollectionViewGridLayout *gridLayout = [[JNWCollectionViewGridLayout alloc] init];
-    gridLayout.delegate = self;
     gridLayout.verticalSpacing = kIDPItemVerticalSpacing;
     gridLayout.itemHorizontalMargin = kIDPItemHorizontalMargin;
     gridLayout.itemSize = CGSizeMake(kIDPDefaultCellWidth, kIDPDefaultCellHeight);
+    gridLayout.delegate = self;
     
     self.myView.collectionView.collectionViewLayout = gridLayout;
     
-    NSString *identifier = NSStringFromClass([IDPCollectionViewCell class]);
-    NSNib *nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
-    [self.myView.collectionView registerNib:nib forCellWithReuseIdentifier:identifier];
+    IDPCollectionViewCell *cell = [NSNib objectOfClass:[IDPCollectionViewCell class]];
+    gridLayout.itemSize = cell.frame.size;
     
-    identifier = NSStringFromClass([IDPCollectionViewReusableView class]);
-    nib = [[NSNib alloc] initWithNibNamed:identifier bundle:nil];
-    
-    [self.myView.collectionView registerNib:nib forSupplementaryViewOfKind:JNWCollectionViewGridLayoutHeaderKind withReuseIdentifier:identifier];
+    IDPCollectionViewHeaderView *view = [NSNib objectOfClass:[IDPCollectionViewHeaderView class]];
+    self.headerHeight = NSHeight(view.frame);
 }
 
 #pragma mark -
 #pragma mark Accessor methods
 
-IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
+IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 
-#pragma mark -
-#pragma mark Private methods
-
-- (NSString *)cellIdentifierForIndexPath:(NSIndexPath *)indexPath {
-    return NSStringFromClass([IDPCollectionViewCell class]);
+- (void)setArrayController:(NSArrayController *)arrayController {
+    _arrayController = arrayController;
+    if (_arrayController) {
+        self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.arrayController observerObject:self];
+        self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"arrangedObjects"];
+        [self.dataSourceKeyPathObserver startObserving];
+    }
 }
 
-- (NSString *)collectionViewSupplementaryViewIdentifierForSection:(NSInteger)section kind:(NSString *)kind {
-    return NSStringFromClass([IDPCollectionViewReusableView class]);
+#pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onAddItem:(id)sender {
+    
+}
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)reloadData {
+    [self.myView.collectionView reloadData];
 }
 
 #pragma mark -
 #pragma mark JNWCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(JNWCollectionView *)collectionView {
-    return self.objects.count;
+    return [self.arrayController.arrangedObjects count];
 }
 
 - (NSUInteger)collectionView:(JNWCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [[self.objects objectAtIndex:section] count];
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
+    return [model.sectionContent count];
 }
 
 - (JNWCollectionViewCell *)collectionView:(JNWCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:[self cellIdentifierForIndexPath:indexPath]];
-    id object = [[self.objects objectAtIndex:indexPath.jnw_section] objectAtIndex:indexPath.jnw_item];
-    [cell fillFromObject:object];
+    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:NSStringFromClass([collectionView.itemPrototype class])
+                                                                                                       owner:self];
+    self.arrayController.selectionIndex = indexPath.jnw_section;
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:indexPath.jnw_section];
+    id object = [model.sectionContent objectAtIndex:indexPath.jnw_item];
+    cell.objectController.content = object;
+//    [cell bindWithRelation:self.cellBindRelation toObject:object];
     return cell;
 }
 
 - (JNWCollectionViewReusableView *)collectionView:(JNWCollectionView *)collectionView viewForSupplementaryViewOfKind:(NSString *)kind inSection:(NSInteger)section {
-    IDPCollectionViewReusableView *header = (IDPCollectionViewReusableView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                                                                 withReuseIdentifer:[self collectionViewSupplementaryViewIdentifierForSection:section
-                                                                                                                                                                                         kind:kind]];
+    IDPCollectionViewHeaderView *header = (IDPCollectionViewHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                                                                             withReuseIdentifer:NSStringFromClass([collectionView.headerPrototype class])
+                                                                                                                          owner:self];
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
+    header.arrayController.content = model.sectionContent;
+//    [header bindWithRelation:self.headerBindRelation toObject:model];
+    [header startObservingArrayControllerWithObserver:self];
     return header;
 }
 
@@ -117,7 +175,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
 #pragma mark JNWCollectionViewGridLayoutDelegate
 
 - (CGFloat)collectionView:(JNWCollectionView *)collectionView heightForHeaderInSection:(NSInteger)index {
-    return kIDPDefaultHeaderHeight;
+    return self.headerHeight;
 }
 
 #pragma mark -
@@ -132,14 +190,32 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionView, myView)
            toIndexPath:(NSIndexPath *)toIndexpath
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
-        NSMutableArray *array = [self.objects objectAtIndex:fromIndexPath.jnw_section];
-        [array exchangeObjectAtIndex:fromIndexPath.jnw_item withObjectAtIndex:toIndexpath.jnw_item];
+        IDPSectionModel *sectionModel = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
+        id object = [sectionModel.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModel.sectionContent removeObject:object];
+        [sectionModel.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
     } else {
-        NSMutableArray *fromArray = [self.objects objectAtIndex:fromIndexPath.jnw_section];
-        NSMutableArray *toArray = [self.objects objectAtIndex:toIndexpath.jnw_section];
-        id object = [fromArray objectAtIndex:fromIndexPath.jnw_item];
-        [toArray insertObject:object atIndex:toIndexpath.jnw_item];
-        [fromArray removeObject:object];
+        IDPSectionModel *sectionModelFrom = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
+        IDPSectionModel *sectionModelTo = [self.arrayController.arrangedObjects objectAtIndex:toIndexpath.jnw_section];
+        id object = [sectionModelFrom.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModelTo.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
+        [sectionModelFrom.sectionContent removeObject:object];
+    }
+}
+
+- (void)collectionView:(JNWCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+#pragma mark -
+#pragma mark IDPKeyPathObserverDelegate
+
+- (void)keyPathObserver:(IDPKeyPathObserver *)observer
+        didCatchChanges:(NSDictionary *)changes
+              inKeyPath:(NSString *)keyPath
+               ofObject:(id<NSObject>)observedObject {
+    if ([keyPath isEqualToString:@"arrangedObjects"]) {
+        [self reloadData];
     }
 }
 
