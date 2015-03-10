@@ -17,8 +17,6 @@
 @property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
 @property (nonatomic, strong) IBOutlet NSObjectController   *objectController;
 
-- (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
-
 - (void)startObservingArrayControllerWithObserver:(id<IDPKeyPathObserverDelegate>)observer;
 
 @end

@@ -12,7 +12,6 @@
 @interface IDPCollectionViewHeaderView ()
 
 @property (nonatomic, strong) IDPKeyPathObserver   *arrayControllerKeyPathObserver;
-@property (nonatomic, strong) NSArray  *bindRelation;
 
 @end
 
@@ -27,10 +26,6 @@
     self.arrayControllerKeyPathObserver = nil;
     self.arrayController.content = nil;
     self.objectController.content = nil;
-}
-
-- (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
-    self.bindRelation = relations;
 }
 
 - (void)startObservingArrayControllerWithObserver:(id<IDPKeyPathObserverDelegate>)observer {

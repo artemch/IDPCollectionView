@@ -18,6 +18,4 @@ For binding background color of cell use hidden field in Binding inspector and I
 @property (nonatomic, strong) IBOutlet NSTextField          *subtitle;
 @property (nonatomic, strong) IBOutlet NSObjectController   *objectController;
 
-- (void)bindWithRelation:(NSArray *)relations toObject:(id)object;
-
 @end

@@ -47,10 +47,6 @@ static NSString *const kIDPBindindValue      = @"color";
     self.objectController.content = nil;
 }
 
-- (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
-    
-}
-
 - (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
     if ([binding isEqualToString:kIDPBindingIdentifier]) {
         NSView *backgroundView = [self valueForKey:kIDPBackgroundView];
