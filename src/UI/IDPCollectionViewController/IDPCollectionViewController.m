@@ -189,7 +189,9 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
         IDPSectionModel *sectionModel = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
-        [sectionModel.sectionContent exchangeObjectAtIndex:fromIndexPath.jnw_item withObjectAtIndex:toIndexpath.jnw_item];
+        id object = [sectionModel.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModel.sectionContent removeObject:object];
+        [sectionModel.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
     } else {
         IDPSectionModel *sectionModelFrom = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
         IDPSectionModel *sectionModelTo = [self.dataSourceObjects objectAtIndex:toIndexpath.jnw_section];
