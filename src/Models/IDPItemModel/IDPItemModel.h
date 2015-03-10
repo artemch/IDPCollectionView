@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
 
-@interface IDPTestModel : NSObject
+@interface IDPItemModel : NSObject
 
 @property (nonatomic, copy) NSString    *title;
 @property (nonatomic, copy) NSString    *subtitle;

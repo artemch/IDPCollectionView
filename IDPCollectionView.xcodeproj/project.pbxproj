@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69B6D4551AADCCE800516434 /* IDPBindModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4541AADCCE800516434 /* IDPBindModel.m */; };
 		69B6D45F1AADDA7100516434 /* IDPKVOContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D45C1AADDA7100516434 /* IDPKVOContext.m */; };
 		69B6D4601AADDA7100516434 /* IDPKVOMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D45E1AADDA7100516434 /* IDPKVOMutableArray.m */; };
 		69B6D4631AADDAEE00516434 /* NSObject+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4621AADDAEE00516434 /* NSObject+IDPExtensions.m */; };
 		69B6D4661AADDB2700516434 /* NSArray+IDPExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4651AADDB2700516434 /* NSArray+IDPExtensions.m */; };
 		69B6D46A1AADE4E900516434 /* IDPSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69B6D4691AADE4E900516434 /* IDPSectionModel.m */; };
+		69C9833D1AAF26DD00759F6C /* IDPItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69C9833C1AAF26DD00759F6C /* IDPItemModel.m */; };
 		69D59D361AA4BDC30042B0DF /* JNWCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1B1AA4BDC30042B0DF /* JNWCollectionViewCell.m */; };
 		69D59D371AA4BDC30042B0DF /* JNWCollectionViewData.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1D1AA4BDC30042B0DF /* JNWCollectionViewData.m */; };
 		69D59D381AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59D1F1AA4BDC30042B0DF /* JNWCollectionViewDocumentView.m */; };
@@ -43,7 +43,6 @@
 		69D59EE11A9C6D9C00174BC7 /* IDPKeyPathObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59ED71A9C6D9C00174BC7 /* IDPKeyPathObserver.m */; };
 		69D59EE61A9C734800174BC7 /* IDPCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */; };
 		69D59EEA1A9C737F00174BC7 /* IDPCollectionViewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EE91A9C737F00174BC7 /* IDPCollectionViewView.m */; };
-		69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */; };
 		69D59F191A9C900400174BC7 /* IDPCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */; };
 		69D59F1B1A9C922900174BC7 /* IDPCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */; };
 		69D59F1E1A9CA9F700174BC7 /* IDPCollectionViewHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 69D59F1D1A9CA9F700174BC7 /* IDPCollectionViewHeaderView.m */; };
@@ -61,8 +60,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		69B6D4531AADCCE800516434 /* IDPBindModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPBindModel.h; sourceTree = "<group>"; };
-		69B6D4541AADCCE800516434 /* IDPBindModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPBindModel.m; sourceTree = "<group>"; };
 		69B6D45B1AADDA7100516434 /* IDPKVOContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOContext.h; sourceTree = "<group>"; };
 		69B6D45C1AADDA7100516434 /* IDPKVOContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPKVOContext.m; sourceTree = "<group>"; };
 		69B6D45D1AADDA7100516434 /* IDPKVOMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPKVOMutableArray.h; sourceTree = "<group>"; };
@@ -73,6 +70,8 @@
 		69B6D4651AADDB2700516434 /* NSArray+IDPExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+IDPExtensions.m"; sourceTree = "<group>"; };
 		69B6D4681AADE4E900516434 /* IDPSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPSectionModel.h; sourceTree = "<group>"; };
 		69B6D4691AADE4E900516434 /* IDPSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPSectionModel.m; sourceTree = "<group>"; };
+		69C9833B1AAF26DD00759F6C /* IDPItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPItemModel.h; sourceTree = "<group>"; };
+		69C9833C1AAF26DD00759F6C /* IDPItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPItemModel.m; sourceTree = "<group>"; };
 		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
 		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
 		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
@@ -135,8 +134,6 @@
 		69D59EE51A9C734800174BC7 /* IDPCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewController.m; sourceTree = "<group>"; };
 		69D59EE81A9C737F00174BC7 /* IDPCollectionViewView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewView.h; sourceTree = "<group>"; };
 		69D59EE91A9C737F00174BC7 /* IDPCollectionViewView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewView.m; sourceTree = "<group>"; };
-		69D59EED1A9C757A00174BC7 /* IDPTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPTestModel.h; sourceTree = "<group>"; };
-		69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPTestModel.m; sourceTree = "<group>"; };
 		69D59F171A9C900400174BC7 /* IDPCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewCell.h; sourceTree = "<group>"; };
 		69D59F181A9C900400174BC7 /* IDPCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPCollectionViewCell.m; sourceTree = "<group>"; };
 		69D59F1A1A9C922900174BC7 /* IDPCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IDPCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -163,15 +160,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		69B6D4521AADCCDE00516434 /* IDPBindModel */ = {
-			isa = PBXGroup;
-			children = (
-				69B6D4531AADCCE800516434 /* IDPBindModel.h */,
-				69B6D4541AADCCE800516434 /* IDPBindModel.m */,
-			);
-			path = IDPBindModel;
-			sourceTree = "<group>";
-		};
 		69B6D45A1AADDA7100516434 /* IDPKVOMutableArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +178,15 @@
 				69B6D4691AADE4E900516434 /* IDPSectionModel.m */,
 			);
 			path = IDPSectionModel;
+			sourceTree = "<group>";
+		};
+		69C9833A1AAF26DD00759F6C /* IDPItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				69C9833B1AAF26DD00759F6C /* IDPItemModel.h */,
+				69C9833C1AAF26DD00759F6C /* IDPItemModel.m */,
+			);
+			path = IDPItemModel;
 			sourceTree = "<group>";
 		};
 		69D59D131AA4BDC30042B0DF /* frameworks */ = {
@@ -434,20 +431,10 @@
 		69D59EEB1A9C756C00174BC7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				69C9833A1AAF26DD00759F6C /* IDPItemModel */,
 				69B6D4671AADE4DC00516434 /* IDPSectionModel */,
-				69B6D4521AADCCDE00516434 /* IDPBindModel */,
-				69D59EEC1A9C756C00174BC7 /* IDPTestModel */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		69D59EEC1A9C756C00174BC7 /* IDPTestModel */ = {
-			isa = PBXGroup;
-			children = (
-				69D59EED1A9C757A00174BC7 /* IDPTestModel.h */,
-				69D59EEE1A9C757A00174BC7 /* IDPTestModel.m */,
-			);
-			path = IDPTestModel;
 			sourceTree = "<group>";
 		};
 		69D59F161A9C900400174BC7 /* Cell */ = {
@@ -573,7 +560,6 @@
 				69D59EDA1A9C6D9C00174BC7 /* README.md in Sources */,
 				69D59EE01A9C6D9C00174BC7 /* NSMutableArray+IDPExtensions.m in Sources */,
 				69D59EEA1A9C737F00174BC7 /* IDPCollectionViewView.m in Sources */,
-				69B6D4551AADCCE800516434 /* IDPBindModel.m in Sources */,
 				69B6D4601AADDA7100516434 /* IDPKVOMutableArray.m in Sources */,
 				69D59D401AA4BDC30042B0DF /* README.md in Sources */,
 				69D59D3E1AA4BDC30042B0DF /* NSIndexPath+JNWAdditions.m in Sources */,
@@ -595,8 +581,8 @@
 				69D59D3B1AA4BDC30042B0DF /* JNWCollectionViewLayout.m in Sources */,
 				69D59D391AA4BDC30042B0DF /* JNWCollectionViewFramework.m in Sources */,
 				69B6D4631AADDAEE00516434 /* NSObject+IDPExtensions.m in Sources */,
-				69D59EEF1A9C757A00174BC7 /* IDPTestModel.m in Sources */,
 				69D59EDC1A9C6D9C00174BC7 /* NSNib+IDPExtension.m in Sources */,
+				69C9833D1AAF26DD00759F6C /* IDPItemModel.m in Sources */,
 				69D59E821A9C6AFB00174BC7 /* AppDelegate.m in Sources */,
 				69D59D3F1AA4BDC30042B0DF /* LICENSE.md in Sources */,
 				69D59EDF1A9C6D9C00174BC7 /* NSViewController+IDPExtension.m in Sources */,

@@ -7,16 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "IDPBindModel.h"
 #import "IDPSectionModel.h"
 #import "NSIndexPath+JNWAdditions.h"
 
 @interface IDPCollectionViewController : NSViewController
 
 @property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
-
-@property (nonatomic, strong) NSArray   *cellBindRelation;
-@property (nonatomic, strong) NSArray   *headerBindRelation;
 
 - (void)reloadData;
 

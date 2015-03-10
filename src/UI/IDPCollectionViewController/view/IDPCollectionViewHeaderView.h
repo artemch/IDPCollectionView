@@ -7,7 +7,6 @@
 //
 
 #import "JNWCollectionViewReusableView.h"
-#import "IDPBindModel.h"
 #import "IDPKeyPathObserver.h"
 
 @interface IDPCollectionViewHeaderView : JNWCollectionViewReusableView

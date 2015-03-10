@@ -25,6 +25,9 @@
                                 <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
+                            <connections>
+                                <binding destination="uiG-at-0ch" name="value" keyPath="selection.subtitle" id="eKG-Dr-GI6"/>
+                            </connections>
                         </textField>
                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sLD-sJ-FaN">
                             <rect key="frame" x="10" y="30" width="169" height="48"/>
@@ -36,6 +39,9 @@
                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
+                            <connections>
+                                <binding destination="uiG-at-0ch" name="value" keyPath="selection.title" id="UzU-C2-KnV"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <constraints>
@@ -55,11 +61,20 @@
                 <constraint firstAttribute="trailing" secondItem="gzK-zi-wgg" secondAttribute="trailing" id="cdM-Ly-3uU"/>
             </constraints>
             <connections>
+                <binding destination="uiG-at-0ch" name="hidden" keyPath="selection.backgroundColor" id="NDL-4l-Yxd"/>
                 <outlet property="contentView" destination="gzK-zi-wgg" id="etJ-Sx-K5v"/>
+                <outlet property="objectController" destination="uiG-at-0ch" id="tPX-FV-Ved"/>
                 <outlet property="subtitle" destination="Vsm-Vw-4Ue" id="HSf-ZZ-cM0"/>
                 <outlet property="title" destination="sLD-sJ-FaN" id="gJl-5Q-PSa"/>
             </connections>
-            <point key="canvasLocation" x="434.5" y="366.5"/>
+            <point key="canvasLocation" x="42.5" y="163.5"/>
         </customView>
+        <objectController objectClassName="IDPItemModel" id="uiG-at-0ch">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+                <string>backgroundColor</string>
+            </declaredKeys>
+        </objectController>
     </objects>
 </document>

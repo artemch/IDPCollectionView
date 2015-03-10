@@ -155,7 +155,8 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
     self.arrayController.selectionIndex = indexPath.jnw_section;
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:indexPath.jnw_section];
     id object = [model.sectionContent objectAtIndex:indexPath.jnw_item];
-    [cell bindWithRelation:self.cellBindRelation toObject:object];
+    cell.objectController.content = object;
+//    [cell bindWithRelation:self.cellBindRelation toObject:object];
     return cell;
 }
 
@@ -165,7 +166,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
                                                                                                                           owner:self];
     IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
     header.arrayController.content = model.sectionContent;
-    [header bindWithRelation:self.headerBindRelation toObject:model];
+//    [header bindWithRelation:self.headerBindRelation toObject:model];
     [header startObservingArrayControllerWithObserver:self];
     return header;
 }

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IDPCollectionViewController.h"
-#import "IDPTestModel.h"
+#import "IDPItemModel.h"
 #import "IDPSectionModel.h"
 
 static NSInteger const kIDPTestObjectsCount = 10;
@@ -26,43 +26,12 @@ static NSInteger const kIDPSectionsCount = 5;
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
-    
-    IDPBindModel *bindModel = [IDPBindModel new];
-    bindModel.bindTo = @"title";
-    bindModel.bind = @"value";
-    bindModel.keyPath = @"title";
-    
-    IDPBindModel *bindModel2 = [IDPBindModel new];
-    bindModel2.bindTo = @"subtitle";
-    bindModel2.bind = @"value";
-    bindModel2.keyPath = @"subtitle";
-    
-    IDPBindModel *bindModel3 = [IDPBindModel new];
-    bindModel3.bindTo = @"backgroundView";
-    bindModel3.bind = @"color";
-    bindModel3.keyPath = @"backgroundColor";
-    
-    self.collectionViewController.cellBindRelation = @[bindModel, bindModel2, bindModel3];
-    
-    bindModel = [IDPBindModel new];
-    bindModel.bindTo = @"title";
-    bindModel.bind = @"value";
-    bindModel.keyPath = @"title";
-    
-    bindModel2 = [IDPBindModel new];
-    bindModel2.bindTo = @"subtitle";
-    bindModel2.bind = @"value";
-    bindModel2.keyPath = @"subtitle";
-    self.collectionViewController.headerBindRelation = @[bindModel, bindModel2];
-    
     for (NSInteger index = 0; index < kIDPSectionsCount; index++) {
         IDPSectionModel *sectionModel = [IDPSectionModel new];
         sectionModel.title = [NSString stringWithFormat:@"Section %ld", (long)index];
         sectionModel.subtitle = [NSString stringWithFormat:@"Section header subtitle %ld", (long)index];
-//        [sectionModel.sectionContent setObjectClass:[IDPTestModel class]];
         for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
-            IDPTestModel *model = [IDPTestModel new];
+            IDPItemModel *model = [IDPItemModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
             model.subtitle = [NSString stringWithFormat:@"Subtitle %ld/%ld", (long)index, (long)kIndex];
             [sectionModel.sectionContent addObject:model];

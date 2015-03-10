@@ -7,7 +7,7 @@
 //
 
 #import "IDPCollectionViewCell.h"
-#import "IDPTestModel.h"
+#import "IDPItemModel.h"
 #import "NSColor+IDPExtension.h"
 #import "NSView+IDPExtension.h"
 
@@ -32,17 +32,19 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    for (IDPBindModel *bindModel in self.bindRelation) {
-        id bindToSource = [self valueForKey:bindModel.bindTo];
-        [bindToSource unbind:bindModel.bind];
-    }
+    self.objectController.content = nil;
 }
 
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
-    self.bindRelation = relations;
-    for (IDPBindModel *bindModel in relations) {
-        id bindToSource = [self valueForKey:bindModel.bindTo];
-        [bindToSource bind:bindModel.bind toObject:object withKeyPath:bindModel.keyPath options:bindModel.options];
+    
+}
+
+- (void)bind:(NSString *)binding toObject:(id)observable withKeyPath:(NSString *)keyPath options:(NSDictionary *)options {
+    if ([binding isEqualToString:@"hidden"]) {
+        NSView *backgroundView = [self valueForKey:@"backgroundView"];
+        [backgroundView bind:@"color" toObject:observable withKeyPath:keyPath options:options];
+    } else {
+        [super bind:binding toObject:observable withKeyPath:keyPath options:options];
     }
 }
 

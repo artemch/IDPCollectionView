@@ -22,19 +22,12 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
+    self.arrayController.content = nil;
     self.arrayControllerKeyPathObserver = nil;
-    for (IDPBindModel *bindModel in self.bindRelation) {
-        id bindToSource = [self valueForKey:bindModel.bindTo];
-        [bindToSource unbind:bindModel.bind];
-    }
 }
 
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object {
     self.bindRelation = relations;
-    for (IDPBindModel *bindModel in relations) {
-        id bindToSource = [self valueForKey:bindModel.bindTo];
-        [bindToSource bind:bindModel.bind toObject:object withKeyPath:bindModel.keyPath options:bindModel.options];
-    }
 }
 
 - (void)startObservingArrayControllerWithObserver:(id<IDPKeyPathObserverDelegate>)observer {
