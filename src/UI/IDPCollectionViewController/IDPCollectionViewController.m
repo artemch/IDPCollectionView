@@ -15,6 +15,7 @@
 #import "IDPCollectionViewHeaderView.h"
 #import "NSNib+IDPExtension.h"
 #import "JNWCollectionViewGridLayout.h"
+#import "IDPCollectionViewConstants.h"
 
 static CGFloat const kIDPDefaultCellWidth  = 185;
 static CGFloat const kIDPDefaultCellHeight = 80;
@@ -118,7 +119,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
     _arrayController = arrayController;
     if (_arrayController) {
         self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.arrayController observerObject:self];
-        self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"arrangedObjects"];
+        self.dataSourceKeyPathObserver.observedKeyPathsArray = @[kIDPObservedKey];
         [self.dataSourceKeyPathObserver startObserving];
     }
 }
@@ -212,7 +213,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
         didCatchChanges:(NSDictionary *)changes
               inKeyPath:(NSString *)keyPath
                ofObject:(id<NSObject>)observedObject {
-    if ([keyPath isEqualToString:@"arrangedObjects"]) {
+    if ([keyPath isEqualToString:kIDPObservedKey]) {
         [self reloadData];
     }
 }

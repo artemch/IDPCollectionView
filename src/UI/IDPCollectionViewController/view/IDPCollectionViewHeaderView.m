@@ -7,6 +7,7 @@
 //
 
 #import "IDPCollectionViewHeaderView.h"
+#import "IDPCollectionViewConstants.h"
 
 @interface IDPCollectionViewHeaderView ()
 
@@ -33,7 +34,7 @@
 
 - (void)startObservingArrayControllerWithObserver:(id<IDPKeyPathObserverDelegate>)observer {
     self.arrayControllerKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.arrayController observerObject:observer];
-    self.arrayControllerKeyPathObserver.observedKeyPathsArray = @[@"arrangedObjects"];
+    self.arrayControllerKeyPathObserver.observedKeyPathsArray = @[kIDPObservedKey];
     [self.arrayControllerKeyPathObserver startObserving];
 }
 

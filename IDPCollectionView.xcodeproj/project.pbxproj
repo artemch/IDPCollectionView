@@ -75,6 +75,7 @@
 		69C9833C1AAF26DD00759F6C /* IDPItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPItemModel.m; sourceTree = "<group>"; };
 		69C9833E1AAF292700759F6C /* IDPColorValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPColorValueTransformer.h; sourceTree = "<group>"; };
 		69C9833F1AAF292700759F6C /* IDPColorValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDPColorValueTransformer.m; sourceTree = "<group>"; };
+		69C983421AAF371A00759F6C /* IDPCollectionViewConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDPCollectionViewConstants.h; sourceTree = "<group>"; };
 		69D59D171AA4BDC30042B0DF /* JNWCollectionView+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionView+Private.h"; sourceTree = "<group>"; };
 		69D59D181AA4BDC30042B0DF /* JNWCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JNWCollectionView.h; sourceTree = "<group>"; };
 		69D59D191AA4BDC30042B0DF /* JNWCollectionViewCell+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JNWCollectionViewCell+Private.h"; sourceTree = "<group>"; };
@@ -438,6 +439,7 @@
 				69B6D4671AADE4DC00516434 /* IDPSectionModel */,
 				69C9833E1AAF292700759F6C /* IDPColorValueTransformer.h */,
 				69C9833F1AAF292700759F6C /* IDPColorValueTransformer.m */,
+				69C983421AAF371A00759F6C /* IDPCollectionViewConstants.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
