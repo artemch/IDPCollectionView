@@ -27,14 +27,16 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 
 @property (nonatomic, strong, readonly) IDPCollectionViewView   *myView;
 
-@property (nonatomic, strong) NSMutableArray   *dataSourceObjects;
-
 @property (nonatomic, strong) IDPKeyPathObserver    *dataSourceKeyPathObserver;
 @property (nonatomic, strong) IDPKeyPathObserver    *headerKeyPathObserver;
 
 @property (nonatomic, assign) CGFloat  headerHeight;
 
 @property (nonatomic, strong) id selectedObject;
+
+@property (nonatomic, assign) BOOL awakeOnce;
+
+- (IBAction)onAddItem:(id)sender;
 
 @end
 
@@ -71,15 +73,18 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 }
 
 - (void)baseInit {
-    self.dataSourceObjects = [IDPKVOMutableArray array];
-    self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.dataSourceObjects observerObject:self];
-    self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"count"];
-    [self.dataSourceKeyPathObserver startObserving];
+//    self.dataSourceObjects = [IDPKVOMutableArray array];
+//    self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.dataSourceObjects observerObject:self];
+//    self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"count"];
+//    [self.dataSourceKeyPathObserver startObserving];
 }
 
 - (void)awakeFromNib {
-    [super awakeFromNib];
-    [self viewBaseInit];
+    if (!self.awakeOnce) {
+        self.awakeOnce = YES;
+        [super awakeFromNib];
+        [self viewBaseInit];
+    }
 }
 
 - (void)loadView {
@@ -114,6 +119,24 @@ static CGFloat const kIDPItemHorizontalMargin = 10;
 
 IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
 
+- (void)setArrayController:(NSArrayController *)arrayController {
+    _arrayController = arrayController;
+    if (_arrayController) {
+        self.dataSourceKeyPathObserver = [[IDPKeyPathObserver alloc] initWithObservedObject:self.arrayController observerObject:self];
+        self.dataSourceKeyPathObserver.observedKeyPathsArray = @[@"arrangedObjects"];
+        [self.dataSourceKeyPathObserver startObserving];
+    }
+}
+
+#pragma mark -
+#pragma mark Interface Handling
+
+- (IBAction)onAddItem:(id)sender {
+    NSRect rect = [self.myView.collectionView convertRect:[sender frame] fromView:[sender superview]];
+    NSIndexSet *set = [self.myView.collectionView indexesForSectionsInRect:rect];
+    NSLog(@"count %lu", (unsigned long)set.count);
+}
+
 #pragma mark -
 #pragma mark Public methods
 
@@ -121,50 +144,34 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
     [self.myView.collectionView reloadData];
 }
 
-- (void)addObject:(IDPSectionModel *)object {
-    [self.dataSourceObjects addObject:object];
-}
-
-- (void)removeObject:(IDPSectionModel *)object {
-    [self.dataSourceObjects removeObject:object];
-}
-
-- (void)insertObject:(IDPSectionModel *)object atIndex:(NSUInteger)index {
-    [self.dataSourceObjects insertObject:object atIndex:index];
-}
-
-- (IDPSectionModel *)objectAtIndex:(NSUInteger)index {
-    return [self.dataSourceObjects objectAtIndex:index];
-}
-
-- (NSUInteger)indexOfObject:(IDPSectionModel *)object {
-    return [self.dataSourceObjects indexOfObject:object];
-}
-
 #pragma mark -
 #pragma mark JNWCollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(JNWCollectionView *)collectionView {
-    return self.dataSourceObjects.count;
+    return [self.arrayController.arrangedObjects count];
 }
 
 - (NSUInteger)collectionView:(JNWCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:section];
-    return model.sectionContent.count;
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
+    return [model.sectionContent.arrangedObjects count];
 }
 
 - (JNWCollectionViewCell *)collectionView:(JNWCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:NSStringFromClass([collectionView.itemPrototype class])];
-    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:indexPath.jnw_section];
-    id object = [model.sectionContent objectAtIndex:indexPath.jnw_item];
+    IDPCollectionViewCell *cell = (IDPCollectionViewCell *)[collectionView dequeueReusableCellWithIdentifier:NSStringFromClass([collectionView.itemPrototype class])
+                                                                                                       owner:self];
+    self.arrayController.selectionIndex = indexPath.jnw_section;
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:indexPath.jnw_section];
+    model.sectionContent.selectionIndex = indexPath.jnw_item;
+    id object = [[model.sectionContent arrangedObjects] objectAtIndex:indexPath.jnw_item];
     [cell bindWithRelation:self.cellBindRelation toObject:object];
     return cell;
 }
 
 - (JNWCollectionViewReusableView *)collectionView:(JNWCollectionView *)collectionView viewForSupplementaryViewOfKind:(NSString *)kind inSection:(NSInteger)section {
     IDPCollectionViewHeaderView *header = (IDPCollectionViewHeaderView *)[collectionView dequeueReusableSupplementaryViewOfKind:kind
-                                                                                                             withReuseIdentifer:NSStringFromClass([collectionView.headerPrototype class])];
-    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:section];
+                                                                                                             withReuseIdentifer:NSStringFromClass([collectionView.headerPrototype class])
+                                                                                                                          owner:self];
+    IDPSectionModel *model = [self.arrayController.arrangedObjects objectAtIndex:section];
     [header bindWithRelation:self.headerBindRelation toObject:model];
     return header;
 }
@@ -188,22 +195,22 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
            toIndexPath:(NSIndexPath *)toIndexpath
 {
     if (fromIndexPath.jnw_section == toIndexpath.jnw_section) {
-        IDPSectionModel *sectionModel = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
-        id object = [sectionModel.sectionContent objectAtIndex:fromIndexPath.jnw_item];
+        IDPSectionModel *sectionModel = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
+        id object = [[sectionModel.sectionContent arrangedObjects] objectAtIndex:fromIndexPath.jnw_item];
         [sectionModel.sectionContent removeObject:object];
-        [sectionModel.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
+        [sectionModel.sectionContent insertObject:object atArrangedObjectIndex:toIndexpath.jnw_item];
     } else {
-        IDPSectionModel *sectionModelFrom = [self.dataSourceObjects objectAtIndex:fromIndexPath.jnw_section];
-        IDPSectionModel *sectionModelTo = [self.dataSourceObjects objectAtIndex:toIndexpath.jnw_section];
-        id object = [sectionModelFrom.sectionContent objectAtIndex:fromIndexPath.jnw_item];
-        [sectionModelTo.sectionContent insertObject:object atIndex:toIndexpath.jnw_item];
+        IDPSectionModel *sectionModelFrom = [self.arrayController.arrangedObjects objectAtIndex:fromIndexPath.jnw_section];
+        IDPSectionModel *sectionModelTo = [self.arrayController.arrangedObjects objectAtIndex:toIndexpath.jnw_section];
+        id object = [[sectionModelFrom.sectionContent arrangedObjects] objectAtIndex:fromIndexPath.jnw_item];
+        [sectionModelTo.sectionContent insertObject:object atArrangedObjectIndex:toIndexpath.jnw_item];
         [sectionModelFrom.sectionContent removeObject:object];
     }
 }
 
 - (void)collectionView:(JNWCollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:indexPath.jnw_section];
-    self.selectedObject = [model.sectionContent objectAtIndex:indexPath.jnw_item];
+//    IDPSectionModel *model = [self.dataSourceObjects objectAtIndex:indexPath.jnw_section];
+//    self.selectedObject = [model.sectionContent objectAtIndex:indexPath.jnw_item];
 }
 
 #pragma mark -
@@ -213,7 +220,7 @@ IDPViewControllerViewOfClassGetterSynthesize(IDPCollectionViewView, myView)
         didCatchChanges:(NSDictionary *)changes
               inKeyPath:(NSString *)keyPath
                ofObject:(id<NSObject>)observedObject {
-    if (observer == self.dataSourceKeyPathObserver && observedObject == self.dataSourceObjects) {
+    if (observer == self.dataSourceKeyPathObserver && observedObject == self.arrayController) {
         [self reloadData];
     }
 }

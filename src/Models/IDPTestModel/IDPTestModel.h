@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AppKitKit.h"
+#import <Cocoa/Cocoa.h>
 
 @interface IDPTestModel : NSObject
 

@@ -182,6 +182,9 @@ typedef NS_ENUM(NSInteger, JNWCollectionViewScrollPosition) {
 - (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)identifier;
 
+- (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier owner:(id)owner;
+- (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)reuseIdentifier owner:(id)owner;
+
 /// The layout is responsible for providing the positioning and layout attributes for cells and views.
 /// It is also responsible for handling selection changes that are performed via the keyboard. See the
 /// documentation in JNWCollectionViewLayout.h.

@@ -11,7 +11,7 @@
 
 @interface IDPSectionModel ()
 
-@property (nonatomic, strong) NSMutableArray    *sectionContent;
+@property (nonatomic, strong) NSArrayController    *sectionContent;
 
 @end
 
@@ -24,7 +24,7 @@
 {
     self = [super init];
     if (self) {
-        self.sectionContent = [IDPKVOMutableArray array];
+        self.sectionContent = [NSArrayController new];
     }
     return self;
 }

@@ -719,10 +719,18 @@
         </window>
         <viewController id="C3Q-MP-bV9" customClass="IDPCollectionViewController">
             <connections>
+                <outlet property="arrayController" destination="wns-rc-0PI" id="Ijs-cN-Yrp"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="vaL-11-VC6"/>
             </connections>
         </viewController>
         <customObject id="ORx-F7-dR5" customClass="IDPCollectionViewCell"/>
         <customObject id="ZC7-Df-yx4" customClass="IDPCollectionViewHeaderView"/>
+        <arrayController objectClassName="IDPSectionModel" id="wns-rc-0PI">
+            <declaredKeys>
+                <string>title</string>
+                <string>subtitle</string>
+                <string>sectionContent</string>
+            </declaredKeys>
+        </arrayController>
     </objects>
 </document>

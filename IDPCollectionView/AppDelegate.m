@@ -62,6 +62,7 @@ static NSInteger const kIDPSectionsCount = 5;
         IDPSectionModel *sectionModel = [IDPSectionModel new];
         sectionModel.title = [NSString stringWithFormat:@"Section %ld", (long)index];
         sectionModel.subtitle = [NSString stringWithFormat:@"Section header subtitle %ld", (long)index];
+        [sectionModel.sectionContent setObjectClass:[IDPTestModel class]];
         for (NSInteger kIndex = 0; kIndex < kIDPTestObjectsCount; kIndex++) {
             IDPTestModel *model = [IDPTestModel new];
             model.title = [NSString stringWithFormat:@"Title %ld-%ld", (long)index, (long)kIndex];
@@ -69,7 +70,7 @@ static NSInteger const kIDPSectionsCount = 5;
             model.backgroundColor = backgroundColor;
             [sectionModel.sectionContent addObject:model];
         }
-        [self.collectionViewController addObject:sectionModel];
+        [self.collectionViewController.arrayController addObject:sectionModel];
     }
 }
 

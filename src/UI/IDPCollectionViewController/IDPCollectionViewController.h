@@ -13,17 +13,13 @@
 
 @interface IDPCollectionViewController : NSViewController
 
+@property (nonatomic, strong) IBOutlet NSArrayController    *arrayController;
+
 @property (nonatomic, strong) NSArray   *cellBindRelation;
 @property (nonatomic, strong) NSArray   *headerBindRelation;
 
 @property (nonatomic, strong, readonly) id selectedObject;
 
 - (void)reloadData;
-
-- (void)addObject:(IDPSectionModel *)object;
-- (void)removeObject:(IDPSectionModel *)object;
-- (void)insertObject:(IDPSectionModel *)object atIndex:(NSUInteger)index;
-- (IDPSectionModel *)objectAtIndex:(NSUInteger)index;
-- (NSUInteger)indexOfObject:(IDPSectionModel *)object;
 
 @end

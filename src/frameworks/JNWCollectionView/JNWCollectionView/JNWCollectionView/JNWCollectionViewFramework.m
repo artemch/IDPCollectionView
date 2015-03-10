@@ -250,10 +250,10 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	[reusableCells addObject:item];
 }
 
-- (id)firstTopLevelObjectOfClass:(Class)objectClass inNib:(NSNib *)nib {
+- (id)firstTopLevelObjectOfClass:(Class)objectClass inNib:(NSNib *)nib owner:(id)owner {
 	id foundObject = nil;
 	NSArray *topLevelObjects = nil;
-	if([nib instantiateWithOwner:self topLevelObjects:&topLevelObjects]) {
+	if([nib instantiateWithOwner:owner topLevelObjects:&topLevelObjects]) {
 		NSUInteger objectIndex = [topLevelObjects indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
 			if ([obj isKindOfClass:objectClass]) {
 				*stop = YES;
@@ -268,58 +268,68 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
 	return foundObject;
 }
 
-- (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
-	NSParameterAssert(identifier);
-	JNWCollectionViewCell *cell = [self dequeueItemWithIdentifier:identifier inReusePool:self.reusableCells];
+- (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier owner:(id)owner {
+    NSParameterAssert(identifier);
+    JNWCollectionViewCell *cell = [self dequeueItemWithIdentifier:identifier inReusePool:self.reusableCells];
+    
+    // If the view doesn't exist, we go ahead and create one. If we have a class registered
+    // for this identifier, we use it, otherwise we just create an instance of JNWCollectionViewCell.
+    if (cell == nil) {
+        Class cellClass = self.cellClassMap[identifier];
+        NSNib *cellNib = self.cellNibMap[identifier];
+        
+        if (cellClass == nil && cellNib == nil) {
+            cellClass = JNWCollectionViewCell.class;
+        }
+        
+        if (cellNib != nil) {
+            cell = [self firstTopLevelObjectOfClass:JNWCollectionViewCell.class inNib:cellNib owner:owner];
+        } else if (cellClass != nil) {
+            cell = [[cellClass alloc] initWithFrame:CGRectZero];
+        }
+    }
+    
+    cell.reuseIdentifier = identifier;
+    [cell prepareForReuse];
+    return cell;
+}
 
-	// If the view doesn't exist, we go ahead and create one. If we have a class registered
-	// for this identifier, we use it, otherwise we just create an instance of JNWCollectionViewCell.
-	if (cell == nil) {
-		Class cellClass = self.cellClassMap[identifier];
-		NSNib *cellNib = self.cellNibMap[identifier];
-		
-		if (cellClass == nil && cellNib == nil) {
-			cellClass = JNWCollectionViewCell.class;
-		}
-		
-		if (cellNib != nil) {
-			cell = [self firstTopLevelObjectOfClass:JNWCollectionViewCell.class inNib:cellNib];
-		} else if (cellClass != nil) {
-			cell = [[cellClass alloc] initWithFrame:CGRectZero];
-		}
-	}
-	
-	cell.reuseIdentifier = identifier;
-	[cell prepareForReuse];
-	return cell;
+- (JNWCollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier {
+    return [self dequeueReusableCellWithIdentifier:identifier owner:self];
+}
+
+- (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)reuseIdentifier
+                                                                    owner:(id)owner
+{
+    NSParameterAssert(reuseIdentifier);
+    NSParameterAssert(kind);
+    
+    NSString *identifier = [self supplementaryViewIdentifierWithKind:kind reuseIdentifier:reuseIdentifier];
+    JNWCollectionViewReusableView *view = [self dequeueItemWithIdentifier:identifier inReusePool:self.reusableSupplementaryViews];
+    
+    if (view == nil) {
+        Class viewClass = self.supplementaryViewClassMap[identifier];
+        NSNib *viewNib = self.supplementaryViewNibMap[identifier];
+        
+        if (viewClass == nil && viewNib == nil) {
+            viewClass = JNWCollectionViewReusableView.class;
+        }
+        
+        if (viewNib != nil) {
+            view = [self firstTopLevelObjectOfClass:JNWCollectionViewReusableView.class inNib:viewNib owner:owner];
+        } else if (viewClass != nil) {
+            view = [[viewClass alloc] initWithFrame:CGRectZero];
+        }
+    }
+    
+    view.reuseIdentifier = reuseIdentifier;
+    view.kind = kind;
+    
+    return view;
 }
 
 - (JNWCollectionViewReusableView *)dequeueReusableSupplementaryViewOfKind:(NSString *)kind withReuseIdentifer:(NSString *)reuseIdentifier {
-	NSParameterAssert(reuseIdentifier);
-	NSParameterAssert(kind);
-	
-	NSString *identifier = [self supplementaryViewIdentifierWithKind:kind reuseIdentifier:reuseIdentifier];
-	JNWCollectionViewReusableView *view = [self dequeueItemWithIdentifier:identifier inReusePool:self.reusableSupplementaryViews];
-	
-	if (view == nil) {
-		Class viewClass = self.supplementaryViewClassMap[identifier];
-		NSNib *viewNib = self.supplementaryViewNibMap[identifier];
-		
-		if (viewClass == nil && viewNib == nil) {
-			viewClass = JNWCollectionViewReusableView.class;
-		}
-		
-		if (viewNib != nil) {
-			view = [self firstTopLevelObjectOfClass:JNWCollectionViewReusableView.class inNib:viewNib];
-		} else if (viewClass != nil) {
-			view = [[viewClass alloc] initWithFrame:CGRectZero];
-		}
-	}
-	
-	view.reuseIdentifier = reuseIdentifier;
-	view.kind = kind;
-
-	return view;
+    return [self dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifer:reuseIdentifier owner:self];
 }
 
 - (void)enqueueReusableCell:(JNWCollectionViewCell *)cell withIdentifier:(NSString *)identifier {
