@@ -65,6 +65,6 @@
             </connections>
             <point key="canvasLocation" x="332.5" y="276"/>
         </customView>
-        <arrayController objectClassName="IDPTestModel" id="KPB-st-XBq"/>
+        <arrayController objectClassName="IDPItemModel" id="KPB-st-XBq"/>
     </objects>
 </document>
