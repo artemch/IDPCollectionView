@@ -324,7 +324,7 @@ static void JNWCollectionViewCommonInit(JNWCollectionView *collectionView) {
     
     view.reuseIdentifier = reuseIdentifier;
     view.kind = kind;
-    
+    [view prepareForReuse];
     return view;
 }
 

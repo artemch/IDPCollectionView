@@ -22,8 +22,9 @@
 
 - (void)prepareForReuse {
     [super prepareForReuse];
-    self.arrayController.content = nil;
+    [self.arrayControllerKeyPathObserver stopObserving];
     self.arrayControllerKeyPathObserver = nil;
+    self.arrayController.content = nil;
 }
 
 - (void)bindWithRelation:(NSArray *)relations toObject:(id)object {

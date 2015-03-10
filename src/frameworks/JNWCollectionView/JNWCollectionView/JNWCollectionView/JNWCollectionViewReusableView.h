@@ -32,4 +32,6 @@
 /// The reusable view kind. There can only be one kind of supplementary view in each section.
 @property (nonatomic, copy, readonly) NSString *kind;
 
+- (void)prepareForReuse;
+
 @end

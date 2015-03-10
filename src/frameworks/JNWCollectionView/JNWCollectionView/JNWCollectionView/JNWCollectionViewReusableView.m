@@ -43,4 +43,8 @@
     self.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
 }
 
+- (void)prepareForReuse {
+    
+}
+
 @end
