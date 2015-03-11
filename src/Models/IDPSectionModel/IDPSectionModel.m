@@ -7,7 +7,6 @@
 //
 
 #import "IDPSectionModel.h"
-#import "IDPKVOMutableArray.h"
 
 @interface IDPSectionModel ()
 

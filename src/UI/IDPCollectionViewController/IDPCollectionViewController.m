@@ -10,7 +10,6 @@
 #import "IDPCollectionViewView.h"
 #import "NSViewController+IDPExtension.h"
 #import "IDPKeyPathObserver.h"
-#import "IDPKVOMutableArray.h"
 #import "IDPCollectionViewCell.h"
 #import "IDPCollectionViewHeaderView.h"
 #import "NSNib+IDPExtension.h"

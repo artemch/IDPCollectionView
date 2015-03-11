@@ -37,6 +37,9 @@ static NSString *const kIDPBindindValue      = @"color";
     [dropShadow setShadowBlurRadius:0.0];
     
     [self setShadow:dropShadow];
+    
+    NSView *backgroundView = [self valueForKey:kIDPBackgroundView];
+    [backgroundView roundWithValue:3];
 }
 
 #pragma mark -

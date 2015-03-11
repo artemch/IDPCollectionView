@@ -8,8 +8,6 @@
 
 #import "IDPKeyPathObserver.h"
 
-#import "IDPPropertyMacros.h"
-
 @interface IDPKeyPathObserver ()
 @property (nonatomic, readwrite, assign) NSObject                       *objectToObserve;
 @property (nonatomic, readwrite, assign) id<IDPKeyPathObserverDelegate> observer;
